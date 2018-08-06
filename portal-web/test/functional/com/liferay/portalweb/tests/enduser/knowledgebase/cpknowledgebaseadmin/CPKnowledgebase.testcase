@@ -1055,6 +1055,8 @@
 	</command>
 
 	<command name="ViewImportedKBArticlesPrioritization" priority="4">
+		<property name="portal.acceptance" value="Linda" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -1290,6 +1292,8 @@
 	</command>
 
 	<command name="ViewNoErrorAfterImportWithoutParentMarkdownFiles" priority="4">
+		<property name="portal.acceptance" value="Linda" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
