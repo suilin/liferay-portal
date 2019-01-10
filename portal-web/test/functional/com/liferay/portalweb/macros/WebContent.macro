@@ -741,6 +741,8 @@ definition {
 			webContentTitleEscapeCharacter = "${webContentTitleEscapeCharacter}"
 		);
 
+		Click(locator1 = "Icon#CLOSE");
+
 		RecycleBin.openRecycleBinAdmin(siteURLKey = "${siteURLKey}");
 
 		RecycleBin.emptyCP();
