@@ -75,29 +75,7 @@ definition {
 			key_navItem = "Scopes"
 		);
 
-		if ((isSet(checkGlobalScope)) || (isSet(uncheckGlobalScope))) {
-			Navigator.gotoNavUnderline(navUnderline = "Global scopes");
-
-			if (isSet(checkGlobalScope)) {
-				Check(
-					locator1 = "OAuth2#ADMIN_GLOBAL_SCOPE_CHECKBOX",
-					key_scopeName = "${checkGlobalScope}"
-				);
-			}
-
-			if (isSet(uncheckGlobalScope)) {
-				Uncheck(
-					locator1 = "OAuth2#ADMIN_GLOBAL_SCOPE_CHECKBOX",
-					key_scopeName = "${uncheckGlobalScope}"
-				);
-			}
-		}
-
 		if ((isSet(resourceCheckList)) || (isSet(resourceUncheckList)) || (isSet(uncheckAllResourceScopes))) {
-			if (IsElementPresent.isVisible(locator1 = "NavUnderline#NAV_UNDERLINE_LINK", key_navUnderline = "Resource scopes")) {
-				Navigator.gotoNavUnderline(navUnderline = "Resource scopes");
-			}
-
 			for (var resourcePanel : list "${resourcePanels}") {
 				OAuth2.expandResourcePanel(resourcePanel = "${resourcePanel}");
 			}
@@ -481,10 +459,6 @@ definition {
 		);
 
 		if ((isSet(allResourceScopesUnchecked)) || (isSet(resourceCheckedList)) || (isSet(resourceUncheckedList))) {
-			if (IsElementPresent.isVisible(locator1 = "NavUnderline#NAV_UNDERLINE_LINK", key_navUnderline = "Resource scopes")) {
-				Navigator.gotoNavUnderline(navUnderline = "Resource scopes");
-			}
-
 			for (var resourcePanel : list "${resourcePanels}") {
 				OAuth2.expandResourcePanel(resourcePanel = "${resourcePanel}");
 			}
@@ -511,24 +485,6 @@ definition {
 				AssertElementNotPresent(
 					locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKED",
 					key_matchCount = "1"
-				);
-			}
-		}
-
-		if ((isSet(checkedGlobalScope)) || (isSet(uncheckedGlobalScope))) {
-			Navigator.gotoNavUnderline(navUnderline = "Global scopes");
-
-			if (isSet(checkedGlobalScope)) {
-				AssertChecked(
-					locator1 = "OAuth2#ADMIN_GLOBAL_SCOPE_CHECKBOX",
-					key_scopeName = "${checkedGlobalScope}"
-				);
-			}
-
-			if (isSet(uncheckedGlobalScope)) {
-				AssertNotChecked(
-					locator1 = "OAuth2#ADMIN_GLOBAL_SCOPE_CHECKBOX",
-					key_scopeName = "${uncheckedGlobalScope}"
 				);
 			}
 		}
