@@ -145,51 +145,44 @@ definition {
 
 		OAuth2.editScopes(
 			applicationName = "OAuth Application",
-			resourceCheckList = "everything.read.userprofile",
+			resourceCheckList = "liferay-json-web-services.everything.write,everything.read.userprofile",
 			resourcePanels = "Portal Services"
 		);
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "OAuth2#ADMIN_TABLE_APP_SCOPES_COUNT",
-			value1 = "1",
+			value1 = "2",
 			key_tableName = "OAuth Application"
 		);
 
 		OAuth2.viewScopes(
 			applicationName = "OAuth Application",
-			resourceCheckedList = "everything.read.userprofile",
+			resourceCheckedList = "liferay-json-web-services.everything.write,everything.read.userprofile",
 			resourcePanels = "Portal Services"
 		);
 
 		OAuth2.editScopes(
 			applicationName = "OAuth Application",
-			checkGlobalScope = "Everything"
+			resourceCheckList = "example-scope-1,example-scope-2",
+			resourcePanels = "Sample QA app"
 		);
-
-		/*
-
-		Workaround for OAUTH2-243
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "OAuth2#ADMIN_TABLE_APP_SCOPES_COUNT",
-			value1 = "7",
+			value1 = "4",
 			key_tableName = "OAuth Application"
 		);
 
 		OAuth2.viewScopes(
 			applicationName = "OAuth Application",
-			checkedGlobalScope = "Everything",
-			resourceCheckedList = "example-scope-1,example-scope-2,everything.read,everything.write,everything.read.userprofile",
+			resourceCheckedList = "example-scope-1,example-scope-2,liferay-json-web-services.everything.write,everything.read.userprofile",
 			resourcePanels = "Portal Services,Sample QA app"
 		);
-
-		*/
 
 		OAuth2.editScopes(
 			applicationName = "OAuth Application",
 			resourcePanels = "Portal Services,Sample QA app",
-			uncheckAllResourceScopes = "true",
-			uncheckGlobalScope = "Everything"
+			uncheckAllResourceScopes = "true"
 		);
 
 		AssertTextEquals.assertPartialText(
@@ -201,8 +194,7 @@ definition {
 		OAuth2.viewScopes(
 			allResourceScopesUnchecked = "true",
 			applicationName = "OAuth Application",
-			resourcePanels = "Portal Services,Sample QA app",
-			uncheckedGlobalScope = "Everything"
+			resourcePanels = "Portal Services,Sample QA app"
 		);
 	}
 
