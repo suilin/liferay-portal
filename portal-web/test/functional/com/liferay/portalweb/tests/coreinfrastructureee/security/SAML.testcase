@@ -349,6 +349,20 @@ definition {
 	}
 
 	@priority = "4"
+	test AssertSSOWithEncryptionAndDecryption {
+		property test.name.skip.portal.instance = "SAML#AssertSSOWithEncryptionAndDecryption";
+
+		SAML.configureLiferaySAMLAsIdP(
+			samlEntityID = "samlidp"
+		);
+
+		SAML.configureLiferaySAMLAsSP(
+			encryptionCertificate = "true",
+			samlEntityID = "samlsp",
+			spURL = "http://www.able.com:9080/"
+		);
+
+	@priority = "4"
 	test AssertSSOWithSignAuthnRequests {
 		property test.name.skip.portal.instance = "SAML#AssertSSOWithSignAuthnRequests";
 

@@ -14,6 +14,7 @@ definition {
 
 	macro configureCertificateAndPrivateKey {
 		AssertClick(
+			key_certificateUsage = "${certificateUsage}",
 			locator1 = "Button#CREATE_CERTIFICATE",
 			value1 = "Create Certificate"
 		);

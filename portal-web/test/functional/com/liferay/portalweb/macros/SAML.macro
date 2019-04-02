@@ -64,7 +64,20 @@ definition {
 			samlRoleType = "Service Provider"
 		);
 
-		SAMLRole.configureCertificateAndPrivateKey(samlKeyPassword = "${samlEntityID}");
+		if ("encryptionCertificate" == "true") {
+			for (var certificateUsage : list "SIGNING,ENCRYPTION") {
+				SAMLRole.configureCertificateAndPrivateKey(
+					certificateUsage = "${certificateUsage}",
+					samlKeyPassword = "${samlEntityID}"
+				);
+			}
+		}
+		else {
+			SAMLRole.configureCertificateAndPrivateKey(
+				certificateUsage = "SIGNING",
+				samlKeyPassword = "${samlEntityID}"
+			);
+		}
 
 		SAML.connectSPAndIdP(
 			attributes = "${attributes}",
