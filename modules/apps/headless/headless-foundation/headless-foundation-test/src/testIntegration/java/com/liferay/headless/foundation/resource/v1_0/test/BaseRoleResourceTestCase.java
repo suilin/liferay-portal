@@ -352,7 +352,7 @@ public abstract class BaseRoleResourceTestCase {
 			if (Objects.equals(
 					"availableLanguages", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						role1.getAvailableLanguages(),
 						role2.getAvailableLanguages())) {
 
@@ -363,7 +363,9 @@ public abstract class BaseRoleResourceTestCase {
 			}
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(role1.getCreator(), role2.getCreator())) {
+				if (!Objects.deepEquals(
+						role1.getCreator(), role2.getCreator())) {
+
 					return false;
 				}
 
@@ -371,7 +373,7 @@ public abstract class BaseRoleResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						role1.getDateCreated(), role2.getDateCreated())) {
 
 					return false;
@@ -381,7 +383,7 @@ public abstract class BaseRoleResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						role1.getDateModified(), role2.getDateModified())) {
 
 					return false;
@@ -391,7 +393,7 @@ public abstract class BaseRoleResourceTestCase {
 			}
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						role1.getDescription(), role2.getDescription())) {
 
 					return false;
@@ -401,7 +403,7 @@ public abstract class BaseRoleResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(role1.getId(), role2.getId())) {
+				if (!Objects.deepEquals(role1.getId(), role2.getId())) {
 					return false;
 				}
 
@@ -409,7 +411,7 @@ public abstract class BaseRoleResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(role1.getName(), role2.getName())) {
+				if (!Objects.deepEquals(role1.getName(), role2.getName())) {
 					return false;
 				}
 
@@ -417,7 +419,9 @@ public abstract class BaseRoleResourceTestCase {
 			}
 
 			if (Objects.equals("roleType", additionalAssertFieldName)) {
-				if (!Objects.equals(role1.getRoleType(), role2.getRoleType())) {
+				if (!Objects.deepEquals(
+						role1.getRoleType(), role2.getRoleType())) {
+
 					return false;
 				}
 

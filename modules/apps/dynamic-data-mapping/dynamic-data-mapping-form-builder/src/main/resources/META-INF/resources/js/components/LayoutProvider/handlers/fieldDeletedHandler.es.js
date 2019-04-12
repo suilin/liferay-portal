@@ -53,12 +53,6 @@ const formatRules = (state, pages) => {
 	return rules;
 };
 
-/**
- * @param {!Array} pages
- * @param {!Object} source
- * @private
- * @return {Object}
- */
 const removeEmptyRow = (pages, source) => {
 	const {pageIndex, rowIndex} = source;
 
@@ -69,8 +63,8 @@ const removeEmptyRow = (pages, source) => {
 	return pages;
 };
 
-export const handleFieldDeleted = (state, event) => {
-	const {columnIndex, pageIndex, rowIndex} = event;
+export const handleFieldDeleted = (state, {indexes}) => {
+	const {columnIndex, pageIndex, rowIndex} = indexes;
 	const {pages} = state;
 	let newContext = FormSupport.removeFields(
 		pages,

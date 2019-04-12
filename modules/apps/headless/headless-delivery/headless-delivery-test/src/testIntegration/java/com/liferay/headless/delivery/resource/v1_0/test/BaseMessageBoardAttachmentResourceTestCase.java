@@ -301,8 +301,8 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostMessageBoardMessageMessageBoardAttachment(
+			messageBoardMessageId, toMultipartBody(messageBoardAttachment));
 	}
 
 	protected Long
@@ -503,8 +503,8 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostMessageBoardThreadMessageBoardAttachment(
+			messageBoardThreadId, toMultipartBody(messageBoardAttachment));
 	}
 
 	protected Long
@@ -807,7 +807,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("contentUrl", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardAttachment1.getContentUrl(),
 						messageBoardAttachment2.getContentUrl())) {
 
@@ -818,7 +818,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("encodingFormat", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardAttachment1.getEncodingFormat(),
 						messageBoardAttachment2.getEncodingFormat())) {
 
@@ -829,7 +829,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("fileExtension", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardAttachment1.getFileExtension(),
 						messageBoardAttachment2.getFileExtension())) {
 
@@ -840,7 +840,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardAttachment1.getId(),
 						messageBoardAttachment2.getId())) {
 
@@ -851,7 +851,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("sizeInBytes", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardAttachment1.getSizeInBytes(),
 						messageBoardAttachment2.getSizeInBytes())) {
 
@@ -862,7 +862,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("title", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardAttachment1.getTitle(),
 						messageBoardAttachment2.getTitle())) {
 
@@ -995,6 +995,13 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 
 	protected MessageBoardAttachment randomPatchMessageBoardAttachment() {
 		return randomMessageBoardAttachment();
+	}
+
+	protected MultipartBody toMultipartBody(
+		MessageBoardAttachment messageBoardAttachment) {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected static final ObjectMapper inputObjectMapper = new ObjectMapper() {

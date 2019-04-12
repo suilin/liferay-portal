@@ -36,6 +36,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -60,6 +62,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
@@ -96,6 +99,16 @@ public class JournalEditArticleDisplayContext {
 		return _articleId;
 	}
 
+	public Set<Locale> getAvailableLocales() {
+		if (_availableLocales != null) {
+			return _availableLocales;
+		}
+
+		_availableLocales = LanguageUtil.getAvailableLocales(getGroupId());
+
+		return _availableLocales;
+	}
+
 	public Map<String, Object> getChangeDefaultLanguageSoyContext() {
 		Map<String, Object> context = new HashMap<>();
 
@@ -112,10 +125,7 @@ public class JournalEditArticleDisplayContext {
 		strings.put(
 			"default", LanguageUtil.format(_request, "default", "content"));
 
-		for (Locale availableLocale :
-				LanguageUtil.getAvailableLocales(
-					_themeDisplay.getScopeGroupId())) {
-
+		for (Locale availableLocale : getAvailableLocales()) {
 			String curLanguageId = LocaleUtil.toLanguageId(availableLocale);
 
 			strings.put(
@@ -311,12 +321,23 @@ public class JournalEditArticleDisplayContext {
 	}
 
 	public String getDefaultLanguageId() {
+		Locale siteDefaultLocale = null;
+
+		try {
+			siteDefaultLocale = PortalUtil.getSiteDefaultLocale(getGroupId());
+		}
+		catch (PortalException pe) {
+			_log.error(pe, pe);
+
+			siteDefaultLocale = LocaleUtil.getSiteDefault();
+		}
+
 		if (_article == null) {
-			return LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault());
+			return LocaleUtil.toLanguageId(siteDefaultLocale);
 		}
 
 		return LocalizationUtil.getDefaultLanguageId(
-			_article.getContent(), LocaleUtil.getSiteDefault());
+			_article.getContent(), siteDefaultLocale);
 	}
 
 	public String getEditArticleURL() {
@@ -714,8 +735,12 @@ public class JournalEditArticleDisplayContext {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalEditArticleDisplayContext.class);
+
 	private JournalArticle _article;
 	private String _articleId;
+	private Set<Locale> _availableLocales;
 	private Boolean _changeStructure;
 	private Long _classNameId;
 	private Long _classPK;

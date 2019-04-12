@@ -67,6 +67,7 @@ import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -87,8 +88,6 @@ import com.liferay.portal.template.soy.util.SoyContextFactoryUtil;
 import com.liferay.portal.util.PortletCategoryUtil;
 import com.liferay.portal.util.WebAppPool;
 import com.liferay.segments.constants.SegmentsConstants;
-
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -570,7 +569,9 @@ public class ContentPageEditorDisplayContext {
 
 		String portletId = _getPortletId(content);
 
-		if (Validator.isNull(portletId)) {
+		PortletConfig portletConfig = PortletConfigFactoryUtil.get(portletId);
+
+		if (portletConfig == null) {
 			return soyContext;
 		}
 
@@ -963,10 +964,22 @@ public class ContentPageEditorDisplayContext {
 					JSONFactoryUtil.createJSONObject(
 						fragmentEntryLink.getEditableValues());
 
+				boolean error = false;
+
+				if (SessionErrors.contains(
+						request, "fragmentEntryInvalidContent")) {
+
+					error = true;
+
+					SessionErrors.clear(request);
+				}
+
 				soyContext.putHTML(
 					"content", content
 				).put(
 					"editableValues", editableValuesJSONObject
+				).put(
+					"error", error
 				).put(
 					"fragmentEntryLinkId",
 					String.valueOf(fragmentEntryLink.getFragmentEntryLinkId())
@@ -978,9 +991,6 @@ public class ContentPageEditorDisplayContext {
 					String.valueOf(fragmentEntryLink.getFragmentEntryLinkId()),
 					soyContext);
 			}
-		}
-		catch (IOException ioe) {
-			throw new PortalException(ioe);
 		}
 		finally {
 			themeDisplay.setIsolated(isolated);
@@ -1002,7 +1012,7 @@ public class ContentPageEditorDisplayContext {
 
 		return new String[] {
 			"primary", "success", "danger", "warning", "info", "dark",
-			"secondary", "light", "white"
+			"gray-dark", "secondary", "light", "lighter", "white"
 		};
 	}
 

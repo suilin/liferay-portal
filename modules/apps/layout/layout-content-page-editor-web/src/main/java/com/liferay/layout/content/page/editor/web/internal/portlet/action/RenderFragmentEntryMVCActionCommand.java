@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -32,6 +33,8 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -71,14 +74,25 @@ public class RenderFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 				new DefaultFragmentRendererContext(fragmentEntryLink);
 
 			defaultFragmentRendererContext.setLocale(themeDisplay.getLocale());
-			defaultFragmentRendererContext.setMode(FragmentEntryLinkConstants.EDIT);
+			defaultFragmentRendererContext.setMode(
+				FragmentEntryLinkConstants.EDIT);
 
-			jsonObject.put(
-				"content",
-				_fragmentRendererController.render(
-					defaultFragmentRendererContext,
-					_portal.getHttpServletRequest(actionRequest),
-					_portal.getHttpServletResponse(actionResponse)));
+			HttpServletRequest httpServletRequest =
+				_portal.getHttpServletRequest(actionRequest);
+
+			String content = _fragmentRendererController.render(
+				defaultFragmentRendererContext, httpServletRequest,
+				_portal.getHttpServletResponse(actionResponse));
+
+			jsonObject.put("content", content);
+
+			if (SessionErrors.contains(
+					httpServletRequest, "fragmentEntryInvalidContent")) {
+
+				jsonObject.put("error", true);
+
+				SessionErrors.clear(httpServletRequest);
+			}
 		}
 
 		JSONPortletResponseUtil.writeJSON(

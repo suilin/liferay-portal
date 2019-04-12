@@ -807,7 +807,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("content", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						contentSetElement1.getContent(),
 						contentSetElement2.getContent())) {
 
@@ -818,7 +818,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			}
 
 			if (Objects.equals("contentType", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						contentSetElement1.getContentType(),
 						contentSetElement2.getContentType())) {
 
@@ -829,7 +829,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						contentSetElement1.getId(),
 						contentSetElement2.getId())) {
 
@@ -840,7 +840,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			}
 
 			if (Objects.equals("title", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						contentSetElement1.getTitle(),
 						contentSetElement2.getTitle())) {
 

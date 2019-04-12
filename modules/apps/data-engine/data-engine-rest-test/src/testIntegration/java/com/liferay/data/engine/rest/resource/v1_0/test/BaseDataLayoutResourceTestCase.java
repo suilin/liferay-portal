@@ -785,7 +785,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("dataDefinitionId", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getDataDefinitionId(),
 						dataLayout2.getDataDefinitionId())) {
 
@@ -796,7 +796,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			}
 
 			if (Objects.equals("dataLayoutPages", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getDataLayoutPages(),
 						dataLayout2.getDataLayoutPages())) {
 
@@ -807,7 +807,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getDateCreated(),
 						dataLayout2.getDateCreated())) {
 
@@ -818,7 +818,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getDateModified(),
 						dataLayout2.getDateModified())) {
 
@@ -831,7 +831,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			if (Objects.equals(
 					"defaultLanguageId", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getDefaultLanguageId(),
 						dataLayout2.getDefaultLanguageId())) {
 
@@ -842,7 +842,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			}
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getDescription(),
 						dataLayout2.getDescription())) {
 
@@ -853,7 +853,9 @@ public abstract class BaseDataLayoutResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(dataLayout1.getId(), dataLayout2.getId())) {
+				if (!Objects.deepEquals(
+						dataLayout1.getId(), dataLayout2.getId())) {
+
 					return false;
 				}
 
@@ -861,7 +863,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getName(), dataLayout2.getName())) {
 
 					return false;
@@ -871,7 +873,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			}
 
 			if (Objects.equals("paginationMode", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getPaginationMode(),
 						dataLayout2.getPaginationMode())) {
 
@@ -882,7 +884,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			}
 
 			if (Objects.equals("userId", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataLayout1.getUserId(), dataLayout2.getUserId())) {
 
 					return false;

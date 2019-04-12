@@ -702,8 +702,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 				Long parentDocumentFolderId, DocumentFolder documentFolder)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostDocumentFolderDocumentFolder(
+			parentDocumentFolderId, documentFolder);
 	}
 
 	protected Long
@@ -803,8 +803,9 @@ public abstract class BaseDocumentFolderResourceTestCase {
 				DocumentFolder documentFolder)
 		throws Exception {
 
-		return invokePostSiteDocumentFolder(
-			testGroup.getGroupId(), documentFolder);
+		return invokePostDocumentFolderDocumentFolder(
+			testGetDocumentFolderDocumentFoldersPage_getParentDocumentFolderId(),
+			documentFolder);
 	}
 
 	protected DocumentFolder invokePostDocumentFolderDocumentFolder(
@@ -1454,7 +1455,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getCreator(),
 						documentFolder2.getCreator())) {
 
@@ -1465,7 +1466,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getDateCreated(),
 						documentFolder2.getDateCreated())) {
 
@@ -1476,7 +1477,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getDateModified(),
 						documentFolder2.getDateModified())) {
 
@@ -1487,7 +1488,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getDescription(),
 						documentFolder2.getDescription())) {
 
@@ -1498,7 +1499,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getId(), documentFolder2.getId())) {
 
 					return false;
@@ -1508,7 +1509,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getName(), documentFolder2.getName())) {
 
 					return false;
@@ -1520,7 +1521,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			if (Objects.equals(
 					"numberOfDocumentFolders", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getNumberOfDocumentFolders(),
 						documentFolder2.getNumberOfDocumentFolders())) {
 
@@ -1533,7 +1534,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			if (Objects.equals(
 					"numberOfDocuments", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getNumberOfDocuments(),
 						documentFolder2.getNumberOfDocuments())) {
 
@@ -1544,7 +1545,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("viewableBy", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						documentFolder1.getViewableBy(),
 						documentFolder2.getViewableBy())) {
 

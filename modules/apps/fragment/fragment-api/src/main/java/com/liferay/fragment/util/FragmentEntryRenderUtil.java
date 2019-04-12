@@ -27,8 +27,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.io.IOException;
-
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -156,13 +154,8 @@ public class FragmentEntryRenderUtil {
 		defaultFragmentRendererContext.setSegmentsExperienceIds(
 			segmentsExperienceIds);
 
-		try {
-			return fragmentRendererController.render(
-				defaultFragmentRendererContext, request, response);
-		}
-		catch (IOException ioe) {
-			throw new PortalException(ioe);
-		}
+		return fragmentRendererController.render(
+			defaultFragmentRendererContext, request, response);
 	}
 
 	private static FragmentRendererController _getFragmentRendererController() {

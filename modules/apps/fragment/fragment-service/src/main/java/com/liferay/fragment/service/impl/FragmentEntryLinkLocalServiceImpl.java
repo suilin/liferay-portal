@@ -127,9 +127,27 @@ public class FragmentEntryLinkLocalServiceImpl
 	public FragmentEntryLink deleteFragmentEntryLink(
 		FragmentEntryLink fragmentEntryLink) {
 
+		// Fragment entry link
+
 		fragmentEntryLinkPersistence.remove(fragmentEntryLink);
 
+		// Fragment entry processor registry
+
+		_fragmentEntryProcessorRegistry.deleteFragmentEntryLinkData(
+			fragmentEntryLink);
+
 		return fragmentEntryLink;
+	}
+
+	@Override
+	public FragmentEntryLink deleteFragmentEntryLink(long fragmentEntryLinkId)
+		throws PortalException {
+
+		FragmentEntryLink fragmentEntryLink =
+			fragmentEntryLinkPersistence.findByPrimaryKey(fragmentEntryLinkId);
+
+		return fragmentEntryLinkLocalService.deleteFragmentEntryLink(
+			fragmentEntryLink);
 	}
 
 	@Override

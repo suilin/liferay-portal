@@ -15,7 +15,6 @@
 package com.liferay.headless.delivery.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.headless.delivery.dto.v1_0.MessageBoardSection;
 import com.liferay.message.boards.model.MBCategory;
 import com.liferay.message.boards.service.MBCategoryLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -37,35 +36,6 @@ public class MessageBoardSectionResourceTest
 	}
 
 	@Override
-	protected MessageBoardSection
-			testDeleteMessageBoardSection_addMessageBoardSection()
-		throws Exception {
-
-		return invokePostSiteMessageBoardSection(
-			testGroup.getGroupId(), randomMessageBoardSection());
-	}
-
-	@Override
-	protected MessageBoardSection
-			testGetMessageBoardSection_addMessageBoardSection()
-		throws Exception {
-
-		return invokePostSiteMessageBoardSection(
-			testGroup.getGroupId(), randomMessageBoardSection());
-	}
-
-	@Override
-	protected MessageBoardSection
-			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
-				Long messageBoardSectionId,
-				MessageBoardSection messageBoardSection)
-		throws Exception {
-
-		return invokePostMessageBoardSectionMessageBoardSection(
-			messageBoardSectionId, messageBoardSection);
-	}
-
-	@Override
 	protected Long
 			testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId()
 		throws Exception {
@@ -80,53 +50,6 @@ public class MessageBoardSectionResourceTest
 			RandomTestUtil.randomString(), serviceContext);
 
 		return mbCategory.getCategoryId();
-	}
-
-	@Override
-	protected MessageBoardSection
-			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
-				Long siteId, MessageBoardSection messageBoardSection)
-		throws Exception {
-
-		return invokePostSiteMessageBoardSection(siteId, messageBoardSection);
-	}
-
-	@Override
-	protected MessageBoardSection
-			testPatchMessageBoardSection_addMessageBoardSection()
-		throws Exception {
-
-		return invokePostSiteMessageBoardSection(
-			testGroup.getGroupId(), randomMessageBoardSection());
-	}
-
-	@Override
-	protected MessageBoardSection
-			testPostMessageBoardSectionMessageBoardSection_addMessageBoardSection(
-				MessageBoardSection messageBoardSection)
-		throws Exception {
-
-		return invokePostSiteMessageBoardSection(
-			testGroup.getGroupId(), messageBoardSection);
-	}
-
-	@Override
-	protected MessageBoardSection
-			testPostSiteMessageBoardSection_addMessageBoardSection(
-				MessageBoardSection messageBoardSection)
-		throws Exception {
-
-		return invokePostSiteMessageBoardSection(
-			testGroup.getGroupId(), messageBoardSection);
-	}
-
-	@Override
-	protected MessageBoardSection
-			testPutMessageBoardSection_addMessageBoardSection()
-		throws Exception {
-
-		return invokePostSiteMessageBoardSection(
-			testGroup.getGroupId(), randomMessageBoardSection());
 	}
 
 }

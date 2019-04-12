@@ -366,8 +366,7 @@ public abstract class BaseCommentResourceTestCase {
 			Long blogPostingId, Comment comment)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostBlogPostingComment(blogPostingId, comment);
 	}
 
 	protected Long testGetBlogPostingCommentsPage_getBlogPostingId()
@@ -948,8 +947,7 @@ public abstract class BaseCommentResourceTestCase {
 			Long parentCommentId, Comment comment)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostCommentComment(parentCommentId, comment);
 	}
 
 	protected Long testGetCommentCommentsPage_getParentCommentId()
@@ -1041,8 +1039,8 @@ public abstract class BaseCommentResourceTestCase {
 	protected Comment testPostCommentComment_addComment(Comment comment)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostCommentComment(
+			testGetCommentCommentsPage_getParentCommentId(), comment);
 	}
 
 	protected Comment invokePostCommentComment(
@@ -1341,8 +1339,7 @@ public abstract class BaseCommentResourceTestCase {
 			Long documentId, Comment comment)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostDocumentComment(documentId, comment);
 	}
 
 	protected Long testGetDocumentCommentsPage_getDocumentId()
@@ -1752,8 +1749,7 @@ public abstract class BaseCommentResourceTestCase {
 			Long structuredContentId, Comment comment)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostStructuredContentComment(structuredContentId, comment);
 	}
 
 	protected Long testGetStructuredContentCommentsPage_getStructuredContentId()
@@ -2042,7 +2038,7 @@ public abstract class BaseCommentResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						comment1.getCreator(), comment2.getCreator())) {
 
 					return false;
@@ -2052,7 +2048,7 @@ public abstract class BaseCommentResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						comment1.getDateCreated(), comment2.getDateCreated())) {
 
 					return false;
@@ -2062,7 +2058,7 @@ public abstract class BaseCommentResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						comment1.getDateModified(),
 						comment2.getDateModified())) {
 
@@ -2073,7 +2069,7 @@ public abstract class BaseCommentResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(comment1.getId(), comment2.getId())) {
+				if (!Objects.deepEquals(comment1.getId(), comment2.getId())) {
 					return false;
 				}
 
@@ -2081,7 +2077,7 @@ public abstract class BaseCommentResourceTestCase {
 			}
 
 			if (Objects.equals("numberOfComments", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						comment1.getNumberOfComments(),
 						comment2.getNumberOfComments())) {
 
@@ -2092,7 +2088,9 @@ public abstract class BaseCommentResourceTestCase {
 			}
 
 			if (Objects.equals("text", additionalAssertFieldName)) {
-				if (!Objects.equals(comment1.getText(), comment2.getText())) {
+				if (!Objects.deepEquals(
+						comment1.getText(), comment2.getText())) {
+
 					return false;
 				}
 

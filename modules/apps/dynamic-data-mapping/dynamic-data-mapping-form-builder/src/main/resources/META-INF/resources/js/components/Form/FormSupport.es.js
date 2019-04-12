@@ -253,30 +253,6 @@ export const getIndexes = node => {
 	};
 };
 
-export const getFieldProperties = ({pages}, locale) => {
-	const properties = {};
-	const visitor = new PagesVisitor(pages);
-
-	visitor.mapFields(
-		({fieldName, localizable, localizedValue, type, value}) => {
-			if (localizable && localizedValue[locale] && localizedValue[locale].JSONArray) {
-				properties[fieldName] = localizedValue[locale].JSONArray;
-			}
-			else if (localizable) {
-				properties[fieldName] = localizedValue[locale];
-			}
-			else if (type == 'options') {
-				properties[fieldName] = value[locale];
-			}
-			else {
-				properties[fieldName] = value;
-			}
-		}
-	);
-
-	return properties;
-};
-
 export const updateField = (
 	pages,
 	fieldName,
@@ -284,7 +260,7 @@ export const updateField = (
 ) => {
 	const visitor = new PagesVisitor(pages);
 
-	const newPages = visitor.mapFields(
+	return visitor.mapFields(
 		field => {
 			if (fieldName === field.fieldName) {
 				field = {
@@ -292,11 +268,10 @@ export const updateField = (
 					...properties
 				};
 			}
+
 			return field;
 		}
 	);
-
-	return newPages;
 };
 
 export const updateColumn = (pages, pageIndex, rowIndex, columnIndex, properties) => {

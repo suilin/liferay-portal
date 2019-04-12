@@ -737,8 +737,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				MessageBoardSection messageBoardSection)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostMessageBoardSectionMessageBoardSection(
+			parentMessageBoardSectionId, messageBoardSection);
 	}
 
 	protected Long
@@ -843,8 +843,9 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				MessageBoardSection messageBoardSection)
 		throws Exception {
 
-		return invokePostSiteMessageBoardSection(
-			testGroup.getGroupId(), messageBoardSection);
+		return invokePostMessageBoardSectionMessageBoardSection(
+			testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId(),
+			messageBoardSection);
 	}
 
 	protected MessageBoardSection
@@ -1541,7 +1542,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getCreator(),
 						messageBoardSection2.getCreator())) {
 
@@ -1552,7 +1553,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getDateCreated(),
 						messageBoardSection2.getDateCreated())) {
 
@@ -1563,7 +1564,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getDateModified(),
 						messageBoardSection2.getDateModified())) {
 
@@ -1574,7 +1575,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			}
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getDescription(),
 						messageBoardSection2.getDescription())) {
 
@@ -1585,7 +1586,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getId(),
 						messageBoardSection2.getId())) {
 
@@ -1599,7 +1600,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 					"numberOfMessageBoardSections",
 					additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getNumberOfMessageBoardSections(),
 						messageBoardSection2.
 							getNumberOfMessageBoardSections())) {
@@ -1613,7 +1614,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			if (Objects.equals(
 					"numberOfMessageBoardThreads", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getNumberOfMessageBoardThreads(),
 						messageBoardSection2.
 							getNumberOfMessageBoardThreads())) {
@@ -1625,7 +1626,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			}
 
 			if (Objects.equals("title", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getTitle(),
 						messageBoardSection2.getTitle())) {
 
@@ -1636,7 +1637,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			}
 
 			if (Objects.equals("viewableBy", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardSection1.getViewableBy(),
 						messageBoardSection2.getViewableBy())) {
 

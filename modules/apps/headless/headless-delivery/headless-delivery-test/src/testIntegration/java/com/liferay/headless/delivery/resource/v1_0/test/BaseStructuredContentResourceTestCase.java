@@ -1370,8 +1370,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 				StructuredContent structuredContent)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostStructuredContentFolderStructuredContent(
+			structuredContentFolderId, structuredContent);
 	}
 
 	protected Long
@@ -2428,7 +2428,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("aggregateRating", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getAggregateRating(),
 						structuredContent2.getAggregateRating())) {
 
@@ -2441,7 +2441,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			if (Objects.equals(
 					"availableLanguages", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getAvailableLanguages(),
 						structuredContent2.getAvailableLanguages())) {
 
@@ -2452,7 +2452,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("contentFields", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getContentFields(),
 						structuredContent2.getContentFields())) {
 
@@ -2465,7 +2465,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			if (Objects.equals(
 					"contentStructureId", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getContentStructureId(),
 						structuredContent2.getContentStructureId())) {
 
@@ -2476,7 +2476,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getCreator(),
 						structuredContent2.getCreator())) {
 
@@ -2487,7 +2487,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getDateCreated(),
 						structuredContent2.getDateCreated())) {
 
@@ -2498,7 +2498,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getDateModified(),
 						structuredContent2.getDateModified())) {
 
@@ -2509,7 +2509,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("datePublished", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getDatePublished(),
 						structuredContent2.getDatePublished())) {
 
@@ -2520,7 +2520,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getDescription(),
 						structuredContent2.getDescription())) {
 
@@ -2531,7 +2531,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("friendlyUrlPath", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getFriendlyUrlPath(),
 						structuredContent2.getFriendlyUrlPath())) {
 
@@ -2542,7 +2542,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getId(),
 						structuredContent2.getId())) {
 
@@ -2553,7 +2553,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("key", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getKey(),
 						structuredContent2.getKey())) {
 
@@ -2564,7 +2564,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("keywords", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getKeywords(),
 						structuredContent2.getKeywords())) {
 
@@ -2575,7 +2575,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("lastReviewed", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getLastReviewed(),
 						structuredContent2.getLastReviewed())) {
 
@@ -2586,7 +2586,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("numberOfComments", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getNumberOfComments(),
 						structuredContent2.getNumberOfComments())) {
 
@@ -2597,7 +2597,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("renderedContents", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getRenderedContents(),
 						structuredContent2.getRenderedContents())) {
 
@@ -2610,7 +2610,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			if (Objects.equals(
 					"taxonomyCategories", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getTaxonomyCategories(),
 						structuredContent2.getTaxonomyCategories())) {
 
@@ -2623,7 +2623,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			if (Objects.equals(
 					"taxonomyCategoryIds", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getTaxonomyCategoryIds(),
 						structuredContent2.getTaxonomyCategoryIds())) {
 
@@ -2634,7 +2634,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("title", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getTitle(),
 						structuredContent2.getTitle())) {
 
@@ -2645,7 +2645,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("uuid", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getUuid(),
 						structuredContent2.getUuid())) {
 
@@ -2656,7 +2656,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			}
 
 			if (Objects.equals("viewableBy", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContent1.getViewableBy(),
 						structuredContent2.getViewableBy())) {
 

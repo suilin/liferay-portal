@@ -14,6 +14,9 @@
 
 package com.liferay.layout.internal.util;
 
+import com.liferay.asset.model.AssetEntryUsage;
+import com.liferay.asset.service.AssetEntryUsageLocalService;
+import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.service.FragmentEntryLinkLocalService;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
@@ -47,6 +50,7 @@ import com.liferay.segments.model.SegmentsExperienceModel;
 import com.liferay.segments.service.SegmentsExperienceLocalService;
 import com.liferay.sites.kernel.util.Sites;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -155,6 +159,21 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 				layoutPageTemplateStructure, segmentsExperienceId, classNameId,
 				targetLayout, fragmentEntryLinkMap, serviceContext);
 		}
+
+		_assetEntryUsageLocalService.deleteAssetEntryUsagesByPlid(
+			targetLayout.getPlid());
+
+		List<AssetEntryUsage> assetEntryUsages =
+			_assetEntryUsageLocalService.getAssetEntryUsagesByPlid(
+				sourceLayout.getPlid());
+
+		for (AssetEntryUsage assetEntryUsage : assetEntryUsages) {
+			_assetEntryUsageLocalService.addAssetEntryUsage(
+				assetEntryUsage.getGroupId(), assetEntryUsage.getAssetEntryId(),
+				assetEntryUsage.getContainerType(),
+				assetEntryUsage.getContainerKey(), targetLayout.getPlid(),
+				serviceContext);
+		}
 	}
 
 	private void _copyLayoutPageTemplateStructureExperience(
@@ -204,15 +223,27 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 					}
 
 					FragmentEntryLink newFragmentEntryLink =
+						(FragmentEntryLink)fragmentEntryLink.clone();
+
+					newFragmentEntryLink.setUuid(serviceContext.getUuid());
+					newFragmentEntryLink.setFragmentEntryLinkId(
+						_counterLocalService.increment());
+					newFragmentEntryLink.setUserId(targetLayout.getUserId());
+					newFragmentEntryLink.setUserName(
+						targetLayout.getUserName());
+					newFragmentEntryLink.setCreateDate(
+						serviceContext.getCreateDate(new Date()));
+					newFragmentEntryLink.setModifiedDate(
+						serviceContext.getModifiedDate(new Date()));
+					newFragmentEntryLink.setOriginalFragmentEntryLinkId(0);
+					newFragmentEntryLink.setClassNameId(classNameId);
+					newFragmentEntryLink.setClassPK(targetLayout.getPlid());
+					newFragmentEntryLink.setLastPropagationDate(
+						serviceContext.getCreateDate(new Date()));
+
+					newFragmentEntryLink =
 						_fragmentEntryLinkLocalService.addFragmentEntryLink(
-							targetLayout.getUserId(), targetLayout.getGroupId(),
-							0, fragmentEntryLink.getFragmentEntryId(),
-							classNameId, targetLayout.getPlid(),
-							fragmentEntryLink.getCss(),
-							fragmentEntryLink.getHtml(),
-							fragmentEntryLink.getJs(),
-							fragmentEntryLink.getEditableValues(),
-							fragmentEntryLink.getPosition(), serviceContext);
+							newFragmentEntryLink);
 
 					newFragmentEntryLinkIdsJSONArray.put(
 						newFragmentEntryLink.getFragmentEntryLinkId());
@@ -284,6 +315,12 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 	private static final TransactionConfig _transactionConfig =
 		TransactionConfig.Factory.create(
 			Propagation.REQUIRED, new Class<?>[] {Exception.class});
+
+	@Reference
+	private AssetEntryUsageLocalService _assetEntryUsageLocalService;
+
+	@Reference
+	private CounterLocalService _counterLocalService;
 
 	@Reference
 	private FragmentEntryLinkLocalService _fragmentEntryLinkLocalService;

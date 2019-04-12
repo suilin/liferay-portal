@@ -329,7 +329,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			if (Objects.equals(
 					"taxonomyCategoryId", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getTaxonomyCategoryId(),
 						taxonomyCategory2.getTaxonomyCategoryId())) {
 
@@ -342,7 +342,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			if (Objects.equals(
 					"taxonomyCategoryName", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getTaxonomyCategoryName(),
 						taxonomyCategory2.getTaxonomyCategoryName())) {
 

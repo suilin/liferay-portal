@@ -31,9 +31,7 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 
 import java.util.List;
-import java.util.Objects;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
@@ -54,34 +52,8 @@ public class PostalAddressResourceTest
 	}
 
 	@Override
-	protected void assertValid(PostalAddress postalAddress) {
-		boolean valid = false;
-
-		if ((postalAddress.getId() != null) &&
-			(postalAddress.getPrimary() != null) &&
-			(postalAddress.getStreetAddressLine1() != null)) {
-
-			valid = true;
-		}
-
-		Assert.assertTrue(valid);
-	}
-
-	@Override
-	protected boolean equals(
-		PostalAddress postalAddress1, PostalAddress postalAddress2) {
-
-		if (Objects.equals(
-				postalAddress1.getPostalCode(),
-				postalAddress2.getPostalCode()) &&
-			Objects.equals(
-				postalAddress1.getStreetAddressLine1(),
-				postalAddress2.getStreetAddressLine1())) {
-
-			return true;
-		}
-
-		return false;
+	protected String[] getAdditionalAssertFieldNames() {
+		return new String[] {"postalCode", "streetAddressLine1"};
 	}
 
 	@Override
@@ -109,9 +81,7 @@ public class PostalAddressResourceTest
 	}
 
 	@Override
-	protected Long testGetOrganizationPostalAddressesPage_getOrganizationId()
-		throws Exception {
-
+	protected Long testGetOrganizationPostalAddressesPage_getOrganizationId() {
 		return _organization.getOrganizationId();
 	}
 
@@ -119,11 +89,9 @@ public class PostalAddressResourceTest
 	protected PostalAddress testGetPostalAddress_addPostalAddress()
 		throws Exception {
 
-		PostalAddress postalAddress = randomPostalAddress();
-
 		return _addPostalAddress(
-			postalAddress, Contact.class.getName(), _user.getContactId(),
-			ListTypeConstants.CONTACT_ADDRESS);
+			randomPostalAddress(), Contact.class.getName(),
+			_user.getContactId(), ListTypeConstants.CONTACT_ADDRESS);
 	}
 
 	@Override
@@ -138,9 +106,7 @@ public class PostalAddressResourceTest
 	}
 
 	@Override
-	protected Long testGetUserAccountPostalAddressesPage_getUserAccountId()
-		throws Exception {
-
+	protected Long testGetUserAccountPostalAddressesPage_getUserAccountId() {
 		return _user.getUserId();
 	}
 

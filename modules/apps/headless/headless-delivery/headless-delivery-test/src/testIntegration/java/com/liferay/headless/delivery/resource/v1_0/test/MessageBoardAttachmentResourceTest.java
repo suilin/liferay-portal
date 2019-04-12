@@ -29,9 +29,7 @@ import java.io.ByteArrayInputStream;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
@@ -60,36 +58,8 @@ public class MessageBoardAttachmentResourceTest
 	}
 
 	@Override
-	protected void assertValid(MessageBoardAttachment messageBoardAttachment) {
-		boolean valid = false;
-
-		if ((messageBoardAttachment.getContentUrl() != null) &&
-			(messageBoardAttachment.getEncodingFormat() != null) &&
-			(messageBoardAttachment.getId() != null) &&
-			(messageBoardAttachment.getTitle() != null)) {
-
-			valid = true;
-		}
-
-		Assert.assertTrue(valid);
-	}
-
-	@Override
-	protected boolean equals(
-		MessageBoardAttachment messageBoardAttachment1,
-		MessageBoardAttachment messageBoardAttachment2) {
-
-		if (Objects.equals(
-				messageBoardAttachment1.getContentUrl(),
-				messageBoardAttachment2.getContentUrl()) &&
-			Objects.equals(
-				messageBoardAttachment1.getTitle(),
-				messageBoardAttachment2.getTitle())) {
-
-			return true;
-		}
-
-		return false;
+	protected String[] getAdditionalAssertFieldNames() {
+		return new String[] {"contentUrl", "encodingFormat", "title"};
 	}
 
 	@Override
@@ -99,7 +69,7 @@ public class MessageBoardAttachmentResourceTest
 
 		return invokePostMessageBoardThreadMessageBoardAttachment(
 			_mbThread.getThreadId(),
-			_getMultipartBody(randomMessageBoardAttachment()));
+			toMultipartBody(randomMessageBoardAttachment()));
 	}
 
 	@Override
@@ -109,43 +79,19 @@ public class MessageBoardAttachmentResourceTest
 
 		return invokePostMessageBoardThreadMessageBoardAttachment(
 			_mbThread.getThreadId(),
-			_getMultipartBody(randomMessageBoardAttachment()));
-	}
-
-	@Override
-	protected MessageBoardAttachment
-			testGetMessageBoardMessageMessageBoardAttachmentsPage_addMessageBoardAttachment(
-				Long messageBoardMessageId,
-				MessageBoardAttachment messageBoardAttachment)
-		throws Exception {
-
-		return invokePostMessageBoardThreadMessageBoardAttachment(
-			_mbThread.getThreadId(), _getMultipartBody(messageBoardAttachment));
+			toMultipartBody(randomMessageBoardAttachment()));
 	}
 
 	@Override
 	protected Long
-			testGetMessageBoardMessageMessageBoardAttachmentsPage_getMessageBoardMessageId()
-		throws Exception {
+		testGetMessageBoardMessageMessageBoardAttachmentsPage_getMessageBoardMessageId() {
 
 		return _mbThread.getRootMessageId();
 	}
 
 	@Override
-	protected MessageBoardAttachment
-			testGetMessageBoardThreadMessageBoardAttachmentsPage_addMessageBoardAttachment(
-				Long messageBoardThreadId,
-				MessageBoardAttachment messageBoardAttachment)
-		throws Exception {
-
-		return invokePostMessageBoardThreadMessageBoardAttachment(
-			_mbThread.getThreadId(), _getMultipartBody(messageBoardAttachment));
-	}
-
-	@Override
 	protected Long
-			testGetMessageBoardThreadMessageBoardAttachmentsPage_getMessageBoardThreadId()
-		throws Exception {
+		testGetMessageBoardThreadMessageBoardAttachmentsPage_getMessageBoardThreadId() {
 
 		return _mbThread.getThreadId();
 	}
@@ -157,10 +103,11 @@ public class MessageBoardAttachmentResourceTest
 		throws Exception {
 
 		return invokePostMessageBoardThreadMessageBoardAttachment(
-			_mbThread.getThreadId(), _getMultipartBody(messageBoardAttachment));
+			testGetMessageBoardThreadMessageBoardAttachmentsPage_getMessageBoardThreadId(), toMultipartBody(messageBoardAttachment));
 	}
 
-	private MultipartBody _getMultipartBody(
+	@Override
+	protected MultipartBody toMultipartBody(
 		MessageBoardAttachment messageBoardAttachment) {
 
 		testContentType = "multipart/form-data;boundary=PART";

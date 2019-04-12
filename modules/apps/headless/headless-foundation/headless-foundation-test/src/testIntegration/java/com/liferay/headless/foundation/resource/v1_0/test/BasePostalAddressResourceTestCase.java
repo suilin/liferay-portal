@@ -569,7 +569,7 @@ public abstract class BasePostalAddressResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("addressCountry", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getAddressCountry(),
 						postalAddress2.getAddressCountry())) {
 
@@ -580,7 +580,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			}
 
 			if (Objects.equals("addressLocality", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getAddressLocality(),
 						postalAddress2.getAddressLocality())) {
 
@@ -591,7 +591,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			}
 
 			if (Objects.equals("addressRegion", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getAddressRegion(),
 						postalAddress2.getAddressRegion())) {
 
@@ -602,7 +602,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			}
 
 			if (Objects.equals("addressType", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getAddressType(),
 						postalAddress2.getAddressType())) {
 
@@ -613,7 +613,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getId(), postalAddress2.getId())) {
 
 					return false;
@@ -623,7 +623,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			}
 
 			if (Objects.equals("postalCode", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getPostalCode(),
 						postalAddress2.getPostalCode())) {
 
@@ -634,7 +634,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			}
 
 			if (Objects.equals("primary", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getPrimary(),
 						postalAddress2.getPrimary())) {
 
@@ -647,7 +647,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			if (Objects.equals(
 					"streetAddressLine1", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getStreetAddressLine1(),
 						postalAddress2.getStreetAddressLine1())) {
 
@@ -660,7 +660,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			if (Objects.equals(
 					"streetAddressLine2", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getStreetAddressLine2(),
 						postalAddress2.getStreetAddressLine2())) {
 
@@ -673,7 +673,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			if (Objects.equals(
 					"streetAddressLine3", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						postalAddress1.getStreetAddressLine3(),
 						postalAddress2.getStreetAddressLine3())) {
 

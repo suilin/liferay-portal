@@ -30,7 +30,6 @@ import com.liferay.portlet.documentlibrary.util.test.DLAppTestUtil;
 
 import java.util.Objects;
 
-import org.junit.Assert;
 import org.junit.runner.RunWith;
 
 /**
@@ -38,20 +37,6 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class CommentResourceTest extends BaseCommentResourceTestCase {
-
-	@Override
-	protected void assertValid(Comment comment) {
-		boolean valid = false;
-
-		if ((comment.getDateCreated() != null) &&
-			(comment.getDateModified() != null) && (comment.getId() != null) &&
-			(comment.getText() != null)) {
-
-			valid = true;
-		}
-
-		Assert.assertTrue(valid);
-	}
 
 	@Override
 	protected boolean equals(Comment comment1, Comment comment2) {
@@ -63,19 +48,16 @@ public class CommentResourceTest extends BaseCommentResourceTestCase {
 	}
 
 	@Override
+	protected String[] getAdditionalAssertFieldNames() {
+		return new String[] {"text"};
+	}
+
+	@Override
 	protected Comment testDeleteComment_addComment() throws Exception {
 		BlogsEntry blogsEntry = _addBlogsEntry();
 
 		return invokePostBlogPostingComment(
 			blogsEntry.getEntryId(), randomComment());
-	}
-
-	@Override
-	protected Comment testGetBlogPostingCommentsPage_addComment(
-			Long blogPostingId, Comment comment)
-		throws Exception {
-
-		return invokePostBlogPostingComment(blogPostingId, comment);
 	}
 
 	@Override
@@ -96,14 +78,6 @@ public class CommentResourceTest extends BaseCommentResourceTestCase {
 	}
 
 	@Override
-	protected Comment testGetCommentCommentsPage_addComment(
-			Long parentCommentId, Comment comment)
-		throws Exception {
-
-		return invokePostCommentComment(parentCommentId, comment);
-	}
-
-	@Override
 	protected Long testGetCommentCommentsPage_getParentCommentId()
 		throws Exception {
 
@@ -116,28 +90,12 @@ public class CommentResourceTest extends BaseCommentResourceTestCase {
 	}
 
 	@Override
-	protected Comment testGetDocumentCommentsPage_addComment(
-			Long documentId, Comment comment)
-		throws Exception {
-
-		return invokePostDocumentComment(documentId, comment);
-	}
-
-	@Override
 	protected Long testGetDocumentCommentsPage_getDocumentId()
 		throws Exception {
 
 		FileEntry fileEntry = _addFileEntry();
 
 		return fileEntry.getFileEntryId();
-	}
-
-	@Override
-	protected Comment testGetStructuredContentCommentsPage_addComment(
-			Long structuredContentId, Comment comment)
-		throws Exception {
-
-		return invokePostStructuredContentComment(structuredContentId, comment);
 	}
 
 	@Override

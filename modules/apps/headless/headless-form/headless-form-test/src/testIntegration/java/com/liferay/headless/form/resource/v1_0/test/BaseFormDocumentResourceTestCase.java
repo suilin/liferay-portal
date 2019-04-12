@@ -362,7 +362,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("contentUrl", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formDocument1.getContentUrl(),
 						formDocument2.getContentUrl())) {
 
@@ -373,7 +373,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 			}
 
 			if (Objects.equals("encodingFormat", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formDocument1.getEncodingFormat(),
 						formDocument2.getEncodingFormat())) {
 
@@ -384,7 +384,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 			}
 
 			if (Objects.equals("fileExtension", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formDocument1.getFileExtension(),
 						formDocument2.getFileExtension())) {
 
@@ -395,7 +395,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formDocument1.getId(), formDocument2.getId())) {
 
 					return false;
@@ -405,7 +405,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 			}
 
 			if (Objects.equals("sizeInBytes", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formDocument1.getSizeInBytes(),
 						formDocument2.getSizeInBytes())) {
 
@@ -416,7 +416,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 			}
 
 			if (Objects.equals("title", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formDocument1.getTitle(), formDocument2.getTitle())) {
 
 					return false;

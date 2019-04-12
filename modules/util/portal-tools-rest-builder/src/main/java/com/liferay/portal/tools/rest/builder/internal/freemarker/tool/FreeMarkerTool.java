@@ -166,7 +166,7 @@ public class FreeMarkerTool {
 	}
 
 	public JavaMethodSignature getPostSchemaJavaMethodSignature(
-		List<JavaMethodSignature> javaMethodSignatures, String prefix,
+		List<JavaMethodSignature> javaMethodSignatures, String parameterName,
 		String schemaName) {
 
 		for (JavaMethodSignature javaMethodSignature : javaMethodSignatures) {
@@ -179,7 +179,18 @@ public class FreeMarkerTool {
 			StringBuilder sb = new StringBuilder();
 
 			sb.append(getHTTPMethod(operation));
-			sb.append(prefix);
+
+			if (parameterName.startsWith("parent")) {
+				parameterName = parameterName.substring(6);
+			}
+
+			if (parameterName.endsWith("Id")) {
+				parameterName = parameterName.substring(
+					0, parameterName.length() - 2);
+			}
+
+			sb.append(StringUtil.upperCaseFirstLetter(parameterName));
+
 			sb.append(StringUtil.upperCaseFirstLetter(schemaName));
 
 			String methodName = javaMethodSignature.getMethodName();
@@ -275,11 +286,12 @@ public class FreeMarkerTool {
 	}
 
 	public boolean hasPostSchemaJavaMethodSignature(
-		List<JavaMethodSignature> javaMethodSignatures, String prefix, String schemaName) {
+		List<JavaMethodSignature> javaMethodSignatures, String parameterName,
+		String schemaName) {
 
 		JavaMethodSignature javaMethodSignature =
 			getPostSchemaJavaMethodSignature(
-				javaMethodSignatures, prefix, schemaName);
+				javaMethodSignatures, parameterName, schemaName);
 
 		if (javaMethodSignature != null) {
 			return true;

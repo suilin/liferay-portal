@@ -412,8 +412,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				TaxonomyCategory taxonomyCategory)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostTaxonomyCategoryTaxonomyCategory(
+			parentTaxonomyCategoryId, taxonomyCategory);
 	}
 
 	protected Long
@@ -515,8 +515,9 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				TaxonomyCategory taxonomyCategory)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostTaxonomyCategoryTaxonomyCategory(
+			testGetTaxonomyCategoryTaxonomyCategoriesPage_getParentTaxonomyCategoryId(),
+			taxonomyCategory);
 	}
 
 	protected TaxonomyCategory invokePostTaxonomyCategoryTaxonomyCategory(
@@ -1185,8 +1186,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				Long taxonomyVocabularyId, TaxonomyCategory taxonomyCategory)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostTaxonomyVocabularyTaxonomyCategory(
+			taxonomyVocabularyId, taxonomyCategory);
 	}
 
 	protected Long
@@ -1288,8 +1289,9 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				TaxonomyCategory taxonomyCategory)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostTaxonomyCategoryTaxonomyCategory(
+			testGetTaxonomyCategoryTaxonomyCategoriesPage_getParentTaxonomyCategoryId(),
+			taxonomyCategory);
 	}
 
 	protected TaxonomyCategory invokePostTaxonomyVocabularyTaxonomyCategory(
@@ -1552,7 +1554,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			if (Objects.equals(
 					"availableLanguages", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getAvailableLanguages(),
 						taxonomyCategory2.getAvailableLanguages())) {
 
@@ -1563,7 +1565,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			}
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getCreator(),
 						taxonomyCategory2.getCreator())) {
 
@@ -1574,7 +1576,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getDateCreated(),
 						taxonomyCategory2.getDateCreated())) {
 
@@ -1585,7 +1587,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getDateModified(),
 						taxonomyCategory2.getDateModified())) {
 
@@ -1596,7 +1598,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			}
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getDescription(),
 						taxonomyCategory2.getDescription())) {
 
@@ -1607,7 +1609,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getId(), taxonomyCategory2.getId())) {
 
 					return false;
@@ -1617,7 +1619,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getName(),
 						taxonomyCategory2.getName())) {
 
@@ -1630,7 +1632,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			if (Objects.equals(
 					"numberOfTaxonomyCategories", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getNumberOfTaxonomyCategories(),
 						taxonomyCategory2.getNumberOfTaxonomyCategories())) {
 
@@ -1643,7 +1645,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			if (Objects.equals(
 					"parentTaxonomyCategory", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getParentTaxonomyCategory(),
 						taxonomyCategory2.getParentTaxonomyCategory())) {
 
@@ -1656,7 +1658,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			if (Objects.equals(
 					"parentTaxonomyVocabulary", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getParentTaxonomyVocabulary(),
 						taxonomyCategory2.getParentTaxonomyVocabulary())) {
 
@@ -1669,7 +1671,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			if (Objects.equals(
 					"parentVocabularyId", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getParentVocabularyId(),
 						taxonomyCategory2.getParentVocabularyId())) {
 
@@ -1680,7 +1682,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			}
 
 			if (Objects.equals("viewableBy", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyCategory1.getViewableBy(),
 						taxonomyCategory2.getViewableBy())) {
 

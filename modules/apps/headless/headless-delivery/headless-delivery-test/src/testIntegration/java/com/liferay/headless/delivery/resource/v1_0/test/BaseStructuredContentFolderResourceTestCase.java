@@ -894,8 +894,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostStructuredContentFolderStructuredContentFolder(
+			parentStructuredContentFolderId, structuredContentFolder);
 	}
 
 	protected Long
@@ -1001,8 +1001,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return invokePostSiteStructuredContentFolder(
-			testGroup.getGroupId(), structuredContentFolder);
+		return invokePostStructuredContentFolderStructuredContentFolder(
+			testGetStructuredContentFolderStructuredContentFoldersPage_getParentStructuredContentFolderId(),
+			structuredContentFolder);
 	}
 
 	protected StructuredContentFolder
@@ -1605,7 +1606,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.getCreator(),
 						structuredContentFolder2.getCreator())) {
 
@@ -1616,7 +1617,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.getDateCreated(),
 						structuredContentFolder2.getDateCreated())) {
 
@@ -1627,7 +1628,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.getDateModified(),
 						structuredContentFolder2.getDateModified())) {
 
@@ -1638,7 +1639,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.getDescription(),
 						structuredContentFolder2.getDescription())) {
 
@@ -1649,7 +1650,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.getId(),
 						structuredContentFolder2.getId())) {
 
@@ -1660,7 +1661,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.getName(),
 						structuredContentFolder2.getName())) {
 
@@ -1674,7 +1675,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 					"numberOfStructuredContentFolders",
 					additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.
 							getNumberOfStructuredContentFolders(),
 						structuredContentFolder2.
@@ -1689,7 +1690,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			if (Objects.equals(
 					"numberOfStructuredContents", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.
 							getNumberOfStructuredContents(),
 						structuredContentFolder2.
@@ -1702,7 +1703,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			}
 
 			if (Objects.equals("viewableBy", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						structuredContentFolder1.getViewableBy(),
 						structuredContentFolder2.getViewableBy())) {
 

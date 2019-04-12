@@ -22,9 +22,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 
-import java.util.Objects;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
@@ -46,34 +43,9 @@ public class TaxonomyCategoryResourceTest
 			new ServiceContext());
 	}
 
-	protected void assertValid(TaxonomyCategory taxonomyCategory) {
-		boolean valid = false;
-
-		if ((taxonomyCategory.getDateCreated() != null) &&
-			(taxonomyCategory.getDateModified() != null) &&
-			(taxonomyCategory.getId() != null)) {
-
-			valid = true;
-		}
-
-		Assert.assertTrue(valid);
-	}
-
 	@Override
-	protected boolean equals(
-		TaxonomyCategory taxonomyCategory1,
-		TaxonomyCategory taxonomyCategory2) {
-
-		if (Objects.equals(
-				taxonomyCategory1.getDescription(),
-				taxonomyCategory2.getDescription()) &&
-			Objects.equals(
-				taxonomyCategory1.getName(), taxonomyCategory2.getName())) {
-
-			return true;
-		}
-
-		return false;
+	protected String[] getAdditionalAssertFieldNames() {
+		return new String[] {"description", "name"};
 	}
 
 	@Override
@@ -93,16 +65,6 @@ public class TaxonomyCategoryResourceTest
 	}
 
 	@Override
-	protected TaxonomyCategory
-			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
-				Long taxonomyCategoryId, TaxonomyCategory taxonomyCategory)
-		throws Exception {
-
-		return invokePostTaxonomyCategoryTaxonomyCategory(
-			taxonomyCategoryId, taxonomyCategory);
-	}
-
-	@Override
 	protected Long
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_getParentTaxonomyCategoryId()
 		throws Exception {
@@ -115,19 +77,8 @@ public class TaxonomyCategoryResourceTest
 	}
 
 	@Override
-	protected TaxonomyCategory
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
-				Long taxonomyVocabularyId, TaxonomyCategory taxonomyCategory)
-		throws Exception {
-
-		return invokePostTaxonomyVocabularyTaxonomyCategory(
-			taxonomyVocabularyId, taxonomyCategory);
-	}
-
-	@Override
 	protected Long
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_getTaxonomyVocabularyId()
-		throws Exception {
+		testGetTaxonomyVocabularyTaxonomyCategoriesPage_getTaxonomyVocabularyId() {
 
 		return _assetVocabulary.getVocabularyId();
 	}

@@ -163,8 +163,8 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 				KnowledgeBaseAttachment knowledgeBaseAttachment)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostKnowledgeBaseArticleKnowledgeBaseAttachment(
+			knowledgeBaseArticleId, toMultipartBody(knowledgeBaseAttachment));
 	}
 
 	protected Long
@@ -610,7 +610,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("contentUrl", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						knowledgeBaseAttachment1.getContentUrl(),
 						knowledgeBaseAttachment2.getContentUrl())) {
 
@@ -621,7 +621,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("encodingFormat", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						knowledgeBaseAttachment1.getEncodingFormat(),
 						knowledgeBaseAttachment2.getEncodingFormat())) {
 
@@ -632,7 +632,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("fileExtension", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						knowledgeBaseAttachment1.getFileExtension(),
 						knowledgeBaseAttachment2.getFileExtension())) {
 
@@ -643,7 +643,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						knowledgeBaseAttachment1.getId(),
 						knowledgeBaseAttachment2.getId())) {
 
@@ -654,7 +654,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("sizeInBytes", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						knowledgeBaseAttachment1.getSizeInBytes(),
 						knowledgeBaseAttachment2.getSizeInBytes())) {
 
@@ -665,7 +665,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			}
 
 			if (Objects.equals("title", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						knowledgeBaseAttachment1.getTitle(),
 						knowledgeBaseAttachment2.getTitle())) {
 
@@ -802,6 +802,13 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 	protected KnowledgeBaseAttachment randomPatchKnowledgeBaseAttachment() {
 		return randomKnowledgeBaseAttachment();
+	}
+
+	protected MultipartBody toMultipartBody(
+		KnowledgeBaseAttachment knowledgeBaseAttachment) {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected static final ObjectMapper inputObjectMapper = new ObjectMapper() {

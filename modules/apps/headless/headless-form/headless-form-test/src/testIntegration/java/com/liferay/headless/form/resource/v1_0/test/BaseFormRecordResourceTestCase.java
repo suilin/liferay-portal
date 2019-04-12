@@ -22,9 +22,9 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.headless.form.dto.v1_0.FormRecord;
-import com.liferay.headless.form.dto.v1_0.FormRecordForm;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -248,8 +249,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			Long formId, FormRecord formRecord)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostFormFormRecord(formId, formRecord);
 	}
 
 	protected Long testGetFormFormRecordsPage_getFormId() throws Exception {
@@ -332,10 +332,14 @@ public abstract class BaseFormRecordResourceTestCase {
 	}
 
 	protected FormRecord invokePostFormFormRecord(
-			Long formId, FormRecordForm formRecordForm)
+			Long formId, FormRecord formRecord)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			inputObjectMapper.writeValueAsString(formRecord),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/forms/{formId}/form-records", formId);
@@ -361,10 +365,14 @@ public abstract class BaseFormRecordResourceTestCase {
 	}
 
 	protected Http.Response invokePostFormFormRecordResponse(
-			Long formId, FormRecordForm formRecordForm)
+			Long formId, FormRecord formRecord)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			inputObjectMapper.writeValueAsString(formRecord),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/forms/{formId}/form-records", formId);
@@ -594,7 +602,7 @@ public abstract class BaseFormRecordResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecord1.getCreator(), formRecord2.getCreator())) {
 
 					return false;
@@ -604,7 +612,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecord1.getDateCreated(),
 						formRecord2.getDateCreated())) {
 
@@ -615,7 +623,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecord1.getDateModified(),
 						formRecord2.getDateModified())) {
 
@@ -626,7 +634,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			}
 
 			if (Objects.equals("datePublished", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecord1.getDatePublished(),
 						formRecord2.getDatePublished())) {
 
@@ -637,7 +645,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			}
 
 			if (Objects.equals("draft", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecord1.getDraft(), formRecord2.getDraft())) {
 
 					return false;
@@ -647,7 +655,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			}
 
 			if (Objects.equals("fieldValues", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecord1.getFieldValues(),
 						formRecord2.getFieldValues())) {
 
@@ -658,7 +666,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			}
 
 			if (Objects.equals("form", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecord1.getForm(), formRecord2.getForm())) {
 
 					return false;
@@ -668,7 +676,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			}
 
 			if (Objects.equals("formId", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecord1.getFormId(), formRecord2.getFormId())) {
 
 					return false;
@@ -678,7 +686,9 @@ public abstract class BaseFormRecordResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(formRecord1.getId(), formRecord2.getId())) {
+				if (!Objects.deepEquals(
+						formRecord1.getId(), formRecord2.getId())) {
+
 					return false;
 				}
 

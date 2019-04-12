@@ -568,7 +568,7 @@ public abstract class BaseSegmentResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("active", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						segment1.getActive(), segment2.getActive())) {
 
 					return false;
@@ -578,7 +578,7 @@ public abstract class BaseSegmentResourceTestCase {
 			}
 
 			if (Objects.equals("criteria", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						segment1.getCriteria(), segment2.getCriteria())) {
 
 					return false;
@@ -588,7 +588,7 @@ public abstract class BaseSegmentResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						segment1.getDateCreated(), segment2.getDateCreated())) {
 
 					return false;
@@ -598,7 +598,7 @@ public abstract class BaseSegmentResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						segment1.getDateModified(),
 						segment2.getDateModified())) {
 
@@ -609,7 +609,7 @@ public abstract class BaseSegmentResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(segment1.getId(), segment2.getId())) {
+				if (!Objects.deepEquals(segment1.getId(), segment2.getId())) {
 					return false;
 				}
 
@@ -617,7 +617,9 @@ public abstract class BaseSegmentResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(segment1.getName(), segment2.getName())) {
+				if (!Objects.deepEquals(
+						segment1.getName(), segment2.getName())) {
+
 					return false;
 				}
 
@@ -625,7 +627,7 @@ public abstract class BaseSegmentResourceTestCase {
 			}
 
 			if (Objects.equals("source", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						segment1.getSource(), segment2.getSource())) {
 
 					return false;

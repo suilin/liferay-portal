@@ -826,7 +826,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("contentUrl", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						blogPostingImage1.getContentUrl(),
 						blogPostingImage2.getContentUrl())) {
 
@@ -837,7 +837,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			}
 
 			if (Objects.equals("encodingFormat", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						blogPostingImage1.getEncodingFormat(),
 						blogPostingImage2.getEncodingFormat())) {
 
@@ -848,7 +848,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			}
 
 			if (Objects.equals("fileExtension", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						blogPostingImage1.getFileExtension(),
 						blogPostingImage2.getFileExtension())) {
 
@@ -859,7 +859,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						blogPostingImage1.getId(), blogPostingImage2.getId())) {
 
 					return false;
@@ -869,7 +869,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			}
 
 			if (Objects.equals("sizeInBytes", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						blogPostingImage1.getSizeInBytes(),
 						blogPostingImage2.getSizeInBytes())) {
 
@@ -880,7 +880,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			}
 
 			if (Objects.equals("title", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						blogPostingImage1.getTitle(),
 						blogPostingImage2.getTitle())) {
 
@@ -891,7 +891,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			}
 
 			if (Objects.equals("viewableBy", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						blogPostingImage1.getViewableBy(),
 						blogPostingImage2.getViewableBy())) {
 

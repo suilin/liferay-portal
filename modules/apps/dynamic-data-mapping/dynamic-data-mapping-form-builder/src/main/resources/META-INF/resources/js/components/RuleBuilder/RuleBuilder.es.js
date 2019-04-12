@@ -171,12 +171,6 @@ class RuleBuilder extends Component {
 		).valueFn('_setRulesValueFn')
 	};
 
-	/**
-	 * Continues the propagation of event.
-	 * @param {!Event} event
-	 * @private
-	 */
-
 	created() {
 		this._eventHandler = new EventHandler();
 
@@ -184,232 +178,11 @@ class RuleBuilder extends Component {
 		this._fetchRoles();
 	}
 
-	/**
-	 * Continues the propagation of event.
-	 * @param {!Event} event
-	 * @private
-	 */
-
 	disposeInternal() {
 		super.disposeInternal();
 
 		this._eventHandler.removeAllListeners();
 	}
-
-	rendered() {
-		const {mode} = this.state;
-		const {visible} = this.props;
-
-		if (visible) {
-			const addButton = document.querySelector('#addFieldButton');
-
-			if (mode === 'create' || mode === 'edit') {
-				addButton.classList.add('hide');
-			}
-			else {
-				addButton.classList.remove('hide');
-			}
-		}
-	}
-
-	willReceiveProps({rules}) {
-		if (rules && rules.newVal) {
-			this.setState(
-				{
-					rules: rules.newVal
-				}
-			);
-		}
-	}
-
-	syncVisible(visible) {
-		super.syncVisible(visible);
-
-		if (visible) {
-			this._eventHandler.add(
-				dom.on('#addFieldButton', 'click', this._handleAddRuleClick.bind(this))
-			);
-		}
-		else {
-			this._eventHandler.removeAllListeners();
-		}
-	}
-
-	_fetchDataProvider() {
-		const {dataProviderInstancesURL} = this.props;
-
-		makeFetch(
-			{
-				method: 'GET',
-				url: dataProviderInstancesURL
-			}
-		).then(
-			responseData => {
-				if (!this.isDisposed()) {
-					this.setState(
-						{
-							dataProvider: responseData.map(
-								data => {
-									return {
-										...data,
-										label: data.name,
-										value: data.id
-									};
-								}
-							)
-						}
-					);
-				}
-			}
-		).catch(
-			error => {
-				throw new Error(error);
-			}
-		);
-	}
-
-	_fetchRoles() {
-		const {rolesURL} = this.props;
-
-		makeFetch(
-			{
-				method: 'GET',
-				url: rolesURL
-			}
-		).then(
-			responseData => {
-				if (!this.isDisposed()) {
-					this.setState(
-						{
-							roles: responseData.map(
-								data => {
-									return {
-										...data,
-										label: data.name,
-										value: data.id
-									};
-								}
-							)
-						}
-					);
-				}
-			}
-		).catch(
-			error => {
-				throw new Error(error);
-			}
-		);
-	}
-
-	/**
-	 * Show the rule screen to create a new rule
-	 * @param {!Event} event
-	 * @private
-	 */
-
-	_handleAddRuleClick(event) {
-		this._showRuleCreation();
-
-		this._hideAddRuleButton(event.delegateTarget);
-	}
-
-	_handleRuleAdded(event) {
-		this.emit(
-			'ruleAdded',
-			{
-				...event
-			}
-		);
-
-		this._showRuleList();
-	}
-
-	_handleRuleCanceled(event) {
-		const {index} = this.state;
-		const rules = this.state.rules.map(
-			(rule, ruleIndex) => {
-				return index === ruleIndex ? this.state.originalRule : rule;
-			}
-		);
-
-		this.setState(
-			{
-				mode: 'view',
-				rules
-			}
-		);
-	}
-
-	_handleRuleDeleted({ruleId}) {
-		this.emit(
-			'ruleDeleted',
-			{
-				ruleId
-			}
-		);
-	}
-
-	_handleRuleEdited({ruleId}) {
-		const {rules} = this.state;
-
-		ruleId = parseInt(ruleId, 10);
-
-		this.setState(
-			{
-				index: ruleId,
-				mode: 'edit',
-				originalRule: JSON.parse(JSON.stringify(rules[ruleId]))
-			}
-		);
-	}
-
-	_handleRuleSaved(event) {
-		this.emit(
-			'ruleSaved',
-			{
-				...event,
-				ruleId: event.ruleEditedIndex
-			}
-		);
-
-		this._showRuleList();
-	}
-
-	/**
-	 * Continues the propagation of event.
-	 * @param {!Event} event
-	 * @private
-	 */
-
-	_hideAddRuleButton(element) {
-		dom.addClasses(element, 'hide');
-	}
-
-	_setRulesValueFn() {
-		return this.props.rules;
-	}
-
-	_showRuleCreation() {
-		this.setState(
-			{
-				mode: 'create'
-			}
-		);
-	}
-
-	_showRuleList() {
-		this.setState(
-			{
-				mode: 'view'
-			}
-		);
-	}
-
-	/**
-	 * Continues the propagation of event.
-	 * @param {!Event} event
-	 * @private
-	 */
 
 	render() {
 		const {
@@ -490,6 +263,203 @@ class RuleBuilder extends Component {
 					/>
 				)}
 			</div>
+		);
+	}
+
+	rendered() {
+		const {mode} = this.state;
+		const {visible} = this.props;
+
+		if (visible) {
+			const addButton = document.querySelector('#addFieldButton');
+
+			if (mode === 'create' || mode === 'edit') {
+				addButton.classList.add('hide');
+			}
+			else {
+				addButton.classList.remove('hide');
+			}
+		}
+	}
+
+	syncVisible(visible) {
+		super.syncVisible(visible);
+
+		if (visible) {
+			this._eventHandler.add(
+				dom.on('#addFieldButton', 'click', this._handleAddRuleClick.bind(this))
+			);
+		}
+		else {
+			this._eventHandler.removeAllListeners();
+		}
+	}
+
+	willReceiveProps({rules}) {
+		if (rules && rules.newVal) {
+			this.setState(
+				{
+					rules: rules.newVal
+				}
+			);
+		}
+	}
+
+	_fetchDataProvider() {
+		const {dataProviderInstancesURL} = this.props;
+
+		makeFetch(
+			{
+				method: 'GET',
+				url: dataProviderInstancesURL
+			}
+		).then(
+			responseData => {
+				if (!this.isDisposed()) {
+					this.setState(
+						{
+							dataProvider: responseData.map(
+								data => {
+									return {
+										...data,
+										label: data.name,
+										value: data.id
+									};
+								}
+							)
+						}
+					);
+				}
+			}
+		).catch(
+			error => {
+				throw new Error(error);
+			}
+		);
+	}
+
+	_fetchRoles() {
+		const {rolesURL} = this.props;
+
+		makeFetch(
+			{
+				method: 'GET',
+				url: rolesURL
+			}
+		).then(
+			responseData => {
+				if (!this.isDisposed()) {
+					this.setState(
+						{
+							roles: responseData.map(
+								data => {
+									return {
+										...data,
+										label: data.name,
+										value: data.id
+									};
+								}
+							)
+						}
+					);
+				}
+			}
+		).catch(
+			error => {
+				throw new Error(error);
+			}
+		);
+	}
+
+	_handleAddRuleClick(event) {
+		this._showRuleCreation();
+
+		this._hideAddRuleButton(event.delegateTarget);
+	}
+
+	_handleRuleAdded(event) {
+		this.emit(
+			'ruleAdded',
+			{
+				...event
+			}
+		);
+
+		this._showRuleList();
+	}
+
+	_handleRuleCanceled(event) {
+		const {index} = this.state;
+		const rules = this.state.rules.map(
+			(rule, ruleIndex) => {
+				return index === ruleIndex ? this.state.originalRule : rule;
+			}
+		);
+
+		this.setState(
+			{
+				mode: 'view',
+				rules
+			}
+		);
+	}
+
+	_handleRuleDeleted({ruleId}) {
+		this.emit(
+			'ruleDeleted',
+			{
+				ruleId
+			}
+		);
+	}
+
+	_handleRuleEdited({ruleId}) {
+		const {rules} = this.state;
+
+		ruleId = parseInt(ruleId, 10);
+
+		this.setState(
+			{
+				index: ruleId,
+				mode: 'edit',
+				originalRule: JSON.parse(JSON.stringify(rules[ruleId]))
+			}
+		);
+	}
+
+	_handleRuleSaved(event) {
+		this.emit(
+			'ruleSaved',
+			{
+				...event,
+				ruleId: event.ruleEditedIndex
+			}
+		);
+
+		this._showRuleList();
+	}
+
+	_hideAddRuleButton(element) {
+		dom.addClasses(element, 'hide');
+	}
+
+	_setRulesValueFn() {
+		return this.props.rules;
+	}
+
+	_showRuleCreation() {
+		this.setState(
+			{
+				mode: 'create'
+			}
+		);
+	}
+
+	_showRuleList() {
+		this.setState(
+			{
+				mode: 'view'
+			}
 		);
 	}
 }

@@ -218,8 +218,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				DataRecordCollection dataRecordCollection)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostDataDefinitionDataRecordCollection(
+			dataDefinitionId, dataRecordCollection);
 	}
 
 	protected Long
@@ -1024,7 +1024,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("dataDefinitionId", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataRecordCollection1.getDataDefinitionId(),
 						dataRecordCollection2.getDataDefinitionId())) {
 
@@ -1035,7 +1035,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			}
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataRecordCollection1.getDescription(),
 						dataRecordCollection2.getDescription())) {
 
@@ -1046,7 +1046,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataRecordCollection1.getId(),
 						dataRecordCollection2.getId())) {
 
@@ -1057,7 +1057,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						dataRecordCollection1.getName(),
 						dataRecordCollection2.getName())) {
 

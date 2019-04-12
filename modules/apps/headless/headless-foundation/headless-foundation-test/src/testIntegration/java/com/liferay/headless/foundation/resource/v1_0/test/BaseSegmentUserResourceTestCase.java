@@ -380,7 +380,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("email", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						segmentUser1.getEmail(), segmentUser2.getEmail())) {
 
 					return false;
@@ -390,7 +390,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						segmentUser1.getId(), segmentUser2.getId())) {
 
 					return false;
@@ -400,7 +400,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						segmentUser1.getName(), segmentUser2.getName())) {
 
 					return false;

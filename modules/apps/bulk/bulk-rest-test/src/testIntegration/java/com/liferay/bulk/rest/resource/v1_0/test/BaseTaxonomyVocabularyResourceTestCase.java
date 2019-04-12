@@ -309,7 +309,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("multiValued", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyVocabulary1.getMultiValued(),
 						taxonomyVocabulary2.getMultiValued())) {
 
@@ -320,7 +320,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyVocabulary1.getName(),
 						taxonomyVocabulary2.getName())) {
 
@@ -331,7 +331,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			}
 
 			if (Objects.equals("required", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyVocabulary1.getRequired(),
 						taxonomyVocabulary2.getRequired())) {
 
@@ -344,7 +344,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			if (Objects.equals(
 					"taxonomyCategories", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyVocabulary1.getTaxonomyCategories(),
 						taxonomyVocabulary2.getTaxonomyCategories())) {
 
@@ -357,7 +357,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			if (Objects.equals(
 					"taxonomyVocabularyId", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						taxonomyVocabulary1.getTaxonomyVocabularyId(),
 						taxonomyVocabulary2.getTaxonomyVocabularyId())) {
 

@@ -146,7 +146,7 @@ definition {
 
 			ContentPages.addPage(
 				collectionName = "Page Template Collection",
-				pageName = "Test Page Name",
+				pageName = "Test Content Page Name",
 				pageTemplateName = "Page Template Name"
 			);
 		}
@@ -156,7 +156,9 @@ definition {
 		}
 
 		task ("Navigate to the content page") {
-			Navigator.gotoSitePage(pageName = "Test Page Name", siteName = "Test Site Name");
+			Navigator.openWithAppendToBaseURL(
+				urlAppend = "web/test-site-name/test-content-page-name"
+			);
 		}
 
 		task ("Assert the Button fragment is present and the buttons work") {
@@ -302,6 +304,16 @@ definition {
 
 		task ("Publish the content page") {
 			PageEditor.clickPublish();
+		}
+
+		task ("Navigate to the content page") {
+			Navigator.openWithAppendToBaseURL(
+				urlAppend = "web/test-site-name/test-content-page-name"
+			);
+		}
+
+		task ("Navigate to the content page's 'Edit Mode'") {
+			ContentPages.clickPencil();
 		}
 
 		task ("Assert the Discard Draft and Publish buttons are now disabled") {
@@ -464,10 +476,6 @@ definition {
 			PageEditor.clickPublish();
 		}
 
-		task ("View the content page") {
-			PageEditor.clickBack();
-		}
-
 		task ("Assert the Title fragment is present") {
 			AssertVisible(
 				locator1 = "Fragment#FRAGMENT",
@@ -542,10 +550,6 @@ definition {
 
 		task ("Publish the content page") {
 			PageEditor.clickPublish();
-		}
-
-		task ("View the content page") {
-			PageEditor.clickBack();
 		}
 
 		task ("Assert the Title Fragment is present") {

@@ -279,7 +279,7 @@ public abstract class BaseMessageSelectionResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("description", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageSelection1.getDescription(),
 						messageSelection2.getDescription())) {
 

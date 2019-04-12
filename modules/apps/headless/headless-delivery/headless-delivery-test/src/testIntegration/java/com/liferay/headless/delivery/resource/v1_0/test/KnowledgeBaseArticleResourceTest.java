@@ -58,44 +58,6 @@ public class KnowledgeBaseArticleResourceTest
 	}
 
 	@Override
-	protected KnowledgeBaseArticle
-			testDeleteKnowledgeBaseArticle_addKnowledgeBaseArticle()
-		throws Exception {
-
-		return invokePostSiteKnowledgeBaseArticle(
-			testGroup.getGroupId(), randomKnowledgeBaseArticle());
-	}
-
-	@Override
-	protected KnowledgeBaseArticle
-			testDeleteKnowledgeBaseArticleMyRating_addKnowledgeBaseArticle()
-		throws Exception {
-
-		return invokePostSiteKnowledgeBaseArticle(
-			testGroup.getGroupId(), randomKnowledgeBaseArticle());
-	}
-
-	@Override
-	protected KnowledgeBaseArticle
-			testGetKnowledgeBaseArticle_addKnowledgeBaseArticle()
-		throws Exception {
-
-		return invokePostSiteKnowledgeBaseArticle(
-			testGroup.getGroupId(), randomKnowledgeBaseArticle());
-	}
-
-	@Override
-	protected KnowledgeBaseArticle
-			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
-				Long parentKnowledgeBaseArticleId,
-				KnowledgeBaseArticle knowledgeBaseArticle)
-		throws Exception {
-
-		return invokePostKnowledgeBaseArticleKnowledgeBaseArticle(
-			parentKnowledgeBaseArticleId, knowledgeBaseArticle);
-	}
-
-	@Override
 	protected Long
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getParentKnowledgeBaseArticleId()
 		throws Exception {
@@ -115,51 +77,10 @@ public class KnowledgeBaseArticleResourceTest
 	}
 
 	@Override
-	protected KnowledgeBaseArticle
-			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
-				Long knowledgeBaseFolderId,
-				KnowledgeBaseArticle knowledgeBaseArticle)
-		throws Exception {
-
-		return invokePostKnowledgeBaseFolderKnowledgeBaseArticle(
-			knowledgeBaseFolderId, knowledgeBaseArticle);
-	}
-
-	@Override
 	protected Long
-			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_getKnowledgeBaseFolderId()
-		throws Exception {
+		testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_getKnowledgeBaseFolderId() {
 
 		return _kbFolder.getKbFolderId();
-	}
-
-	@Override
-	protected KnowledgeBaseArticle
-			testGetSiteKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
-				Long siteId, KnowledgeBaseArticle knowledgeBaseArticle)
-		throws Exception {
-
-		return invokePostSiteKnowledgeBaseArticle(siteId, knowledgeBaseArticle);
-	}
-
-	@Override
-	protected KnowledgeBaseArticle
-			testPatchKnowledgeBaseArticle_addKnowledgeBaseArticle()
-		throws Exception {
-
-		return invokePostSiteKnowledgeBaseArticle(
-			testGroup.getGroupId(), randomKnowledgeBaseArticle());
-	}
-
-	@Override
-	protected KnowledgeBaseArticle
-			testPostKnowledgeBaseArticleKnowledgeBaseArticle_addKnowledgeBaseArticle(
-				KnowledgeBaseArticle knowledgeBaseArticle)
-		throws Exception {
-
-		return invokePostKnowledgeBaseArticleKnowledgeBaseArticle(
-			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getParentKnowledgeBaseArticleId(),
-			knowledgeBaseArticle);
 	}
 
 	@Override
@@ -170,25 +91,6 @@ public class KnowledgeBaseArticleResourceTest
 
 		return invokePostKnowledgeBaseFolderKnowledgeBaseArticle(
 			_kbFolder.getKbFolderId(), knowledgeBaseArticle);
-	}
-
-	@Override
-	protected KnowledgeBaseArticle
-			testPostSiteKnowledgeBaseArticle_addKnowledgeBaseArticle(
-				KnowledgeBaseArticle knowledgeBaseArticle)
-		throws Exception {
-
-		return invokePostSiteKnowledgeBaseArticle(
-			testGroup.getGroupId(), knowledgeBaseArticle);
-	}
-
-	@Override
-	protected KnowledgeBaseArticle
-			testPutKnowledgeBaseArticle_addKnowledgeBaseArticle()
-		throws Exception {
-
-		return invokePostSiteKnowledgeBaseArticle(
-			testGroup.getGroupId(), randomKnowledgeBaseArticle());
 	}
 
 	private KBFolder _kbFolder;

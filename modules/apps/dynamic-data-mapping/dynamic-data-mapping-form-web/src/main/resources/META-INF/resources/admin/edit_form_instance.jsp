@@ -83,7 +83,12 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 	</nav>
 
 	<div class="container-fluid-1280 ddm-translation-manager">
-		<aui:translation-manager availableLocales="<%= ddmFormAdminDisplayContext.getAvailableLocales() %>" changeableDefaultLanguage="<%= false %>" defaultLanguageId="<%= ddmFormAdminDisplayContext.getDefaultLanguageId() %>" id="translationManager" />
+		<liferay-frontend:translation-manager
+			availableLocales="<%= ddmFormAdminDisplayContext.getAvailableLocales() %>"
+			changeableDefaultLanguage="<%= false %>"
+			defaultLanguageId="<%= ddmFormAdminDisplayContext.getDefaultLanguageId() %>"
+			id="translationManager"
+		/>
 	</div>
 
 	<aui:form action="<%= saveFormInstanceURL %>" cssClass="ddm-form-builder-form" enctype="multipart/form-data" method="post" name="editForm">
@@ -188,18 +193,17 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 							fieldSetDefinitionURL: '<%= ddmFormAdminDisplayContext.getFieldSetDefinitionURL() %>',
 							fieldSets: <%= ddmFormAdminDisplayContext.getFieldSetsJSONArray() %>,
 							fieldTypes: <%= ddmFormAdminDisplayContext.getDDMFormFieldTypesJSONArray() %>,
-							formInstanceId: '<%= formInstanceId %>',
+							formInstanceId: <%= formInstanceId %>,
 							functionsMetadata: <%= functionsMetadata %>,
 							functionsURL: '<%= functionsURL %>',
 							groupId: <%= groupId %>,
 							localizedDescription: <%= ddmFormAdminDisplayContext.getFormLocalizedDescription() %>,
 							localizedName: <%= ddmFormAdminDisplayContext.getFormLocalizedName() %>,
 							namespace: '<portlet:namespace />',
-							published: !!<%= ddmFormAdminDisplayContext.isFormPublished() %>,
+							published: <%= ddmFormAdminDisplayContext.isFormPublished() %>,
 							rolesURL: '<%= rolesURL %>',
 							rules: <%= serializedDDMFormRules %>,
 							saved: <%= formInstance != null %>,
-							showPublishAlert: <%= ddmFormAdminDisplayContext.isShowPublishAlert() %>,
 							spritemap: Liferay.DDM.FormSettings.spritemap,
 							strings: Liferay.DDM.FormSettings.strings
 						},

@@ -17,6 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String portletNamespace = PortalUtil.getPortletNamespace(ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET);
+
 ContentPageEditorDisplayContext contentPageEditorDisplayContext = (ContentPageEditorDisplayContext)request.getAttribute(ContentPageEditorWebKeys.LIFERAY_SHARED_CONTENT_PAGE_EDITOR_DISPLAY_CONTEXT);
 %>
 
@@ -29,7 +31,7 @@ ContentPageEditorDisplayContext contentPageEditorDisplayContext = (ContentPageEd
 </liferay-util:html-top>
 
 <soy:component-renderer
-	componentId='<%= renderResponse.getNamespace() + "fragmentsEditor" %>'
+	componentId='<%= portletNamespace + "fragmentsEditor" %>'
 	context="<%= contentPageEditorDisplayContext.getEditorSoyContext() %>"
 	module="js/FragmentsEditor.es"
 	templateNamespace="com.liferay.layout.content.page.editor.web.FragmentsEditor.render"
@@ -55,17 +57,17 @@ JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
 		<%= jsonSerializer.serializeDeep(contentPageEditorDisplayContext.getEditorSoyContext()) %>,
 		ReducersModule.reducers,
 		[
-			'<portlet:namespace />disabledAreaMaskWrapper',
-			'<portlet:namespace />editModeWrapper',
-			'<portlet:namespace />fragmentsEditor',
-			'<portlet:namespace />sidebar',
-			'<portlet:namespace />toolbar'
+			'<%= portletNamespace + "disabledAreaMaskWrapper" %>',
+			'<%= portletNamespace + "editModeWrapper" %>',
+			'<%= portletNamespace + "fragmentsEditor" %>',
+			'<%= portletNamespace + "sidebar" %>',
+			'<%= portletNamespace + "toolbar" %>'
 		]
 	);
 
 	var editModeComponents = {
-		'<portlet:namespace />disabledAreaMaskWrapper': DisabledAreaMaskModule.default,
-		'<portlet:namespace />editModeWrapper': EditModeWrapperModule.default
+		'<%= portletNamespace + "disabledAreaMaskWrapper" %>': DisabledAreaMaskModule.default,
+		'<%= portletNamespace + "editModeWrapper" %>': EditModeWrapperModule.default
 	};
 
 	Object.keys(editModeComponents).forEach(
@@ -84,8 +86,6 @@ JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
 	function handleDestroyPortlet() {
 		Object.keys(editModeComponents).forEach(
 			function(key) {
-				editModeComponents[key].dispose();
-
 				Liferay.destroyComponent(key);
 			}
 		);

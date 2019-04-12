@@ -805,115 +805,6 @@ public abstract class BaseOrganizationResourceTestCase {
 		return options.getResponse();
 	}
 
-	@Test
-	public void testGetUserAccountOrganizationsPage() throws Exception {
-		Long userAccountId =
-			testGetUserAccountOrganizationsPage_getUserAccountId();
-		Long irrelevantUserAccountId =
-			testGetUserAccountOrganizationsPage_getIrrelevantUserAccountId();
-
-		if ((irrelevantUserAccountId != null)) {
-			Organization irrelevantOrganization =
-				testGetUserAccountOrganizationsPage_addOrganization(
-					irrelevantUserAccountId, randomIrrelevantOrganization());
-
-			Page<Organization> page = invokeGetUserAccountOrganizationsPage(
-				irrelevantUserAccountId);
-
-			Assert.assertEquals(1, page.getTotalCount());
-
-			assertEquals(
-				Arrays.asList(irrelevantOrganization),
-				(List<Organization>)page.getItems());
-			assertValid(page);
-		}
-
-		Organization organization1 =
-			testGetUserAccountOrganizationsPage_addOrganization(
-				userAccountId, randomOrganization());
-
-		Organization organization2 =
-			testGetUserAccountOrganizationsPage_addOrganization(
-				userAccountId, randomOrganization());
-
-		Page<Organization> page = invokeGetUserAccountOrganizationsPage(
-			userAccountId);
-
-		Assert.assertEquals(2, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(organization1, organization2),
-			(List<Organization>)page.getItems());
-		assertValid(page);
-	}
-
-	protected Organization testGetUserAccountOrganizationsPage_addOrganization(
-			Long userAccountId, Organization organization)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetUserAccountOrganizationsPage_getUserAccountId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetUserAccountOrganizationsPage_getIrrelevantUserAccountId()
-		throws Exception {
-
-		return null;
-	}
-
-	protected Page<Organization> invokeGetUserAccountOrganizationsPage(
-			Long userAccountId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/user-accounts/{userAccountId}/organizations",
-					userAccountId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Organization>>() {
-			});
-	}
-
-	protected Http.Response invokeGetUserAccountOrganizationsPageResponse(
-			Long userAccountId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/user-accounts/{userAccountId}/organizations",
-					userAccountId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
 	protected void assertResponseCode(
 		int expectedResponseCode, Http.Response actualResponse) {
 
@@ -1110,7 +1001,7 @@ public abstract class BaseOrganizationResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("comment", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getComment(),
 						organization2.getComment())) {
 
@@ -1123,7 +1014,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			if (Objects.equals(
 					"contactInformation", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getContactInformation(),
 						organization2.getContactInformation())) {
 
@@ -1134,7 +1025,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getDateCreated(),
 						organization2.getDateCreated())) {
 
@@ -1145,7 +1036,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getDateModified(),
 						organization2.getDateModified())) {
 
@@ -1156,7 +1047,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getId(), organization2.getId())) {
 
 					return false;
@@ -1166,7 +1057,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			}
 
 			if (Objects.equals("image", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getImage(), organization2.getImage())) {
 
 					return false;
@@ -1176,7 +1067,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			}
 
 			if (Objects.equals("keywords", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getKeywords(),
 						organization2.getKeywords())) {
 
@@ -1187,7 +1078,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			}
 
 			if (Objects.equals("location", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getLocation(),
 						organization2.getLocation())) {
 
@@ -1198,7 +1089,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			}
 
 			if (Objects.equals("name", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getName(), organization2.getName())) {
 
 					return false;
@@ -1210,7 +1101,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			if (Objects.equals(
 					"numberOfOrganizations", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getNumberOfOrganizations(),
 						organization2.getNumberOfOrganizations())) {
 
@@ -1223,7 +1114,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			if (Objects.equals(
 					"parentOrganization", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getParentOrganization(),
 						organization2.getParentOrganization())) {
 
@@ -1236,7 +1127,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			if (Objects.equals(
 					"parentOrganizationId", additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getParentOrganizationId(),
 						organization2.getParentOrganizationId())) {
 
@@ -1247,7 +1138,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			}
 
 			if (Objects.equals("services", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						organization1.getServices(),
 						organization2.getServices())) {
 

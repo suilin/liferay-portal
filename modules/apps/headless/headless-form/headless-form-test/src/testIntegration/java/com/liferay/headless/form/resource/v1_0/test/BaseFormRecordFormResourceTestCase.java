@@ -283,7 +283,7 @@ public abstract class BaseFormRecordFormResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("draft", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecordForm1.getDraft(),
 						formRecordForm2.getDraft())) {
 
@@ -294,7 +294,7 @@ public abstract class BaseFormRecordFormResourceTestCase {
 			}
 
 			if (Objects.equals("fieldValues", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						formRecordForm1.getFieldValues(),
 						formRecordForm2.getFieldValues())) {
 

@@ -242,7 +242,7 @@ public abstract class BaseStatusResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("actionInProgress", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						status1.getActionInProgress(),
 						status2.getActionInProgress())) {
 

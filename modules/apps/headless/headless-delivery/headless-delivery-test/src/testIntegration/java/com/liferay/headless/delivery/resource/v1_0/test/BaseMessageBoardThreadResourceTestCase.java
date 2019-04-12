@@ -410,8 +410,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return invokePostMessageBoardSectionMessageBoardThread(
+			messageBoardSectionId, messageBoardThread);
 	}
 
 	protected Long
@@ -1813,7 +1813,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("aggregateRating", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getAggregateRating(),
 						messageBoardThread2.getAggregateRating())) {
 
@@ -1824,7 +1824,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("articleBody", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getArticleBody(),
 						messageBoardThread2.getArticleBody())) {
 
@@ -1835,7 +1835,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("creator", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getCreator(),
 						messageBoardThread2.getCreator())) {
 
@@ -1846,7 +1846,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("dateCreated", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getDateCreated(),
 						messageBoardThread2.getDateCreated())) {
 
@@ -1857,7 +1857,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("dateModified", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getDateModified(),
 						messageBoardThread2.getDateModified())) {
 
@@ -1868,7 +1868,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("encodingFormat", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getEncodingFormat(),
 						messageBoardThread2.getEncodingFormat())) {
 
@@ -1879,7 +1879,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("headline", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getHeadline(),
 						messageBoardThread2.getHeadline())) {
 
@@ -1890,7 +1890,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("id", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getId(),
 						messageBoardThread2.getId())) {
 
@@ -1901,7 +1901,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("keywords", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getKeywords(),
 						messageBoardThread2.getKeywords())) {
 
@@ -1915,7 +1915,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 					"numberOfMessageBoardAttachments",
 					additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.
 							getNumberOfMessageBoardAttachments(),
 						messageBoardThread2.
@@ -1931,7 +1931,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 					"numberOfMessageBoardMessages",
 					additionalAssertFieldName)) {
 
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getNumberOfMessageBoardMessages(),
 						messageBoardThread2.
 							getNumberOfMessageBoardMessages())) {
@@ -1943,7 +1943,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("showAsQuestion", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getShowAsQuestion(),
 						messageBoardThread2.getShowAsQuestion())) {
 
@@ -1954,7 +1954,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("threadType", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getThreadType(),
 						messageBoardThread2.getThreadType())) {
 
@@ -1965,7 +1965,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			}
 
 			if (Objects.equals("viewableBy", additionalAssertFieldName)) {
-				if (!Objects.equals(
+				if (!Objects.deepEquals(
 						messageBoardThread1.getViewableBy(),
 						messageBoardThread2.getViewableBy())) {
 

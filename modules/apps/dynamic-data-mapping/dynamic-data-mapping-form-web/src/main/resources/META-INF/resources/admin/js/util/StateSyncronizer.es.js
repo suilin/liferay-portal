@@ -34,12 +34,45 @@ class StateSyncronizer extends Component {
 		this._eventHandler.removeAllListeners();
 	}
 
+	getAvailableLanguageIds() {
+		const {translationManager} = this.props;
+		let availableLanguageIds = [{id: this.getDefaultLanguageId()}];
+
+		if (translationManager) {
+			availableLanguageIds = translationManager.get('availableLocales');
+		}
+
+		return availableLanguageIds.map(({id}) => id);
+	}
+
+	getDefaultLanguageId() {
+		const {translationManager} = this.props;
+		let defaultLanguageId = themeDisplay.getDefaultLanguageId();
+
+		if (translationManager) {
+			defaultLanguageId = translationManager.get('defaultLocale');
+		}
+
+		return defaultLanguageId;
+	}
+
+	getEditingLanguageId() {
+		const {translationManager} = this.props;
+		let editingLanguageId = this.getDefaultLanguageId();
+
+		if (translationManager) {
+			editingLanguageId = translationManager.get('editingLocale');
+		}
+
+		return editingLanguageId;
+	}
+
 	getState() {
-		const {layoutProvider, localizedDescription, localizedName, translationManager} = this.props;
+		const {layoutProvider, localizedDescription, localizedName} = this.props;
 
 		const state = {
-			availableLanguageIds: translationManager.get('availableLocales'),
-			defaultLanguageId: translationManager.get('defaultLocale'),
+			availableLanguageIds: this.getAvailableLanguageIds(),
+			defaultLanguageId: this.getDefaultLanguageId(),
 			description: localizedDescription,
 			name: localizedName,
 			pages: layoutProvider.state.pages,
@@ -66,10 +99,6 @@ class StateSyncronizer extends Component {
 		} = state;
 
 		if (settingsDDMForm) {
-			const publishedField = settingsDDMForm.getField('published');
-
-			publishedField.set('value', this.props.published);
-
 			const settings = settingsDDMForm.get('context');
 
 			document.querySelector(`#${namespace}serializedSettingsContext`).value = JSON.stringify(settings);
@@ -102,24 +131,21 @@ class StateSyncronizer extends Component {
 				...state,
 				pages: visitor.mapFields(
 					field => {
-						if (field.options) {
-							field = {
-								...field,
-								settingsContext: {
-									...field.settingsContext,
-									pages: this._filterEmptyOptions(field.settingsContext.pages)
-								}
-							};
-						}
-
-						return field;
+						return {
+							...field,
+							settingsContext: {
+								...field.settingsContext,
+								pages: this._getSerializedSettingsContextPages(field.settingsContext.pages)
+							}
+						};
 					}
 				)
 			}
 		);
 	}
 
-	_filterEmptyOptions(pages) {
+	_getSerializedSettingsContextPages(pages) {
+		const defaultLanguageId = this.getDefaultLanguageId();
 		const visitor = new PagesVisitor(pages);
 
 		return visitor.mapFields(
@@ -130,6 +156,10 @@ class StateSyncronizer extends Component {
 
 					for (const locale in value) {
 						newValue[locale] = value[locale].filter(({value}) => value !== '');
+					}
+
+					if (!newValue[defaultLanguageId]) {
+						newValue[defaultLanguageId] = [];
 					}
 
 					field = {
@@ -143,18 +173,18 @@ class StateSyncronizer extends Component {
 		);
 	}
 
-	_handleDescriptionEditorChanged(event) {
-		const {descriptionEditor, localizedDescription, translationManager} = this.props;
+	_handleDescriptionEditorChanged() {
+		const {descriptionEditor, localizedDescription} = this.props;
 		const editor = window[descriptionEditor.name];
 
-		localizedDescription[translationManager.get('editingLocale')] = editor.getHTML();
+		localizedDescription[this.getEditingLanguageId()] = editor.getHTML();
 	}
 
-	_handleNameEditorChanged(event) {
-		const {localizedName, nameEditor, translationManager} = this.props;
+	_handleNameEditorChanged() {
+		const {localizedName, nameEditor} = this.props;
 		const editor = window[nameEditor.name];
 
-		localizedName[translationManager.get('editingLocale')] = editor.getHTML();
+		localizedName[this.getEditingLanguageId()] = editor.getHTML();
 	}
 }
 
