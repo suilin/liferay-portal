@@ -351,6 +351,7 @@ definition {
 	@description = "This is a use case for LPS-88924"
 	@priority = "4"
 	test AssertSSOWithEncryptionAndDecryption {
+		property portal.acceptance = "Linda";
 		property test.name.skip.portal.instance = "SAML#AssertSSOWithEncryptionAndDecryption";
 
 		SAML.configureLiferaySAMLAsIdP(
