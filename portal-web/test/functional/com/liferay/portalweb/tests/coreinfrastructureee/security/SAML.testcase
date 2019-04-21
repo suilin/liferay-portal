@@ -580,7 +580,54 @@ definition {
 	@priority = "4"
 	test ConfigureSAMLToImportUsersFromLDAP {
 		property apacheds.enabled = "true";
+		property portal.acceptance = "Linda";
 		property test.name.skip.portal.instance = "SAML#ConfigureSAMLToImportUsersFromLDAP";
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings"
+		);
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "SSO",
+			configurationName = "SAML Configuration",
+			configurationScope = "System Scope"
+		);
+
+		SystemSettings.editTextSetting(
+			settingName = "Runtime Metadata Refresh Interval",
+			settingValue = "9999"
+		);
+
+		SystemSettings.saveConfiguration();
+
+		User.logoutPG();
+
+		User.loginPG(
+			password = "test",
+			specificURL = "http://www.able.com:9080",
+			userEmailAddress = "test@liferay.com"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings"
+		);
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "SSO",
+			configurationName = "SAML Configuration",
+			configurationScope = "System Scope"
+		);
+
+		SystemSettings.editTextSetting(
+			settingName = "Runtime Metadata Refresh Interval",
+			settingValue = "9999"
+		);
+
+		SystemSettings.saveConfiguration();
 
 		SAML.configureLiferaySAMLAsIdP(samlEntityID = "samlidp");
 
