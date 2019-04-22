@@ -580,6 +580,7 @@ definition {
 	@priority = "4"
 	test ConfigureSAMLToImportUsersFromLDAP {
 		property apacheds.enabled = "true";
+		property portal.acceptance = "Linda";
 		property test.name.skip.portal.instance = "SAML#ConfigureSAMLToImportUsersFromLDAP";
 
 		SAML.configureLiferaySAMLAsIdP(samlEntityID = "samlidp");
@@ -626,6 +627,50 @@ definition {
 		PortalSettings.viewEnabledLDAPSetting(
 			enableSettingList = "${enableSettingList}"
 		);
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings"
+		);
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "SSO",
+			configurationName = "SAML Configuration",
+			configurationScope = "System Scope"
+		);
+
+		SystemSettings.editTextSetting(
+			settingName = "Runtime Metadata Refresh Interval",
+			settingValue = "9999"
+		);
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openSpecificURL(url = "http://www.able.com:9080");
+
+		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
+			Navigator.gotoLoginPage();
+		}
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings"
+		);
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "SSO",
+			configurationName = "SAML Configuration",
+			configurationScope = "System Scope"
+		);
+
+		SystemSettings.editTextSetting(
+			settingName = "Runtime Metadata Refresh Interval",
+			settingValue = "9999"
+		);
+
+		SystemSettings.saveConfiguration();
 
 		Portlet.shutdownServer();
 
