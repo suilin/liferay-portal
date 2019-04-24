@@ -132,6 +132,7 @@ definition {
 	test AssertKeepAliveToKeepMySAMLSessionAlive {
 		property app.server.bundles.size = "2";
 		property databases.size = "2";
+		property portal.acceptance = "Linda";
 		property test.name.skip.portal.instance = "SAML#AssertKeepAliveToKeepMySAMLSessionAlive";
 
 		SAML.configureLiferaySAMLAsIdP(samlEntityID = "samlidp");
