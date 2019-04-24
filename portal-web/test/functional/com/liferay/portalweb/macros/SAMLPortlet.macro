@@ -34,6 +34,12 @@ definition {
 			);
 		}
 
+		if (isSet(idpKeepAliveURL)) {
+			Type(
+				locator1 = "CPSAMLAdmin#SAML_KEEP_ALIVE_URL",
+				value1 = "${idpKeepAliveURL}");
+		}
+
 		PortletEntry.save();
 	}
 
@@ -84,6 +90,12 @@ definition {
 				locator1 = "CPSAMLAdminServiceProviderConnections#SERVICE_PROVIDER_CONNECTION_ATTRIBUTE_TEXTAREA",
 				value1 = "${attributes}"
 			);
+		}
+
+		if (isSet(spKeepAliveURL)) {
+			Type(
+				locator1 = "CPSAMLAdmin#SAML_KEEP_ALIVE_URL",
+				value1 = "${spKeepAliveURL}");
 		}
 
 		PortletEntry.save();
