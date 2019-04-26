@@ -133,17 +133,17 @@ definition {
 
 		OAuth2.editScopes(
 			applicationName = "OAuth Application",
-			resourceCheckList = "everything.write,everything.read.userprofile",
+			resourceCheckList = "everything.read.userprofile",
 			resourcePanels = "Portal Services");
 
 		AssertTextEquals.assertPartialText(
 			key_tableName = "OAuth Application",
 			locator1 = "OAuth2#ADMIN_TABLE_APP_SCOPES_COUNT",
-			value1 = "2");
+			value1 = "1");
 
 		OAuth2.viewScopes(
 			applicationName = "OAuth Application",
-			resourceCheckedList = "everything.write,everything.read.userprofile",
+			resourceCheckedList = "everything.read.userprofile",
 			resourcePanels = "Portal Services");
 
 		OAuth2.editScopes(
