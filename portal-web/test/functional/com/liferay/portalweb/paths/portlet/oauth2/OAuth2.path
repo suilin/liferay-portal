@@ -109,6 +109,17 @@
 	<td></td>
 	<td></td>
 </tr>
+<!--OAUTH2_AUTHORIZE_PORTLET-->
+<tr>
+	<td>AUTHORIZE_APPLICATION_NAME</td>
+	<td>//form[contains(@id,'OAuth2AuthorizePortlet')]//h1[contains(.,'${key_applicationName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
 <!--OAUTH2_TESTER-->
 <tr>
 	<td>OAUTH2_TESTER_CLIENT_ID</td>
