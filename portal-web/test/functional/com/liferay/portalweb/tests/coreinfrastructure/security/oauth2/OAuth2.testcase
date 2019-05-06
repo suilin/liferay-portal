@@ -109,6 +109,7 @@ definition {
 
 	test AssertAuthorizationPromptsScopeSameAsActualGranted {
 		property custom.properties = "virtual.hosts.default.site.name=Guest";
+		property portal.acceptance = "Linda";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
