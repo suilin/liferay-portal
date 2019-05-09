@@ -631,6 +631,10 @@ definition {
 
 		PortalSettings.viewEnabledLDAPSetting(enableSettingList = "${enableSettingList}");
 
+		User.logoutPG();
+
+		User.viewLoggedOutPG();
+
 		Portlet.shutdownServer();
 
 		Portlet.startServer(deleteLiferayHome = "false");
@@ -659,14 +663,11 @@ definition {
 			userEmailAddress = "ldapuseremail@liferay.com",
 			userScreenName = "ldapusercn");
 
-		User.logoutPG();
+		Navigator.openSpecificURL(url = "http://www.able.com:9080");
 
-		User.viewLoggedOutPG();
-
-		User.loginPG(
-			password = "test",
-			specificURL = "http://www.able.com:9080",
-			userEmailAddress = "test@liferay.com");
+		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
+			Navigator.gotoLoginPage();
+		}
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
