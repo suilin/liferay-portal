@@ -659,11 +659,14 @@ definition {
 			userEmailAddress = "ldapuseremail@liferay.com",
 			userScreenName = "ldapusercn");
 
-		Navigator.openSpecificURL(url = "http://www.able.com:9080");
+		User.logoutPG();
 
-		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
-			Navigator.gotoLoginPage();
-		}
+		User.viewLoggedOutPG();
+
+		User.loginPG(
+			password = "test",
+			specificURL = "http://www.able.com:9080",
+			userEmailAddress = "test@liferay.com");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
