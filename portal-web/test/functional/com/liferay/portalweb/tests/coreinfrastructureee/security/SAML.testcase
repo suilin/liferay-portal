@@ -635,23 +635,6 @@ definition {
 
 		Portlet.startServer(deleteLiferayHome = "false");
 
-		Navigator.openSpecificURL(url = "http://www.able.com:9080");
-
-		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
-			Navigator.gotoLoginPage();
-		}
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "SAML Admin");
-
-		SAMLNavigation.gotoServiceProvider();
-
-		SAMLPortlet.configureServiceProvider(enbleLDAPImport = "true");
-
-		Navigator.openURL();
-
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
@@ -675,6 +658,37 @@ definition {
 		User.editPasswordCP(
 			userEmailAddress = "ldapuseremail@liferay.com",
 			userScreenName = "ldapusercn");
+
+		Navigator.openSpecificURL(url = "http://www.able.com:9080");
+
+		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
+			Navigator.gotoLoginPage();
+		}
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "SSO",
+			configurationName = "SAML Configuration",
+			configurationScope = "System Scope");
+
+		SystemSettings.editTextSetting(
+			settingName = "Runtime Metadata Refresh Interval",
+			settingValue = "30");
+
+		SystemSettings.saveConfiguration();
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "SAML Admin");
+
+		SAMLNavigation.gotoServiceProvider();
+
+		SAMLPortlet.configureServiceProvider(enbleLDAPImport = "true");
 
 		User.logoutPG(specificURL = "http://www.able.com:9080");
 
