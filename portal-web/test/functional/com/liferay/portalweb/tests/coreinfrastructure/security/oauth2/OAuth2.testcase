@@ -113,6 +113,7 @@ definition {
 		property custom.properties = "virtual.hosts.default.site.name=Guest";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "OAuth2#AssertAuthorizationCodeWorksInClusterEnvironment";
+		property portal.acceptance = "Linda";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
