@@ -150,6 +150,7 @@ definition {
 	@priority = "5"
 	test LoginWithSpanishOnlyEnabledLocale {
 		property test.name.skip.portal.instance = "Login#LoginWithSpanishOnlyEnabledLocale";
+		property portal.acceptance = "Linda";
 
 		User.firstLoginPG();
 
