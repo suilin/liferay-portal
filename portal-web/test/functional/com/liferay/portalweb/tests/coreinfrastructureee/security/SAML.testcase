@@ -448,6 +448,7 @@ definition {
 	@priority = "4"
 	test AssertSSOWithSignAuthnRequests {
 		property test.name.skip.portal.instance = "SAML#AssertSSOWithSignAuthnRequests";
+		property portal.acceptance = "Linda";
 
 		SAML.configureLiferaySAMLAsIdP(samlEntityID = "samlidp");
 
