@@ -170,8 +170,8 @@ definition {
 		var portalURL = JSONCompany.getPortalURL();
 
 		var reponse = JSONCurlUtil.post("${curl}");
-		var partialReponse = StringUtil.stripBetween("${response}", "access_token", "token_type");
-		var accessToken = StringUtil.extractDigits("${partialReponse}");
+
+		var accessToken = StringUtil.extractLeadingDigits("${reponse}");
 
 		echo("## * Access Token: ${accessToken}");
 
