@@ -169,6 +169,11 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 
+		var curl = '''
+			${portalURL}/o/oauth2/token \
+				 --data client_id=abc123&client_secret=abc123&grant_type=authorization_code&code=${authorizationCode}
+		''';
+
 		var reponse = JSONCurlUtil.post("${curl}");
 		var partialReponse = StringUtil.stripBetween("${response}", "access_token", "token_type");
 		var accessToken = StringUtil.extractDigits("${partialReponse}");
