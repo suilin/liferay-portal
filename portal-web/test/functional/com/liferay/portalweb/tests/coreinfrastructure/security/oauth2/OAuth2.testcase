@@ -112,6 +112,7 @@ definition {
 	@priority = "5"
 	test AssertClientCredentialsGrantFlowForSpecifiedUser {
 		property custom.properties = "virtual.hosts.default.site.name=Guest";
+		property portal.acceptance = "Linda";
 
 		JSONWebcontent.addWebContent(
 			content = "wc content",
