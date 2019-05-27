@@ -112,6 +112,8 @@ definition {
 	@description = "This is a use case for OAUTH2-259."
 	@priority = "5"
 	test AssertClientCredentialsGrantFlowForSpecifiedUser {
+		property portal.acceptance = "Linda";
+
 		JSONWebcontent.addWebContent(
 			content = "wc content",
 			groupName = "Guest",
