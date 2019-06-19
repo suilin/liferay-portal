@@ -46,8 +46,6 @@ definition {
 		Click.waitForMenuToggleJSClick(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Delete");
-
-		Alert.viewSuccessMessage();
 	}
 
 	macro editSecurityCredential {
