@@ -20,7 +20,6 @@ import com.liferay.oauth2.provider.model.OAuth2Application;
 import com.liferay.oauth2.provider.model.OAuth2ApplicationScopeAliases;
 import com.liferay.oauth2.provider.model.OAuth2ScopeGrant;
 import com.liferay.oauth2.provider.scope.liferay.ApplicationDescriptorLocator;
-import com.liferay.oauth2.provider.scope.liferay.LiferayOAuth2Scope;
 import com.liferay.oauth2.provider.scope.liferay.ScopeDescriptorLocator;
 import com.liferay.oauth2.provider.scope.liferay.ScopeLocator;
 import com.liferay.oauth2.provider.service.OAuth2ApplicationScopeAliasesLocalService;
@@ -212,10 +211,6 @@ public class ViewAuthorizationRequestMVCRenderCommand
 
 		Stream<OAuth2ScopeGrant> stream = oAuth2ScopeGrants.stream();
 
-		Collection<LiferayOAuth2Scope> liferayOAuth2ScopesByCompany =
-			_scopeLocator.getLiferayOAuth2Scopes(
-				oAuth2ApplicationScopeAliases.getCompanyId());
-
 		stream.filter(
 			oAuth2ScopeGrant -> !Collections.disjoint(
 				oAuth2ScopeGrant.getScopeAliasesList(),
@@ -225,8 +220,6 @@ public class ViewAuthorizationRequestMVCRenderCommand
 				oAuth2ScopeGrant.getCompanyId(),
 				oAuth2ScopeGrant.getApplicationName(),
 				oAuth2ScopeGrant.getScope())
-		).filter(
-			liferayOAuth2ScopesByCompany::contains
 		).forEach(
 			assignableScopes::addLiferayOAuth2Scope
 		);
