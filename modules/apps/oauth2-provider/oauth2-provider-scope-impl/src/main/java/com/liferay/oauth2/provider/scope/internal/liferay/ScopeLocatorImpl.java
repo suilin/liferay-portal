@@ -86,15 +86,15 @@ public class ScopeLocatorImpl implements ScopeLocator {
 		Collection<LiferayOAuth2Scope> liferayOAuth2Scopes = new ArrayList<>();
 
 		for (String key : _scopeFinderByNameServiceTrackerMap.keySet()) {
-			ScopeFinder scopeFinder =
+			ScopeFinder service =
 				_scopeFindersScopedServiceTrackerMap.getService(companyId, key);
 
 			ServiceReferenceServiceTuple<?, ScopeFinder>
 				serviceReferenceServiceTuple =
 					_scopeFinderByNameServiceTrackerMap.getService(key);
 
-			if (scopeFinder == null) {
-				scopeFinder = serviceReferenceServiceTuple.getService();
+			if (service == null) {
+				service = serviceReferenceServiceTuple.getService();
 			}
 
 			ServiceReference<?> serviceReference =
@@ -102,7 +102,7 @@ public class ScopeLocatorImpl implements ScopeLocator {
 
 			Bundle bundle = getBundle(serviceReference);
 
-			for (String scope : scopeFinder.findScopes()) {
+			for (String scope : service.findScopes()) {
 				liferayOAuth2Scopes.add(
 					new LiferayOAuth2ScopeImpl(key, bundle, scope));
 			}
