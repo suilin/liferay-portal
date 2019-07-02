@@ -212,7 +212,7 @@ public class ViewAuthorizationRequestMVCRenderCommand
 
 		Stream<OAuth2ScopeGrant> stream = oAuth2ScopeGrants.stream();
 
-		Collection<LiferayOAuth2Scope> liferayOAuth2Scopes =
+		Collection<LiferayOAuth2Scope> liferayOAuth2ScopesByCompany =
 			_scopeLocator.getLiferayOAuth2Scopes(
 				oAuth2ApplicationScopeAliases.getCompanyId());
 
@@ -226,7 +226,7 @@ public class ViewAuthorizationRequestMVCRenderCommand
 				oAuth2ScopeGrant.getApplicationName(),
 				oAuth2ScopeGrant.getScope())
 		).filter(
-			liferayOAuth2Scopes::contains
+			liferayOAuth2ScopesByCompany::contains
 		).forEach(
 			assignableScopes::addLiferayOAuth2Scope
 		);
