@@ -243,6 +243,7 @@ definition {
 		property custom.properties = "virtual.hosts.default.site.name=Guest";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "OAuth2#AssertAuthorizationCodeWorksInCluster";
+		property portal.acceptance = "Linda";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -562,8 +563,7 @@ definition {
 	test ViewAndRevokeGrantedAuthorizations {
 		property app.server.types = "jboss,tcserver,tomcat,weblogic,websphere,wildfly";
 		property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver,sybase";
-		property environment.acceptance = "true";
-		property portal.acceptance = "true";
+		property portal.acceptance = "Linda";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
