@@ -218,6 +218,7 @@ definition {
 	test AssertSSOFailsWhenAlgorithmsMismatch {
 		property blacklist.saml.algorithms = "true";
 		property test.name.skip.portal.instance = "SAML#AssertSSOFailsWhenAlgorithmsMismatch";
+		property portal.acceptance = "Linda";
 
 		SAML.configureLiferaySAMLAsIdP(samlEntityID = "samlidp");
 
