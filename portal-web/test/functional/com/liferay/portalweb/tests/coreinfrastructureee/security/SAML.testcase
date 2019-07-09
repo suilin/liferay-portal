@@ -643,6 +643,8 @@ definition {
 
 		Portlet.startServer(deleteLiferayHome = "false");
 
+		User.firstLoginPG();
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
