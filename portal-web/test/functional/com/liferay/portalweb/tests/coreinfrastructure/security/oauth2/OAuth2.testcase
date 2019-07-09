@@ -110,6 +110,8 @@ definition {
 	}
 
 	test AddAndEditOAuthSAPEntries {
+		property portal.acceptance = "Linda";
+		
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
