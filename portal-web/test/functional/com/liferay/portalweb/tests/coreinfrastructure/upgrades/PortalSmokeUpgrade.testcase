@@ -7,6 +7,7 @@ definition {
 	property portal.upstream = "true";
 	property ignore.errors = "Plugin security management is not enabled. Enable a security manager, then restart.";
 	property testray.main.component.name = "Upgrades Core Infrastructure";
+	property portal.acceptance = "Linda";
 
 	setUp {
 		SignIn.signIn();
