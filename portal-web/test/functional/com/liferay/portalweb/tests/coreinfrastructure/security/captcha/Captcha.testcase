@@ -38,6 +38,7 @@ definition {
 		property test.name.skip.portal.instance = "Captcha#ViewRecaptchaEnabled";
 		var recaptchaPrivateKey = PropsUtil.get("recaptcha.private.key");
 		var recaptchaPublicKey = PropsUtil.get("recaptcha.public.key");
+		property portal.acceptance = "Linda";
 
 		User.firstLoginPG();
 
