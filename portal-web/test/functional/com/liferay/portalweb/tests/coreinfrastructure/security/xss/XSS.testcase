@@ -374,6 +374,7 @@ definition {
 	test ViewURLValidate {
 		property test.assert.warning.exceptions = "true";
 		property test.name.skip.portal.instance = "XSSUsecase#ViewURLValidate";
+		property portal.acceptance = "Linda";
 
 		var maliciousURL1 = '''
 				http://localhost:8080/c/portal/flash?title=abc</title><script%0d%0a>alert(3.1415926)</script%0d%0a><title>aaa
