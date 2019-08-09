@@ -84,6 +84,8 @@ definition {
 			locator1 = "Button#EXECUTE_ACTION",
 			value1 = "Execute");
 
+		AssertElementPresent(locator1 = "Message#SUCCESS");
+
 		var pauseCount = "0";
 
 		while ((IsElementPresent(locator1 = "ControlMenu#RELOAD_TOOLTIP")) && (!("${pauseCount}" == "24"))) {
