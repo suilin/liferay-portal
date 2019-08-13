@@ -83,6 +83,7 @@ definition {
 		var facebookApplicationSecret = PropsUtil.get("facebook.application.secret");
 		var facebookEmail = PropsUtil.get("facebook.email");
 		var facebookPassword = PropsUtil.get("facebook.password");
+		property portal.acceptance = "Linda";
 
 		User.firstLoginPG();
 
@@ -121,6 +122,7 @@ definition {
 		var googleClientSecret = PropsUtil.get("google.client.secret.2");
 		var userEmailAddress = PropsUtil.get("email.address.1");
 		var userPassword = PropsUtil.get("email.password.1");
+		property portal.acceptance = "Linda";
 
 		User.firstLoginPG();
 
