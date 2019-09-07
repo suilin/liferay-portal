@@ -5,6 +5,7 @@ definition {
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Upgrades Search";
+	property portal.upgrades = Linda;
 
 	setUp {
 		SignIn.signIn();
@@ -46,7 +47,6 @@ definition {
 	test ViewClassicSearchPortletConfigurationArchive720 {
 		property data.archive.type = "data-archive-classic-search-portlet";
 		property database.types = "mariadb,mysql,postgresql";
-		property portal.upgrades = "true";
 		property portal.version = "7.2.0";
 
 		Upgrade.viewClassicSearchPortletConfiguration();
@@ -55,7 +55,6 @@ definition {
 	@priority = "5"
 	test ViewClassicSearchPortletConfigurationArchive7110 {
 		property data.archive.type = "data-archive-classic-search-portlet";
-		property portal.upgrades = "true";
 		property portal.version = "7.1.10";
 
 		Upgrade.viewClassicSearchPortletConfiguration();
@@ -64,7 +63,6 @@ definition {
 	@priority = "5"
 	test ViewClassicSearchPortletConfigurationArchive7210 {
 		property data.archive.type = "data-archive-classic-search-portlet";
-		property portal.upgrades = "true";
 		property portal.version = "7.2.10";
 		property test.run.environment = "EE";
 
@@ -74,7 +72,6 @@ definition {
 	@priority = "5"
 	test ViewClassicSearchPortletConfigurationArchive70106 {
 		property data.archive.type = "data-archive-classic-search-portlet";
-		property portal.upgrades = "true";
 		property portal.version = "7.0.10.6";
 
 		ProductMenu.gotoPortlet(
@@ -96,7 +93,6 @@ definition {
 	test ViewSearchPortletsConfigurationArchive720 {
 		property data.archive.type = "data-archive-search-portlets";
 		property database.types = "mariadb,mysql,postgresql";
-		property portal.upgrades = "true";
 		property portal.version = "7.2.0";
 
 		Upgrade.viewSearchPortletsConfiguration();
@@ -105,7 +101,6 @@ definition {
 	@priority = "5"
 	test ViewSearchPortletsConfigurationArchive7110 {
 		property data.archive.type = "data-archive-search-portlets";
-		property portal.upgrades = "true";
 		property portal.version = "7.1.10";
 
 		Upgrade.viewSearchPortletsConfiguration();
@@ -114,7 +109,6 @@ definition {
 	@priority = "5"
 	test ViewSearchPortletsConfigurationArchive7210 {
 		property data.archive.type = "data-archive-search-portlets";
-		property portal.upgrades = "true";
 		property portal.version = "7.2.10";
 		property test.run.environment = "EE";
 
