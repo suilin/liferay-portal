@@ -20,13 +20,11 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.EmailAddressException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBus;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.Validator;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Julio Camarero
@@ -55,14 +53,7 @@ public class FlagsEntryServiceImpl extends FlagsEntryServiceBaseImpl {
 			className, classPK, reporterEmailAddress, reportedUserId,
 			contentTitle, contentURL, reason, serviceContext);
 
-		Message message = new Message();
-
-		message.setPayload(flagsRequest);
-
-		_messageBus.sendMessage(DestinationNames.FLAGS, message);
+		MessageBusUtil.sendMessage(DestinationNames.FLAGS, flagsRequest);
 	}
-
-	@Reference
-	private MessageBus _messageBus;
 
 }

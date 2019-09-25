@@ -33,8 +33,7 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBus;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
@@ -641,15 +640,11 @@ public class MicroblogsEntryLocalServiceImpl
 
 			@Override
 			public Void call() throws Exception {
-				Message message = new Message();
-
-				message.setPayload(
+				MessageBusUtil.sendMessage(
+					DestinationNames.ASYNC_SERVICE,
 					new NotificationProcessCallable(
 						receiverUserIds, microblogsEntry,
 						notificationEventJSONObject));
-
-				_messageBus.sendMessage(
-					DestinationNames.ASYNC_SERVICE, message);
 
 				return null;
 			}
@@ -731,9 +726,6 @@ public class MicroblogsEntryLocalServiceImpl
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		MicroblogsEntryLocalServiceImpl.class);
-
-	@Reference
-	private MessageBus _messageBus;
 
 	@Reference
 	private SubscriptionLocalService _subscriptionLocalService;

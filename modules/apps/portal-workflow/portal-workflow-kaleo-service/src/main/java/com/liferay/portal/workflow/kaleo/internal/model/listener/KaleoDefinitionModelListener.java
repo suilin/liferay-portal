@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.internal.model.listener;
 
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBus;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Kenneth Chang
@@ -48,7 +47,7 @@ public class KaleoDefinitionModelListener
 					"serviceContext", getServiceContext(kaleoDefinition));
 				message.put("version", kaleoDefinition.getVersion());
 
-				_messageBus.sendMessage("liferay/kaleo_definition", message);
+				MessageBusUtil.sendMessage("liferay/kaleo_definition", message);
 
 				return null;
 			});
@@ -73,7 +72,7 @@ public class KaleoDefinitionModelListener
 						"serviceContext", getServiceContext(kaleoDefinition));
 					message.put("version", kaleoDefinition.getVersion());
 
-					_messageBus.sendMessage(
+					MessageBusUtil.sendMessage(
 						"liferay/kaleo_definition", message);
 				}
 				catch (Exception e) {
@@ -102,8 +101,5 @@ public class KaleoDefinitionModelListener
 
 		return serviceContext;
 	}
-
-	@Reference
-	private MessageBus _messageBus;
 
 }

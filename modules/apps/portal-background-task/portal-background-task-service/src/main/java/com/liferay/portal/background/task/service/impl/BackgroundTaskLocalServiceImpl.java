@@ -31,7 +31,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBus;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.model.CompanyConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserConstants;
@@ -237,7 +237,7 @@ public class BackgroundTaskLocalServiceImpl
 						"taskExecutorClassName",
 						backgroundTask.getTaskExecutorClassName());
 
-					_messageBus.sendMessage(
+					MessageBusUtil.sendMessage(
 						DestinationNames.BACKGROUND_TASK_STATUS, message);
 
 					return null;
@@ -660,7 +660,7 @@ public class BackgroundTaskLocalServiceImpl
 		message.put(
 			BackgroundTaskConstants.BACKGROUND_TASK_ID, backgroundTaskId);
 
-		_messageBus.sendMessage(DestinationNames.BACKGROUND_TASK, message);
+		MessageBusUtil.sendMessage(DestinationNames.BACKGROUND_TASK, message);
 	}
 
 	@Clusterable(onMaster = true)
@@ -676,7 +676,7 @@ public class BackgroundTaskLocalServiceImpl
 		message.put(
 			BackgroundTaskConstants.BACKGROUND_TASK_ID, backgroundTaskId);
 
-		_messageBus.sendMessage(DestinationNames.BACKGROUND_TASK, message);
+		MessageBusUtil.sendMessage(DestinationNames.BACKGROUND_TASK, message);
 	}
 
 	protected BackgroundTask addBackgroundTask(
@@ -753,8 +753,5 @@ public class BackgroundTaskLocalServiceImpl
 
 	@Reference
 	private BackgroundTaskThreadLocalManager _backgroundTaskThreadLocalManager;
-
-	@Reference
-	private MessageBus _messageBus;
 
 }

@@ -38,8 +38,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.log.SanitizerLogWrapper;
 import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBus;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Layout;
@@ -407,11 +406,7 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 
 		MaintenanceUtil.maintain(portletSession.getId(), className);
 
-		Message message = new Message();
-
-		message.setPayload(className);
-
-		_messageBus.sendMessage(DestinationNames.CONVERT_PROCESS, message);
+		MessageBusUtil.sendMessage(DestinationNames.CONVERT_PROCESS, className);
 
 		return null;
 	}
@@ -722,9 +717,6 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 
 	@Reference
 	private MailService _mailService;
-
-	@Reference
-	private MessageBus _messageBus;
 
 	@Reference
 	private MultiVMPool _multiVMPool;
