@@ -1539,6 +1539,13 @@ definition {
 				specificURL = "${virtualHostsURL}",
 				userEmailAddress = "${userEmailAddress}");
 		}
+
+		ProductMenu.gotoPortlet(
+			category = "Change Lists",
+			panel = "Control Panel",
+			portlet = "Settings");
+
+		ChangeList.enableChangeList();
 	}
 
 	macro forgotPasswordSendResetLink {
