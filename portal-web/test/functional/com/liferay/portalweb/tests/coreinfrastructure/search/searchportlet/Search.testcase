@@ -362,6 +362,7 @@ definition {
 		property custom.properties = "locales.enabled=de_DE,en_US${line.separator}locales=de_DE,en_US${line.separator}index.search.spell.checker.dictionary[de_DE]=spellchecker/verben_de_DE.txt${line.separator}index.search.spell.checker.supported.locales=en_US,es_ES,de_DE";
 		property spellchecker.enabled = "true";
 		property test.name.skip.portal.instance = "Search#AssertSuggestionWorksWithGermanSpellcheck";
+		property portal.acceptance = "Linda";
 
 		JSONWebcontent.addBasicWebContentLocalized(
 			contentMap = "en_US:WC Content,de_DE:ächten angreifen anmarschieren",
