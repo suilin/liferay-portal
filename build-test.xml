@@ -10840,6 +10840,29 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<get-testcase-property property.name="spellchecker.enabled" />
+
+		<if>
+			<and>
+				<equals arg1="${app.server.type}" arg2="tomcat" />
+				<equals arg1="${spellchecker.enabled}" arg2="true" />
+			</and>
+			<then>
+				<local name="spellchecker.dir" />
+
+				<property name="spellchecker.dir" value="${app.server.dir}/webapps/ROOT/WEB-INF/classes/spellchecker" />
+
+				<mkdir dir="${spellchecker.dir}" />
+
+				<echo>Copying ${project.dir}/portal-web/test/functional/com/liferay/portalweb/dependencies/verben_de_DE.txt to ${spellchecker.dir}</echo>
+
+ 				<copy
+					file="${project.dir}/portal-web/test/functional/com/liferay/portalweb/dependencies/verben_de_DE.txt"
+					todir="${spellchecker.dir}"
+				/>
+			</then>
+		</if>
+
 		<get-testcase-property property.name="web.xml.timeout" />
 
 		<if>
