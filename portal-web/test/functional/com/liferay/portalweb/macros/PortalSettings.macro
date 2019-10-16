@@ -299,9 +299,11 @@ definition {
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_OAUTH_TOKEN_URL",
 			value1 = "https://graph.facebook.com/oauth/access_token");
 
+		var currentURL = selenium.getCurrentUrl();
+
 		Type(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_REDIRECT_URL",
-			value1 = "http://localhost:8080/c/portal/facebook_connect_oauth");
+			value1 = "${currentURL}/c/portal/facebook_connect_oauth");
 
 		PortletEntry.save();
 	}
