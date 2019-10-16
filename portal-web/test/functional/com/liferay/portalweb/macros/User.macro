@@ -1760,8 +1760,6 @@ definition {
 
 	@description = "Log into Facebook as ${facebookEmail} using the password ${facebookPassword}."
 	macro loginUserWithFacebookSSOEnabledPG {
-		Navigator.openURL();
-
 		AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
