@@ -83,6 +83,7 @@ definition {
 		var facebookApplicationSecret = PropsUtil.get("facebook.application.secret");
 		var facebookEmail = PropsUtil.get("facebook.email");
 		var facebookPassword = PropsUtil.get("facebook.password");
+		property portal.acceptance = "Linda";
 
 		User.firstLoginPG();
 
