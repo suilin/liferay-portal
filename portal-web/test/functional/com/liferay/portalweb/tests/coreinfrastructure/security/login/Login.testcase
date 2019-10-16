@@ -88,16 +88,31 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		PortalSettings.gotoConfiguration(
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings");
+
+		SystemSettings.gotoConfiguration(
 			configurationCategory = "SSO",
 			configurationName = "Facebook Connect",
-			configurationScope = "Virtual Instance Scope");
+			configurationScope = "System Scope");
 
-		PortalSettings.editConfigurationAuthenticationFacebook(
-			facebookApplicationID = "${facebookApplicationID}",
-			facebookApplicationSecret = "${facebookApplicationSecret}");
+		FormFields.enableCheckbox(fieldName = "enabled");
+
+		FormFields.editTextMultiline(
+			fieldName = "appId",
+			fieldValue = "${facebookApplicationID}");
+
+		FormFields.editTextMultiline(
+			fieldName = "appSecret",
+			fieldValue = "${facebookApplicationSecret}");
+
+		PortletEntry.save();
 
 		User.logoutPG();
+
+		Navigator.openURL();
 
 		User.loginUserWithFacebookSSOEnabledPG(
 			facebookEmail = "${facebookEmail}",
@@ -109,6 +124,60 @@ definition {
 		User.loginPG(
 			password = "test",
 			userEmailAddress = "test@liferay.com",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "SSO",
+			configurationName = "Facebook Connect",
+			configurationScope = "System Scope");
+
+		FormFields.disableCheckbox(fieldName = "Enabled");
+
+		PortletEntry.update();
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Virtual Instances");
+
+ 		PortalInstances.addCP(
+			mailDomain = "www.able.com",
+			virtualHost = "www.able.com",
+			webId = "www.able.com");
+
+ 		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "test@www.able.com",
+			virtualHostsURL = "http://www.able.com:8080");
+
+		PortalSettings.gotoConfiguration(
+			configurationCategory = "SSO",
+			configurationName = "Facebook Connect",
+			configurationScope = "Virtual Instance Scope");
+
+		PortalSettings.editConfigurationAuthenticationFacebook(
+			facebookApplicationID = "${facebookApplicationID}",
+			facebookApplicationSecret = "${facebookApplicationSecret}");
+
+		User.logoutPG(specificURL = "http://www.able.com:8080");
+
+		Navigator.openSpecificURL(url = "http://www.able.com:8080");
+
+		User.loginUserWithFacebookSSOEnabledPG(
+			facebookEmail = "${facebookEmail}",
+			facebookPassword = "${facebookPassword}",
+			siteName = "${siteName}");
+
+		User.logoutUserPG(specificURL = "http://www.able.com:8080");
+
+		User.loginPG(
+			password = "test",
+			userEmailAddress = "test@www.able.com",
 			userScreenName = "usersn");
 	}
 
