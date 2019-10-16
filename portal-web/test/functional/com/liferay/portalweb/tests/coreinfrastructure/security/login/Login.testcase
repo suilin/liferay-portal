@@ -273,6 +273,7 @@ definition {
 		property dummy.socket.proxy.disabled = "true";
 		property openam.enabled = "true";
 		property test.name.skip.portal.instance = "Login#OpenSSOSmoke";
+		property portal.acceptance = "Linda";
 
 		// LRQA-40534
 
