@@ -10985,6 +10985,20 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<get-testcase-property property.name="cas.enabled" />
+
+		<if>
+			<equals arg1="${cas.enabled}" arg2="true" />
+			<then>
+				<echo>Copying ${project.dir}/portal-web/test/functional/com/liferay/portalweb/dependencies/cas-web.war to ${app.server.dir}/webapps</echo>
+
+				<copy
+					file="${project.dir}/portal-web/test/functional/com/liferay/portalweb/dependencies/cas-web.war"
+					todir="${app.server.dir}/webapps"
+				/>
+			</then>
+		</if>
+
 		<get-testcase-property property.name="remote.elasticsearch.enabled" />
 
 		<if>
