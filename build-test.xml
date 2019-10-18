@@ -11017,6 +11017,30 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<get-testcase-property property.name="cas.enabled" />
+
+		<if>
+			<equals arg1="${cas.enabled}" arg2="true" />
+			<then>
+				<property name="liferay.dependency.dir" value="${project.dir}/portal-web/test/functional/com/liferay/portalweb/dependencies" />
+
+				<echo>Archiving ${liferay.dependency.dir}/cas-web.war to ${project.dir}/tmp/cas-web.war.</echo>
+
+				<jar
+					basedir="${liferay.dependency.dir}/cas-web.war"
+					destfile="${project.dir}/tmp/cas-web.war"
+					manifest="${liferay.dependency.dir}/cas-web.war/META-INF/MANIFEST.MF"
+				/>
+
+				<echo>Copying ${project.dir}/tmp/cas-web.war to ${app.server.dir}/webapps</echo>
+
+				<copy
+					file="${project.dir}/tmp/cas-web.war"
+					todir="${app.server.dir}/webapps"
+				/>
+			</then>
+		</if>
+
 		<get-testcase-property property.name="remote.elasticsearch.enabled" />
 
 		<if>
