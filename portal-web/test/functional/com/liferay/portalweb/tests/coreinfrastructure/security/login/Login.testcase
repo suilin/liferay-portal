@@ -14,6 +14,7 @@ definition {
 		property cas.enabled = "true";
 		property dummy.socket.proxy.disabled = "true";
 		property test.name.skip.portal.instance = "Login#CASSSOSmoke";
+		property portal.acceptance = "Linda";
 
 		User.firstLoginPG();
 
