@@ -774,6 +774,8 @@ xpack.monitoring.collection.enabled: true</echo>
 			<equals arg1="remote.elasticsearch.ltr.enabled" arg2="true" />
 			<then>
 				<prepare-elasticsearch-ltr />
+
+				<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}path.repo: ${liferay.home}/data/elasticsearch7/repo</echo>
 			</then>
 		</if>
 
