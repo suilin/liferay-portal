@@ -22,6 +22,16 @@ xpack.ssl.key: certs/localhost/localhost.key</echo>
 		</sequential>
 	</macrodef>
 
+	<macrodef name="configure-elasticsearch6-test-properties">
+		<sequential>
+			<property name="elasticsearch.ltr.version" value="1.1.1" />
+			<property name="elasticsearch.ltr-linear-regression-model.zip.name" value="ltr-linear-regression-model.zip"/>
+			<property name="elasticsearch.ltr-linear-regression-model.zip.url" value="http://files.liferay.com/private/apps/elastic/elasticsearch/${elasticsearch.ltr-linear-regression-model.zip.name}" />
+			<property name="elasticsearch.ltr.zip.name" value="ltr-${elasticsearch.ltr.version}-es${elasticsearch.version}.zip" />
+			<property name="elasticsearch.ltr.url" value="http://es-learn-to-rank.labs.o19s.com/${elasticsearch.ltr.zip.name}" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="configure-kibana-properties">
 		<sequential>
 			<echo append="true" file="${elastic.kibana.dir}/config/kibana.yml">${line.separator}elasticsearch.url: "http://localhost:9200"
