@@ -669,8 +669,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</macrodef>
 
 	<target name="add-boston-dataset-index">
-		<configure-elasticsearch7-test-properties />
-
 		<unzip-boston-dataset-index />
 
 		<antcall target="restore-backup">
@@ -908,8 +906,6 @@ xpack.monitoring.collection.enabled: true</echo>
 
 	<target name="start-kibana">
 		<lstopwatch action="start" name="start.kibana" />
-
-		<configure-elasticsearch7-test-properties />
 
 		<unzip-kibana />
 
