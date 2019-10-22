@@ -22,7 +22,7 @@ xpack.ssl.key: certs/localhost/localhost.key</echo>
 		</sequential>
 	</macrodef>
 
-	<macrodef name="configure-elasticsearch6-test-properties">
+	<macrodef name="configure-elasticsearch6-ltr-test-properties">
 		<sequential>
 			<property name="elasticsearch.ltr.version" value="1.1.1" />
 			<property name="elasticsearch.ltr-linear-regression-model.zip.name" value="ltr-linear-regression-model.zip"/>
@@ -582,7 +582,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</macrodef>
 
 	<target name="add-boston-dataset-index">
-		<configure-elasticsearch6-test-properties />
+		<configure-elasticsearch6-ltr-test-properties />
 
 		<unzip-boston-dataset-index />
 
