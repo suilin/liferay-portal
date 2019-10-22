@@ -22,6 +22,16 @@ xpack.security.http.ssl.key: certs/localhost/localhost.key</echo>
 		</sequential>
 	</macrodef>
 
+	<macrodef name="configure-elasticsearch7-ltr-test-properties">
+		<sequential>
+			<property name="elasticsearch.ltr.version" value="1.1.2" />
+			<property name="elasticsearch.ltr-linear-regression-model.zip.name" value="ltr-linear-regression-model.zip"/>
+			<property name="elasticsearch.ltr-linear-regression-model.zip.url" value="http://files.liferay.com/private/apps/elastic/elasticsearch/${elasticsearch.ltr-linear-regression-model.zip.name}" />
+			<property name="elasticsearch.ltr.zip.name" value="ltr-${elasticsearch.ltr.version}-es${elasticsearch.version}.zip" />
+			<property name="elasticsearch.ltr.url" value="http://es-learn-to-rank.labs.o19s.com/${elasticsearch.ltr.zip.name}" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="configure-elasticsearch7-test-properties">
 		<sequential>
 			<var name="elastic.kibana.dir" unset="true" />
@@ -65,12 +75,6 @@ xpack.security.http.ssl.key: certs/localhost/localhost.key</echo>
 			<property name="elasticsearch.tar.url.linux" value="https://artifacts.elastic.co/downloads/elasticsearch/${elasticsearch.tar.name.linux}" />
 			<property name="elasticsearch.tar.url.mac" value="https://artifacts.elastic.co/downloads/elasticsearch/${elasticsearch.tar.name.mac}" />
 			<property name="elasticsearch.zip.url.windows" value="https://artifacts.elastic.co/downloads/elasticsearch/${elasticsearch.zip.name.windows}" />
-
-			<property name="elasticsearch.ltr.version" value="1.1.2" />
-			<property name="elasticsearch.ltr-linear-regression-model.zip.name" value="ltr-linear-regression-model.zip" />
-			<property name="elasticsearch.ltr-linear-regression-model.zip.url" value="http://files.liferay.com/private/apps/elastic/elasticsearch/${elasticsearch.ltr-linear-regression-model.zip.name}" />
-			<property name="elasticsearch.ltr.zip.name" value="ltr-${elasticsearch.ltr.version}-es${elasticsearch.version}.zip" />
-			<property name="elasticsearch.ltr.url" value="http://es-learn-to-rank.labs.o19s.com/${elasticsearch.ltr.zip.name}" />
 		</sequential>
 	</macrodef>
 
@@ -679,6 +683,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 	<target name="add-ltr-linear-regression-model">
 		<configure-elasticsearch7-test-properties />
+
+		<configure-elasticsearch7-ltr-test-properties />
 
 		<unzip-ltr-linear-regression-model />
 
