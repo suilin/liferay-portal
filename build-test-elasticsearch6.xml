@@ -24,6 +24,12 @@ xpack.ssl.key: certs/localhost/localhost.key</echo>
 
 	<macrodef name="configure-elasticsearch6-ltr-test-properties">
 		<sequential>
+			<var name="elasticsearch.ltr-linear-regression-model.zip.name" unset="true" />
+			<var name="elasticsearch.ltr-linear-regression-model.zip.url" unset="true" />
+			<var name="elasticsearch.ltr.url" unset="true" />
+			<var name="elasticsearch.ltr.version" unset="true" />
+			<var name="elasticsearch.ltr.zip.nam" unset="true" />
+
 			<property name="elasticsearch.ltr.version" value="1.1.1" />
 			<property name="elasticsearch.ltr-linear-regression-model.zip.name" value="ltr-linear-regression-model.zip" />
 			<property name="elasticsearch.ltr-linear-regression-model.zip.url" value="http://files.liferay.com/private/apps/elastic/elasticsearch/${elasticsearch.ltr-linear-regression-model.zip.name}" />
