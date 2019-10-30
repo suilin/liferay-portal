@@ -335,9 +335,12 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		<sequential>
 			<lstopwatch action="start" name="prepare.elasticsearch.ltr" />
 
+			<echo>chmod -v 777 ${elasticsearch.dir}/bin/**</echo>
+
 			<chmod
 				file="${elasticsearch.dir}/bin/**"
-				perm="a+x"
+				perm="777"
+				type="dir"
 			/>
 
 			<if>
