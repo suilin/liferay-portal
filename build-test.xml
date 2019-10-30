@@ -11079,6 +11079,7 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 
 		<get-testcase-property property.name="portal.suite.search.engine" />
 		<get-testcase-property property.name="remote.elasticsearch.enabled" />
+		<get-testcase-property property.name="remote.elasticsearch.ltr.enabled" />
 
 		<if>
 			<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
@@ -11089,7 +11090,16 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 						<ant antfile="build-test-elasticsearch7.xml" target="start-elasticsearch" />
 					</then>
 					<else>
-						<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch" />
+						<if>
+							<contains string="${remote.elasticsearch.ltr.enabled}" substring="true" />
+							<then>
+								<ant antfile="build-test-elasticsearch6.xml" macrodef="configure-elasticsearch67-test-properties" />
+								<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch" />
+							</then>
+						</if>
+						<else>
+							<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch" />
+						</else>
 					</else>
 				</if>
 			</then>

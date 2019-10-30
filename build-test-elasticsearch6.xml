@@ -719,17 +719,6 @@ xpack.monitoring.collection.enabled: true</echo>
 	<target name="start-elasticsearch">
 		<lstopwatch action="start" name="start.elasticsearch" />
 
-		<get-testcase-property property.name="remote.elasticsearch.ltr.enabled" />
-
-		<if>
-			<equals arg1="${remote.elasticsearch.ltr.enabled}" arg2="true" />
-			<then>
-				<configure-elasticsearch67-test-properties />
-
-				<configure-elasticsearch6-ltr-test-properties />
-			</then>
-		</if>
-
 		<unzip-elasticsearch />
 
 		<prepare-elasticsearch-analyzers />
@@ -737,6 +726,8 @@ xpack.monitoring.collection.enabled: true</echo>
 		<if>
 			<equals arg1="${remote.elasticsearch.ltr.enabled}" arg2="true" />
 			<then>
+				<configure-elasticsearch6-ltr-test-properties />
+
 				<prepare-elasticsearch-ltr />
 
 				<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}path.repo: ${liferay.home}/data/elasticsearch6/repo</echo>
