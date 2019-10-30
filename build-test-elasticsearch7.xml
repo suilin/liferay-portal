@@ -855,6 +855,8 @@ xpack.monitoring.collection.enabled: true</echo>
 
 				<lstopwatch action="total" name="start.elasticsearch" />
 
+				<print-file file.name="${elasticsearch.dir}-1/logs/LiferayElasticsearchCluster.log" />
+
 				<fail if="elasticsearch.server.not.started" message="Elasticsearch server failed to initialize." />
 			</else>
 		</if>
