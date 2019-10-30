@@ -797,6 +797,16 @@ xpack.monitoring.collection.enabled: true</echo>
 				<prepare-elasticsearch-ltr />
 
 				<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}path.repo: ${liferay.home}/data/elasticsearch7/repo</echo>
+
+				<chmod
+					maxparallel="10"
+					perm="a+rwx"
+					type="both"
+				>
+					<fileset
+						dir="${liferay.home}/data/elasticsearch7"
+					/>
+				</chmod>
 			</then>
 		</if>
 
