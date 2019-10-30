@@ -262,9 +262,15 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		<sequential>
 			<lstopwatch action="start" name="prepare.elasticsearch.analyzers" />
 
-				file="${elasticsearch.dir}/bin/**"
-				perm="a+x"
-			/>
+			<chmod
+				maxparallel="10"
+				perm="a+rwx"
+				type="both"
+			>
+				<fileset
+					dir="${elasticsearch.dir}"
+				/>
+			</chmod>
 
 			<if>
 				<not>
@@ -353,11 +359,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		<sequential>
 			<lstopwatch action="start" name="prepare.elasticsearch.ltr" />
 
-			<chmod
-				file="${elasticsearch.dir}/bin/**"
-				perm="a+x"
-			/>
-
 			<if>
 				<not>
 					<available file="${elasticsearch.dir}/${elasticsearch.ltr.zip.name}" />
@@ -374,7 +375,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<if>
 				<os family="unix" />
 				<then>
-					<exec dir="${elasticsearch.dir}/bin" executable="/bin/bash">
+					<exec dir="${elasticsearch.dir}/bin" executable="/bin/bash" inputstring="y&#x0A;">
 						<arg value="-c" />
 						<arg value="./elasticsearch-plugin install file:///${elasticsearch.dir}/${elasticsearch.ltr.zip.name}" />
 					</exec>
@@ -382,7 +383,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 				<elseif>
 					<os family="windows" />
 					<then>
-						<exec dir="${elasticsearch.dir}/bin" executable="cmd">
+						<exec dir="${elasticsearch.dir}/bin" executable="cmd" inputstring="y&#x0A;">
 							<arg value="/c" />
 							<arg value="elasticsearch-plugin install file:///${elasticsearch.dir}/${elasticsearch.ltr.zip.name}" />
 						</exec>
