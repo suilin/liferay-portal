@@ -19,7 +19,12 @@ definition {
 
 		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
 
-		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all spell check indexes.");
+		AssertClick.assertTextClickAtAndPause(
+			key_actionsDescription = "Reindex all spell check indexes.",
+			locator1 = "Button#EXECUTE_ACTION",
+			value1 = "Execute");
+		
+		Pause(locator1 = "5000");
 	}
 
 	@priority = "5"
