@@ -11898,6 +11898,23 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 					</then>
 				</if>
 
+				<if>
+					<equals arg1="${solr.enabled}" arg2="true" />
+					<then>
+						<exec executable="curl" outputproperty="curl.output.solr.indices">
+							<arg line="&apos;http://localhost:8983/solr/#/liferay/_search?pretty&apos; -H &apos;Content-Type: application/json&apos; -d&apos;{&quot;query&quot;: {&quot;bool&quot;: {&quot;must&quot;: [{ &quot;match&quot;: { &quot;userName&quot;: &quot;test test&quot; } }],&quot;must_not&quot;: [{ &quot;match&quot;: { &quot;hidden&quot;: &quot;true&quot; } }]}}}&apos;" />
+						</exec>
+
+						<echo></echo>
+						<echo>##</echo>
+						<echo>## Solr Indices</echo>
+						<echo>##</echo>
+						<echo></echo>
+						<echo>${curl.output.solr.indices}</echo>
+						<echo></echo>
+					</then>
+				</if>
+
 				<antcall target="clean-up-logs" />
 
 				<record action="start" name="${project.dir}/console-shut-down" />
