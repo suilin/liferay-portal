@@ -2406,6 +2406,8 @@ definition {
 	}
 
 	test ViewSortedSearchResults {
+		property portal.acceptance = "Linda";
+
 		JSONWebcontent.addWebContent(
 			content = "Content",
 			groupName = "Guest",
