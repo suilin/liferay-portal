@@ -6,6 +6,7 @@ definition {
 	property portal.suite.search.engine = "elasticsearch6,elasticsearch7,solr";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Upgrades Search";
+	property portal.acceptance = "Linda";
 
 	setUp {
 		SignIn.signIn();
