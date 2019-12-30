@@ -196,6 +196,11 @@ definition {
 		Portlet.viewCannotAddPG(portletName = "Search Insights");
 	}
 
+	@priority = "4"
+	test AssertSearchSuggestionsFunctionality {
+
+	}
+
 	@description = "This is a use case for LPS-89561."
 	@priority = "4"
 	test AssertSearchURLWhenModifyingPagination {
@@ -1065,8 +1070,7 @@ definition {
 	@priority = "4"
 	test SearchDifferentScopesViaSearchWidget {
 		property custom.properties = "company.default.time.zone=America/Los_Angeles";
-		property portal.acceptance = "false";
-		property portal.suite.search.engine = "disable";
+		property portal.acceptance = "true";
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
