@@ -179,7 +179,6 @@ proxyServletLogEnable="true"</echo>
 
 			<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration.config">${line.separator}authenticationEnabled="true"
 httpSSLEnabled="true"
-connectionId="remote"
 networkHostAddresses=["http://localhost:9200"]
 password="${osgi.config.elastic.user.password}"
 truststorePassword="liferay"
