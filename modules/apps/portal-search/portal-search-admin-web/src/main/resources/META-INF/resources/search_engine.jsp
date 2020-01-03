@@ -35,37 +35,24 @@ SearchEngineDisplayContext
 	searchEngineDisplayContext = (SearchEngineDisplayContext)request.getAttribute(SearchAdminWebKeys.SEARCH_ENGINE_DISPLAY_CONTEXT);
 %>
 
-<c:choose>
-	<c:when test="<%= searchEngineDisplayContext.getConnectionInformationList() == null %>">
-		<div class="panel panel-default search-admin-tabs" id="adminSearchInformationPanel">
-			<div class="panel-body">
-				<c:choose>
-					<c:when test="<%= searchEngineDisplayContext.isMissingSearchEngine() %>">
-						<div class="alert alert-warning">
-							<liferay-ui:message key="no-search-engine-detected-help" />
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="alert alert-info">
-							<liferay-ui:message key="search-engine-vendor" />: <strong><%= searchEngineDisplayContext.getVendorString() %></strong>,
-							<liferay-ui:message key="client-version" />: <strong><%= searchEngineDisplayContext.getClientVersionString() %></strong>,
-							<liferay-ui:message key="nodes" />: <strong><%= searchEngineDisplayContext.getNodesString() %></strong>
-						</div>
-					</c:otherwise>
-				</c:choose>
+<div class="container-fluid container-fluid-max-xl container-form-lg search-engine-page-container">
+	<c:choose>
+		<c:when test="<%= searchEngineDisplayContext.isMissingSearchEngine() %>">
+			<div class="alert alert-warning">
+				<liferay-ui:message key="no-search-engine-detected-help" />
 			</div>
-		</div>
-	</c:when>
-	<c:otherwise>
-		<div class="container-fluid container-fluid-max-xl container-form-lg search-engine-page-container">
-			<div class="connection-info-item connection-info-item-header sheet sheet-lg">
-				<c:choose>
-					<c:when test="<%= searchEngineDisplayContext.isMissingSearchEngine() %>">
-						<div class="alert alert-warning">
-							<liferay-ui:message key="no-search-engine-detected-help" />
-						</div>
-					</c:when>
-					<c:otherwise>
+		</c:when>
+		<c:otherwise>
+			<c:choose>
+				<c:when test="<%= searchEngineDisplayContext.getConnectionInformationList() == null %>">
+					<div class="alert alert-info">
+						<liferay-ui:message key="search-engine-vendor" />: <strong><%= searchEngineDisplayContext.getVendorString() %></strong>,
+						<liferay-ui:message key="client-version" />: <strong><%= searchEngineDisplayContext.getClientVersionString() %></strong>,
+						<liferay-ui:message key="nodes" />: <strong><%= searchEngineDisplayContext.getNodesString() %></strong>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="connection-info-item connection-info-item-header sheet sheet-lg">
 						<div class="connection-info-data-container">
 							<div class="data-item">
 								<div class="key"><liferay-ui:message key="search-engine-vendor" /></div>
@@ -77,133 +64,135 @@ SearchEngineDisplayContext
 								<div class="value"><%= searchEngineDisplayContext.getClientVersionString() %></div>
 							</div>
 						</div>
+					</div>
 
-						<%
-						List<ConnectionInformation> connectionInformationList = searchEngineDisplayContext.getConnectionInformationList();
-						%>
+					<%
+					List<ConnectionInformation> connectionInformationList = searchEngineDisplayContext.getConnectionInformationList();
+					%>
 
-						<h3 class="search-engine-page-title">
-							<liferay-ui:message key="active-connections" />
+					<h3 class="search-engine-page-title">
+						<liferay-ui:message key="active-connections" />
 
-							<span class="badge badge-secondary">
-								<span class="badge-item badge-item-expand">
-									<%= (connectionInformationList == null) ? 0 : connectionInformationList.size() %>
-								</span>
+						<span class="badge badge-secondary">
+							<span class="badge-item badge-item-expand">
+								<%= (connectionInformationList == null) ? 0 : connectionInformationList.size() %>
 							</span>
-						</h3>
+						</span>
+					</h3>
 
-						<c:choose>
-							<c:when test="<%= (connectionInformationList != null) && (connectionInformationList.size() > 0) %>">
+					<c:choose>
+						<c:when test="<%= (connectionInformationList != null) && (connectionInformationList.size() > 0) %>">
 
-								<%
-								for (ConnectionInformation connectionInformation : connectionInformationList) {
-								%>
+							<%
+							for (ConnectionInformation connectionInformation : connectionInformationList) {
+							%>
 
-									<div class="connection-info-item sheet sheet-lg">
-										<div class="connection-info-item-header">
-											<div class="connection-info-item-header-block">
-												<h4 class="connection-id"><%= connectionInformation.getConnectionId() %>
+								<div class="connection-info-item sheet sheet-lg">
+									<div class="connection-info-item-header">
+										<div class="connection-info-item-header-block">
+											<h4 class="connection-id">
+												<%= connectionInformation.getConnectionId() %>
 
 												<c:if test="<%= Validator.isNotNull(connectionInformation.getLabel()) %>">
-													<span class="badge badge-secondary">
-														<span class="badge-item badge-item-expand">
+													<span class="label label-secondary">
+														<span class="label-item label-item-expand">
 															<liferay-ui:message key="<%= connectionInformation.getLabel() %>" />
 														</span>
 													</span>
-												</c:if></h4>
-
-												<c:if test="<%= Validator.isNotNull(connectionInformation.getClusterName()) %>">
-													<span class="connection-cluster-name text-secondary"><%= connectionInformation.getClusterName() %></span>
 												</c:if>
-											</div>
+											</h4>
 
-											<c:if test="<%= Validator.isNotNull(connectionInformation.getHealth()) %>">
-												<div class="connection-info-item-header-block">
-													<div class="connection-health-indicator <%= StringUtil.lowerCase(connectionInformation.getHealth()) %>">
-														<div class="indicator-item">
-															<clay:icon
-																symbol="simple-circle"
-															/>
-														</div>
-
-														<div class="connection-health-indicator-text indicator-item">
-															<liferay-ui:message arguments="<%= new String[] {connectionInformation.getHealth()} %>" key="health-x" />
-														</div>
-													</div>
-												</div>
+											<c:if test="<%= Validator.isNotNull(connectionInformation.getClusterName()) %>">
+												<span class="connection-cluster-name text-secondary"><%= connectionInformation.getClusterName() %></span>
 											</c:if>
 										</div>
 
-										<%
-										List<NodeInformation> nodeInformationList = connectionInformation.getNodeInformationList();
-										%>
+										<c:if test="<%= Validator.isNotNull(connectionInformation.getHealth()) %>">
+											<div class="connection-info-item-header-block">
+												<div class="connection-health-indicator <%= StringUtil.lowerCase(connectionInformation.getHealth()) %>">
+													<div class="indicator-item">
+														<clay:icon
+															symbol="simple-circle"
+														/>
+													</div>
 
-										<liferay-frontend:fieldset
-											collapsed="<%= true %>"
-											collapsible="<%= nodeInformationList.size() > 0 %>"
-											cssClass="connection-info-node-list"
-											label='<%= LanguageUtil.format(request, "nodes-x", nodeInformationList.size(), false) %>'
-										>
-											<liferay-ui:search-container
-												deltaConfigurable="<%= false %>"
-												headerNames="name,version"
-												total="<%= nodeInformationList.size() %>"
-											>
-												<liferay-ui:search-container-results
-													results="<%= nodeInformationList %>"
-												/>
-
-												<liferay-ui:search-container-row
-													className="com.liferay.portal.search.engine.NodeInformation"
-													escapedModel="<%= true %>"
-													keyProperty="name"
-													modelVar="nodeInformation"
-												>
-													<liferay-ui:search-container-column-text
-														property="name"
-													/>
-
-													<liferay-ui:search-container-column-text
-														property="version"
-													/>
-												</liferay-ui:search-container-row>
-
-												<liferay-ui:search-iterator
-													markupView="lexicon"
-													paginate="<%= false %>"
-												/>
-											</liferay-ui:search-container>
-										</liferay-frontend:fieldset>
-
-										<%
-											String errorMessage = connectionInformation.getError();
-										%>
-
-										<c:if test="<%= Validator.isNotNull(errorMessage) %>">
-											<clay:alert
-												message="<%= errorMessage %>"
-												style="danger"
-												title='<%= LanguageUtil.get(request, "error") %>'
-											/>
+													<div class="connection-health-indicator-text indicator-item">
+														<liferay-ui:message arguments="<%= new String[] {connectionInformation.getHealth()} %>" key="health-x" />
+													</div>
+												</div>
+											</div>
 										</c:if>
 									</div>
 
-								<%
-								}
-								%>
+									<%
+									List<NodeInformation> nodeInformationList = connectionInformation.getNodeInformationList();
+									%>
 
-							</c:when>
-							<c:otherwise>
-								<clay:alert
-									message='<%= LanguageUtil.get(request, "no-active-connections") %>'
-									style="info"
-									title='<%= LanguageUtil.get(request, "info") %>'
-								/>
-							</c:otherwise>
-						</c:choose>
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</div>
-	</c:otherwise>
-</c:choose>
+									<liferay-frontend:fieldset
+										collapsed="<%= true %>"
+										collapsible="<%= nodeInformationList.size() > 0 %>"
+										cssClass="connection-info-node-list"
+										label='<%= LanguageUtil.format(request, "nodes-x", nodeInformationList.size(), false) %>'
+									>
+										<liferay-ui:search-container
+											deltaConfigurable="<%= false %>"
+											headerNames="name,version"
+											total="<%= nodeInformationList.size() %>"
+										>
+											<liferay-ui:search-container-results
+												results="<%= nodeInformationList %>"
+											/>
+
+											<liferay-ui:search-container-row
+												className="com.liferay.portal.search.engine.NodeInformation"
+												escapedModel="<%= true %>"
+												keyProperty="name"
+												modelVar="nodeInformation"
+											>
+												<liferay-ui:search-container-column-text
+													property="name"
+												/>
+
+												<liferay-ui:search-container-column-text
+													property="version"
+												/>
+											</liferay-ui:search-container-row>
+
+											<liferay-ui:search-iterator
+												markupView="lexicon"
+												paginate="<%= false %>"
+											/>
+										</liferay-ui:search-container>
+									</liferay-frontend:fieldset>
+
+									<%
+									String errorMessage = connectionInformation.getError();
+									%>
+
+									<c:if test="<%= Validator.isNotNull(errorMessage) %>">
+										<clay:alert
+											message="<%= errorMessage %>"
+											style="danger"
+											title='<%= LanguageUtil.get(request, "error") %>'
+										/>
+									</c:if>
+								</div>
+
+							<%
+							}
+							%>
+
+						</c:when>
+						<c:otherwise>
+							<clay:alert
+								message='<%= LanguageUtil.get(request, "no-active-connections") %>'
+								style="info"
+								title='<%= LanguageUtil.get(request, "info") %>'
+							/>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
+		</c:otherwise>
+	</c:choose>
+</div>
