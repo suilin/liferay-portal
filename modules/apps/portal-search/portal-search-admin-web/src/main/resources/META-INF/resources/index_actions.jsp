@@ -53,11 +53,11 @@ portletURL.setParameter("mvcRenderCommandName", "/search_admin/view");
 
 <portlet:renderURL var="redirectURL">
 	<portlet:param name="mvcRenderCommandName" value="/search_admin/view" />
+	<portlet:param name="tabs1" value="index-actions" />
 </portlet:renderURL>
 
 <aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
 	<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
-	<aui:input name="tabs1" type="hidden" value="index-actions" />
 
 	<liferay-ui:panel-container
 		extended="<%= true %>"
@@ -169,6 +169,10 @@ portletURL.setParameter("mvcRenderCommandName", "/search_admin/view");
 	</liferay-ui:panel-container>
 </aui:form>
 
+<portlet:actionURL name="/search_admin/edit" var="searchAdminEditURL">
+	<portlet:param name="redirect" value="<%= redirectURL %>" />
+</portlet:actionURL>
+
 <aui:script use="liferay-admin">
 	new Liferay.Portlet.Admin({
 		form: document.<portlet:namespace />fm,
@@ -176,6 +180,6 @@ portletURL.setParameter("mvcRenderCommandName", "/search_admin/view");
 		namespace: '<portlet:namespace />',
 		redirectUrl: '<%= redirectURL %>',
 		submitButton: '.save-server-button',
-		url: '<portlet:actionURL name="/search_admin/edit" />'
+		url: '<%= searchAdminEditURL %>'
 	});
 </aui:script>
