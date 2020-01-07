@@ -407,6 +407,7 @@ definition {
 		property osgi.app.includes = "portal-search-elasticsearch6-xpack-monitoring,portal-search-elasticsearch7";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7EE#XPackSmokeTest";
+		property portal.acceptance = "Linda";
 
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
