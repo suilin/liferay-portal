@@ -1050,10 +1050,10 @@ xpack.monitoring.collection.enabled: true</echo>
 
 				<configure-follower-elasticsearch-properties />
 
- 				<antcall target="start-elasticsearch-node" />
+				<antcall target="start-elasticsearch-node" />
 
- 				<start-ccr-trial />
- 			</then>
+				<start-ccr-trial />
+			</then>
 			<else>
 				<antcall target="configure-elasticsearch-cluster-properties" />
 
