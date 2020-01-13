@@ -172,6 +172,13 @@ remoteClusterConnectionId="remote"</echo>
 		</sequential>
 	</macrodef>
 
+	<macrodef name="configure-portal-multiple-elasticsearch-osgi-properties">
+		<sequential>
+			<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-default_ccr.config">${line.separator}connectionId="ccr"
+networkHostAddresses = ["http://localhost:9202"]</echo>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="configure-portal-x-pack-osgi-properties">
 		<sequential>
 			<propertyregex
