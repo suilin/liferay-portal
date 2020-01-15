@@ -32,7 +32,7 @@ xpack.ssl.key: certs/localhost/localhost.key</echo>
 			<var name="elasticsearch.ltr.version" unset="true" />
 			<var name="elasticsearch.ltr.zip.nam" unset="true" />
 
-			<property name="elasticsearch.version" value="6.7.1" />
+			<property name="elasticsearch.version" value="6.8.6" />
 			<property name="elasticsearch.ltr.version" value="1.1.1" />
 			<property name="elasticsearch.ltr-linear-regression-model.zip.name" value="ltr-linear-regression-model.zip" />
 			<property name="elasticsearch.ltr-linear-regression-model.zip.url" value="http://files.liferay.com/private/apps/elastic/elasticsearch/${elasticsearch.ltr-linear-regression-model.zip.name}" />
@@ -56,7 +56,7 @@ xpack.ssl.key: certs/localhost/localhost.key</echo>
 			<var name="elasticsearch.zip.name" unset="true" />
 			<var name="elasticsearch.zip.url" unset="true" />
 
-			<property name="elasticsearch.version" value="6.7.1" />
+			<property name="elasticsearch.version" value="6.8.6" />
 			<property name="elasticsearch.dir" value="${app.server.parent.dir}/elasticsearch-${elasticsearch.version}" />
 			<property name="elasticsearch.analysis-icu.zip.name" value="analysis-icu-${elasticsearch.version}.zip" />
 			<property name="elasticsearch.analysis-icu.zip.url" value="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-icu/${elasticsearch.analysis-icu.zip.name}" />
