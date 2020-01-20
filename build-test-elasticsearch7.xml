@@ -528,8 +528,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	<macrodef name="start-ccr-trial">
 		<sequential>
 			<exec executable="curl" outputproperty="curl.output.trial">
-				<arg value="-X POST" />
-				<arg value="https://localhost:9200/_license/start_trial?acknowledge=true" />
+				<arg value="-XPOST &apos;http://localhost:9200/_license/start_trial?acknowledge=true&apos; -H &apos;Content-Type:application/json&apos;" />
 			</exec>
 
 			<echo>${curl.output.trial}</echo>
@@ -545,8 +544,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			</if>
 
 			<exec executable="curl" outputproperty="curl.output.trial">
-				<arg value="-X POST" />
-				<arg value="https://localhost:9202/_license/start_trial?acknowledge=true" />
+				<arg value="-XPOST &apos;http://localhost:9202/_license/start_trial?acknowledge=true&apos; -H &apos;Content-Type:application/json&apos;" />
 			</exec>
 
 			<echo>${curl.output.trial}</echo>
@@ -1052,7 +1050,9 @@ xpack.monitoring.collection.enabled: true</echo>
 
 				<configure-follower-elasticsearch-properties />
 
-				<antcall target="start-elasticsearch-node" />
+				<antcall target="start-elasticsearch-node">
+					<param name="remote.elasticsearch.cluster.size" value="2" />
+				</antcall>
 
 				<start-ccr-trial />
 			</then>
