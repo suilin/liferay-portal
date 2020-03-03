@@ -17,8 +17,6 @@ definition {
 
 		ChangeList.enableChangeList();
 
-		ChangeList.changeUserSettingsPopuConfirmation(changeUserPopupConfirmation = "enable");
-
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
