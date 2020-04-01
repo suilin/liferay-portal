@@ -90,7 +90,7 @@ xpack.security.transport.ssl.verification_mode: certificate</echo>
 			<var name="elasticsearch.tar.url.mac" unset="true" />
 			<var name="elasticsearch.zip.url.windows" unset="true" />
 
-			<property name="elasticsearch.version" value="7.6.0" />
+			<property name="elasticsearch.version" value="7.6.1" />
 			<property name="elasticsearch.dir" value="${app.server.parent.dir}/elasticsearch-${elasticsearch.version}" />
 			<property name="elasticsearch.analysis-icu.zip.name" value="analysis-icu-${elasticsearch.version}.zip" />
 			<property name="elasticsearch.analysis-icu.zip.url" value="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-icu/${elasticsearch.analysis-icu.zip.name}" />
@@ -106,7 +106,7 @@ xpack.security.transport.ssl.verification_mode: certificate</echo>
 			<property name="elasticsearch.tar.url.linux" value="https://artifacts.elastic.co/downloads/elasticsearch/${elasticsearch.tar.name.linux}" />
 			<property name="elasticsearch.tar.url.mac" value="https://artifacts.elastic.co/downloads/elasticsearch/${elasticsearch.tar.name.mac}" />
 			<property name="elasticsearch.zip.url.windows" value="https://artifacts.elastic.co/downloads/elasticsearch/${elasticsearch.zip.name.windows}" />
-			<property name="elasticsearch.ltr.version" value="1.2.0" />
+			<property name="elasticsearch.ltr.version" value="1.2.1" />
 			<property name="elasticsearch.ltr-linear-regression-model.zip.name" value="ltr-linear-regression-model.zip" />
 			<property name="elasticsearch.ltr-linear-regression-model.zip.url" value="http://files.liferay.com/private/apps/elastic/elasticsearch/${elasticsearch.ltr-linear-regression-model.zip.name}" />
 			<property name="elasticsearch.ltr.zip.name" value="ltr-${elasticsearch.ltr.version}-es${elasticsearch.version}.zip" />
@@ -432,9 +432,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<available file="${elasticsearch.dir}/${elasticsearch.ltr.zip.name}" />
 				</not>
 				<then>
-					<mirrors-get
+					<get
 						dest="${elasticsearch.dir}/${elasticsearch.ltr.zip.name}"
-						skipChecksum="true"
 						src="${elasticsearch.ltr.url}"
 					/>
 				</then>
