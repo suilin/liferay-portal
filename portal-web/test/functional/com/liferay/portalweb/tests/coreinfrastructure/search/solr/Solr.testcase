@@ -52,18 +52,6 @@ definition {
 			groupName = "Guest",
 			title = "apple");
 
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "Search");
-
-		SearchAdministration.assertEngineVendorAndVersions(
-			clientVersion = "7.5.0",
-			engineVendor = "Solr",
-			serverVersion = "7.5.0");
-
-		takeScreenshot();
-
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
