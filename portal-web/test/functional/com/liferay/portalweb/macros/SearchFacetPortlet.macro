@@ -231,10 +231,10 @@ definition {
 				value1 = "${displayTemplate}");
 		}
 
-		if (isSet(siteParameterName)) {
+		if (isSet(parameterName)) {
 			FormFields.editText(
 				fieldName = "parameterName",
-				fieldValue = "${siteParameterName}");
+				fieldValue = "${parameterName}");
 		}
 
 		if (isSet(maxTerms)) {
