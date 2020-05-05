@@ -6123,7 +6123,12 @@ go</echo>
 				<get-testcase-property property.name="portal.version" />
 
 				<if>
-					<isset property="portal.version" />
+					<and>
+						<isset property="portal.version" />
+						<not>
+							<equals arg1="${delete.index.data}" arg2="true" />
+						</not>
+					</and>
 					<then>
 						<delete dir="${test.app.server.liferay.home}/osgi/state" />
 					</then>
@@ -6151,6 +6156,27 @@ go</echo>
 
 						<delete file="${test.app.server.liferay.home}/portal-setup-wizard.properties" />
 					</else>
+				</if>
+
+				<if>
+					<equals arg1="${delete.index.data}" arg2="true" />
+					<then>
+						<if>
+							<contains string="${env.CI_TEST_SUITE}" substring="search" />
+							<then>
+								<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="suite.search.engine" silent="true" />
+								<if>
+									<equals arg1="${suite.search.engine}" arg2="elasticsearch7" />
+									<then>
+										<delete dir="${test.app.server.liferay.home}/data/elasticsearch7" />
+									</then>
+									<else>
+										<delete dir="${test.app.server.liferay.home}/data/elasticsearch6" />
+									</else>
+								</if>
+							</then>
+						</if>
+					</then>
 				</if>
 			</then>
 		</if>
