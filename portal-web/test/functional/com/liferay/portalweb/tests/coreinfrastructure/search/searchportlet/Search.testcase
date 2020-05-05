@@ -194,6 +194,72 @@ definition {
 		Portlet.viewCannotAddPG(portletName = "Search Insights");
 	}
 
+	@priority = "4"
+	test AssertSearchFunctionalityWhenSettingIndexOnStartupToTrue {
+		property test.assert.warning.exceptions = "true";
+		property test.name.skip.portal.instance = "Search#AssertSearchFunctionalityWhenSettingIndexOnStartupToTrue";
+
+		JSONWebcontent.addWebContent(
+			content = "WC WebContent Content",
+			groupName = "Guest",
+			title = "Apple");
+
+ 		JSONDocument.addFile(
+			dmDocumentDescription = "DM Document Description",
+			dmDocumentTitle = "Apple",
+			groupName = "Guest");
+
+ 		JSONBlog.addEntry(
+			entryContent = "Blogs Entry Content",
+			entryTitle = "Apple");
+
+		JSONLayout.addPublicLayout(
+			groupName = "Guest",
+			layoutName = "Asset Publisher Page");
+
+		var portalURL = PropsUtil.get("portal.url");
+
+		Navigator.openSpecificURL(url = "${portalURL}/web/guest/asset-publisher-page");
+
+		Portlet.addPG(portletName = "Asset Publisher");
+
+ 		SearchPortlets.searchEmbedded(searchTerm = "Apple");
+
+ 		SearchResultPortlet.viewMultipleSearchResults(
+			resultsList = "Apple/Web Content Article,Apple/Document,Apple/Blogs Entry",
+			searchTerm = "Apple");
+
+ 		Portlet.shutdownServer();
+
+ 		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "prepare-portal-ext-properties -Dindex.on.startup=true");
+
+		Portlet.startServer(delete.index.data = "true");
+
+		Navigator.openSpecificURL(url = "${portalURL}/web/guest/asset-publisher-page");
+
+		for (var assetContent : list "WC WebContent Content,DM Document Description,Blogs Entry Content") {
+			AssetPublisherPortlet.viewAssetPG(
+				assetContent = "${assetContent}",
+				assetTitle = "Apple");
+		}
+
+ 		SearchPortlets.searchEmbedded(searchTerm = "Apple");
+
+ 		SearchResultPortlet.viewMultipleSearchResults(
+			resultsList = "Apple/Web Content Article,Apple/Document,Apple/Blogs Entry",
+			searchTerm = "Apple");
+
+ 		Navigator.openURL();
+
+ 		SearchPortlets.searchEmbedded(searchTerm = "test");
+
+ 		SearchResultPortlet.viewSearchResults(
+			searchAssetTitle = "test test",
+			searchAssetType = "User");
+	}
+
 	@description = "This is a use case for LPS-89561."
 	@priority = "4"
 	test AssertSearchURLWhenModifyingPagination {
