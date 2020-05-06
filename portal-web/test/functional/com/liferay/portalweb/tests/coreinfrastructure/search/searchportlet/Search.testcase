@@ -234,7 +234,9 @@ definition {
 			locator1 = "build-test.xml",
 			value1 = "prepare-portal-ext-properties -Dindex.on.startup=true");
 
-		Portlet.startServer(delete.index.data = "true");
+		Portlet.startServer(
+			deleteindexdata = "true",
+			deleteLiferayHome = "true");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest/asset-publisher-page");
 
