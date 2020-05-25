@@ -217,6 +217,7 @@ definition {
 	test AssertSearchFunctionalityWhenSettingIndexOnStartupToTrue {
 		property test.assert.warning.exceptions = "true";
 		property test.name.skip.portal.instance = "Search#AssertSearchFunctionalityWhenSettingIndexOnStartupToTrue";
+		property portal.acceptance = "Linda";
 
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -258,11 +259,9 @@ definition {
 			assetContent = "WC WebContent Content",
 			assetTitle = "WC WebContent Title");
 
-		// Wrokaround LPS-113094
-
-		/*AssetPublisherPortlet.viewAssetPG(
+		AssetPublisherPortlet.viewAssetPG(
 			assetContent = "DM Document Description",
-			assetTitle = "DM Document Title");*/
+			assetTitle = "DM Document Title");
 
 		AssetPublisherPortlet.viewAssetPG(
 			assetContent = "Blogs Entry Content",
@@ -270,10 +269,10 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "test");
 
-		// Wrokaround LPS-89026 and LPS-113094
+		// Wrokaround LPS-89026
 
 		SearchResultPortlet.viewMultipleSearchResults(
-			resultsList = "WC WebContent Title/Web Content Article,Blogs Entry Title/Blogs Entry",
+			resultsList = "WC WebContent Title/Web Content Article,Blogs Entry Title/Blogs Entry,DM Document Title/Document",
 			searchTerm = "test");
 	}
 
