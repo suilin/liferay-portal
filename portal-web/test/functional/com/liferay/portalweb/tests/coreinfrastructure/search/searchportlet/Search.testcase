@@ -217,6 +217,7 @@ definition {
 	test AssertSearchFunctionalityWhenSettingIndexOnStartupToTrue {
 		property test.assert.warning.exceptions = "true";
 		property test.name.skip.portal.instance = "Search#AssertSearchFunctionalityWhenSettingIndexOnStartupToTrue";
+		portal.acceptance == "Linda";
 
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
