@@ -45,7 +45,7 @@ xpack.security.transport.ssl.verification_mode: certificate</echo>
 			<var name="elasticsearch.analysis-stempel.zip.name" unset="true" />
 			<var name="elasticsearch.analysis-stempel.zip.url" unset="true" />
 
-			<property name="elasticsearch.version" value="7.7.0" />
+			<property name="elasticsearch.version" value="7.7.1" />
 			<property name="elastic.kibana.dir" value="${app.server.parent.dir}/kibana-${elasticsearch.version}" />
 			<property name="elastic.kibana.tar.name.linux" value="kibana-${elasticsearch.version}-linux-x86_64.tar.gz" />
 			<property name="elastic.kibana.tar.name.mac" value="kibana-${elasticsearch.version}-darwin-x86_64.tar.gz" />
@@ -355,9 +355,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<available file="${elasticsearch.dir}/${elasticsearch.analysis-icu.zip.name}" />
 				</not>
 				<then>
-					<mirrors-get
+					<get
 						dest="${elasticsearch.dir}/${elasticsearch.analysis-icu.zip.name}"
-						skipChecksum="true"
 						src="${elasticsearch.analysis-icu.zip.url}"
 					/>
 				</then>
@@ -368,9 +367,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<available file="${elasticsearch.dir}/${elasticsearch.analysis-kuromoji.zip.name}" />
 				</not>
 				<then>
-					<mirrors-get
+					<get
 						dest="${elasticsearch.dir}/${elasticsearch.analysis-kuromoji.zip.name}"
-						skipChecksum="true"
 						src="${elasticsearch.analysis-kuromoji.zip.url}"
 					/>
 				</then>
@@ -381,9 +379,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<available file="${elasticsearch.dir}/${elasticsearch.analysis-smartcn.zip.name}" />
 				</not>
 				<then>
-					<mirrors-get
+					<get
 						dest="${elasticsearch.dir}/${elasticsearch.analysis-smartcn.zip.name}"
-						skipChecksum="true"
 						src="${elasticsearch.analysis-smartcn.zip.url}"
 					/>
 				</then>
@@ -394,9 +391,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<available file="${elasticsearch.dir}/${elasticsearch.analysis-stempel.zip.name}" />
 				</not>
 				<then>
-					<mirrors-get
+					<get
 						dest="${elasticsearch.dir}/${elasticsearch.analysis-stempel.zip.name}"
-						skipChecksum="true"
 						src="${elasticsearch.analysis-stempel.zip.url}"
 					/>
 				</then>
@@ -617,9 +613,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<os family="mac" />
 				</and>
 				<then>
-					<mirrors-get
+					<get
 						dest="${app.server.parent.dir}/${elasticsearch.tar.name.mac}"
-						skipChecksum="true"
 						src="${elasticsearch.tar.url.mac}"
 					/>
 					<untar
@@ -636,9 +631,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 						<os family="unix" />
 					</and>
 					<then>
-						<mirrors-get
+						<get
 							dest="${app.server.parent.dir}/${elasticsearch.tar.name.linux}"
-							skipChecksum="true"
 							src="${elasticsearch.tar.url.linux}"
 						/>
 						<untar
@@ -656,9 +650,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 						<os family="windows" />
 					</and>
 					<then>
-						<mirrors-get
+						<get
 							dest="${app.server.parent.dir}/${elasticsearch.zip.name.windows}"
-							skipChecksum="true"
 							src="${elasticsearch.zip.url.windows}"
 						/>
 						<unzip
@@ -687,9 +680,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<os family="mac" />
 				</and>
 				<then>
-					<mirrors-get
+					<get
 						dest="${app.server.parent.dir}/${elastic.kibana.tar.name.mac}"
-						skipChecksum="true"
 						src="${elastic.kibana.tar.url.mac}"
 					/>
 
@@ -706,9 +698,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 						<os family="unix" />
 					</and>
 					<then>
-						<mirrors-get
+						<get
 							dest="${app.server.parent.dir}/${elastic.kibana.tar.name.linux}"
-							skipChecksum="true"
 							src="${elastic.kibana.tar.url.linux}"
 						/>
 
@@ -727,9 +718,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 						<os family="windows" />
 					</and>
 					<then>
-						<mirrors-get
+						<get
 							dest="${app.server.parent.dir}/${elastic.kibana.zip.name.windows}"
-							skipChecksum="true"
 							src="${elastic.kibana.zip.url.windows}"
 						/>
 
