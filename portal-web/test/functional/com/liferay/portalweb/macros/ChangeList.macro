@@ -11,7 +11,7 @@ definition {
 			locator1 = "ChangeList#CHANGE_LIST_DESCRIPTION",
 			value1 = "${changeListDescription}");
 
-		Button.clickSave();
+		Button.click(button = "Create");
 	}
 
 	macro cancelChangeListCreation {
