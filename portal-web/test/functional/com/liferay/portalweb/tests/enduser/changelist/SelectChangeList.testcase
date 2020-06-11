@@ -20,7 +20,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.addNewChangeList(
 			changeListDescription = "Change List Description",
@@ -75,7 +75,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.selectChangeList(changeListName = "Select Change List");
 
@@ -98,7 +98,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.selectChangeList(changeListName = "Select Change List");
 
@@ -117,7 +117,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.selectChangeList(changeListName = "Select Change List");
 
@@ -144,7 +144,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.selectChangeList(changeListName = "Select Change List");
 
@@ -190,7 +190,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.selectChangeList(changeListName = "Select Change List");
 
@@ -228,7 +228,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ClickNoError(
 			key_changeListName = "Change List Name",

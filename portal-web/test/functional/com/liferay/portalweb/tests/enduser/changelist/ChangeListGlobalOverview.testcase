@@ -20,7 +20,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 	}
 
 	tearDown {
@@ -121,7 +121,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.viewChangeOnOverview(
 			contentChangeType = "Added",
@@ -147,7 +147,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.viewChangeOnOverview(
 			contentChangeType = "Modified",
@@ -169,7 +169,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.viewChangeOnOverview(
 			contentChangeType = "Deleted",
@@ -304,7 +304,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.selectChangeList(changeListName = "Select Change List");
 

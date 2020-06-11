@@ -20,7 +20,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.addNewChangeList(
 			changeListDescription = "Change List Description",
@@ -64,14 +64,14 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.publishChangeList(changeListName = "Change List Name");
 
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.addNewChangeList(
 			changeListDescription = "Change List Description",
@@ -85,7 +85,7 @@ definition {
 		GlobalMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Applications",
-			portlet = "Overview");
+			portlet = "Manage Publications");
 
 		ChangeList.viewNoChangeListInSelectDropdown(changeListName = "Change List Name");
 	}
