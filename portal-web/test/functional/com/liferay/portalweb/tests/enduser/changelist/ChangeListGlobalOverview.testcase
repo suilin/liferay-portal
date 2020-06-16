@@ -39,6 +39,7 @@ definition {
 		ChangeList.cancelPublicationCreation();
 	}
 
+	@ignore = "true"
 	@priority = "4"
 	test CreateNewPublicationExistingName {
 		ChangeList.createNewPublication(
