@@ -45,7 +45,7 @@ definition {
 			publicationName = "Publication 2 Name");
 
 		AssertTextPresent(
-			locator1 = "ChangeList#CHANGE_TRACKING_INDICATOR_TITLE",
+			locator1 = "ChangeList#CHANGE_LIST_INDICATOR_TITLE",
 			value1 = "Publication 2 Name");
 
 		ChangeList.selectPublication(publicationName = "Publication Name");
@@ -72,7 +72,7 @@ definition {
 
 		PortletEntry.publish();
 
-		Click(locator1 = "Dropdown#CHANGE_TRACKING_INDICATOR");
+		Click(locator1 = "ChangeList#CHANGE_LIST_INDICATOR_BUTTON");
 
 		AssertElementNotPresent(
 			key_menuItem = "Review Changes",
