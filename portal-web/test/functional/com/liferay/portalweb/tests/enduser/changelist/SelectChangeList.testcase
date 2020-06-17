@@ -55,13 +55,14 @@ definition {
 
 	@priority = "4"
 	test WorkOnProduction {
-		ChangeList.workOnProduction(changeListConfirmEnabled = "true");
+		ChangeList.workOnProduction();
+
+		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Web Content",
-			site = "Guest");
+			portlet = "Web Content");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -71,18 +72,11 @@ definition {
 
 		PortletEntry.publish();
 
-		GlobalMenu.gotoPortlet(
-			category = "Change Lists",
-			panel = "Applications",
-			portlet = "Overview");
+		Click(locator1 = "Dropdown#CHANGE_TRACKING_INDICATOR");
 
-		ClickNoError(
-			key_changeListName = "Change List Name",
-			locator1 = "ChangeList#CHANGE_LIST_NAME_CARD_VIEW");
-
-		ChangeList.confirmSwitchingChangeList(changeListName = "Change List Name");
-
-		ChangeList.viewAddedItemCounter(nbrOfAddedItems = "0");
+		AssertElementNotPresent(
+			key_menuItem = "Review Changes",
+			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
 
 }
