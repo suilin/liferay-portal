@@ -1,5 +1,4 @@
 @component-name = "portal-change-list"
-@ignore = "true"
 definition {
 
 	property portal.release = "true";
@@ -18,16 +17,9 @@ definition {
 
 		ChangeList.enableChangeList();
 
-		ChangeList.changeUserSettingsPopuConfirmation(changeUserPopupConfirmation = "disable");
-
-		GlobalMenu.gotoPortlet(
-			category = "Change Lists",
-			panel = "Applications",
-			portlet = "Overview");
-
-		ChangeList.addNewChangeList(
-			changeListDescription = "Change List Description",
-			changeListName = "Change List Name");
+		ChangeList.createNewPublication(
+			publicationDescription = "Publication Description",
+			publicationName = "Publication Name");
 	}
 
 	tearDown {
@@ -42,21 +34,20 @@ definition {
 				panel = "Applications",
 				portlet = "Settings");
 
-			ChangeList.changeUserSettingsPopuConfirmation(changeUserPopupConfirmation = "enable");
-
 			ChangeList.disableChangeList();
 		}
 	}
 
 	@priority = "5"
-	test PublishChangeList {
+	test PublishPublication {
 		property portal.acceptance = "true";
+
+		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Web Content",
-			site = "Guest");
+			portlet = "Web Content");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -64,35 +55,20 @@ definition {
 			webContentContent = "WC WebContent Content",
 			webContentTitle = "Web Content Title");
 
-		Button.clickPublishToChangeList();
+		PortletEntry.publish();
 
-		GlobalMenu.gotoPortlet(
-			category = "Change Lists",
-			panel = "Applications",
-			portlet = "Overview");
+		ChangeList.publishPublication(publicationName = "Publication Name");
 
-		ChangeList.publishChangeList(changeListName = "Change List Name");
+		ChangeList.viewPublishedPublicationDetails(
+			publicationDescription = "Publication Description",
+			publicationName = "Publication Name",
+			publicationPublishedBy = "Test Test");
 
-		GlobalMenu.gotoPortlet(
-			category = "Change Lists",
-			panel = "Applications",
-			portlet = "Overview");
+		Click(locator1 = "Dropdown#CHANGE_TRACKING_INDICATOR");
 
-		ChangeList.addNewChangeList(
-			changeListDescription = "Change List Description",
-			changeListName = "New Change List Name");
-
-		ChangeList.viewPublishedChangeListDetails(
-			changeListDescription = "Change List Description",
-			changeListName = "Change List Name",
-			changeListPublishedBy = "Test Test");
-
-		GlobalMenu.gotoPortlet(
-			category = "Change Lists",
-			panel = "Applications",
-			portlet = "Overview");
-
-		ChangeList.viewNoChangeListInSelectDropdown(changeListName = "Change List Name");
+		AssertElementNotPresent(
+			key_menuItem = "Review Changes",
+			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
 
 }

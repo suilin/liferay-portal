@@ -44,23 +44,18 @@
 	<td></td>
 </tr>
 <tr>
+	<td>CHANGE_TRACKING_INDICATOR_TITLE</td>
+	<td>//button[contains(@class,'change-tracking-indicator-title')] and contains(.,'${key_publicationName}')</td>
+	<td></td>
+</tr>
+<tr>
 	<td>CHANGE_LIST_MODIFIED</td>
 	<td>//div[contains(@data-qa-id,'changesModified')]</td>
 	<td></td>
 </tr>
 <tr>
-	<td>CHANGE_LIST_NAME</td>
-	<td>//input[contains(@name,'name')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>CHANGE_LIST_NAME_CARD_VIEW</td>
 	<td>//span[contains(@data-qa-id,'headerSubTitle')][normalize-space(text())='${key_changeListName}']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CHANGE_LIST_DESCRIPTION</td>
-	<td>//textarea[contains(@name,'description')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -89,8 +84,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>HISTORY_CHANGE_LIST_STATUS</td>
-	<td>//h4[contains(.,'${key_changeListName}')]//following-sibling::span[contains(@class,'label-success')]//span</td>
+	<td>HISTORY_PUBLICATION_STATUS</td>
+	<td>//td[contains(.,'${key_publicationName}')]//following-sibling::td/span[contains(@class,'label-success')]//span</td>
 	<td></td>
 </tr>
 <tr>
@@ -114,13 +109,43 @@
 	<td></td>
 </tr>
 <tr>
-	<td>OVERVIEW_PAGE_TITLE</td>
+	<td>MANGE_PUBLICATIONS_PAGE_TITLE</td>
 	<td>//span[contains(@data-qa-id,'headerTitle')]</td>
 	<td></td>
 </tr>
 <tr>
+	<td>MANGE_PUBLICATIONS_NAVBAR_TITLE</td>
+	<td>//li[contains(@class,'nav-item')]/a[contains(.,'${key_navBarTitle}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PUBLICATION_NAME</td>
+	<td>//input[contains(@name,'name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PUBLICATION_DESCRIPTION</td>
+	<td>//textarea[contains(@name,'description')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>PUBLISH_BUTTON</td>
-	<td>//footer//button[contains(.,'Publish')]</td>
+	<td>//a[contains(@id,'ChangeListsPortlet')]/span[contains(.,'Publish')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PUBLISHED_PUBLICATIONS_NAME</td>
+	<td>//div[contains(@class,'change-list-name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PUBLISHED_PUBLICATIONS_DESCRIPTION</td>
+	<td>//div[contains(@class,'change-list-description')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PUBLICATIONS_PUBLISHED_BY</td>
+	<td>//td[contains(@class,'published-by')]//span[contains(@class,'${key_publicationPublishedBy}')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -130,27 +155,12 @@
 </tr>
 <tr>
 	<td>SELECT_CHANGE_LIST_VALUE</td>
-	<td>//a[contains(.,'${key_changeListName}')]</td>
+	<td>//a[contains(.,'${key_publicationName}')]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>SELECT_CHANGE_LIST_DROPDOWN</td>
 	<td>//a[contains(@data-qa-id,'headerDropDownMenu')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>OVERVIEW_CHANGE_LIST_NAME</td>
-	<td>//div[contains(@class,'border-left-green')]//div[contains(@data-qa-id,'headerTitle')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>OVERVIEW_DESCRIPTION</td>
-	<td>//div[contains(@data-qa-id,'description')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>OVERVIEW_PUBLISHED_BY</td>
-	<td>//div[contains(@data-qa-id,'publishedBy')]</td>
 	<td></td>
 </tr>
 <tr>
