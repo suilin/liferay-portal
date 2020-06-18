@@ -68,8 +68,8 @@ public class CloseIndexRequestExecutorImpl
 			TimeValue timeValue = TimeValue.timeValueMillis(
 				closeIndexRequest.getTimeout());
 
-			//elasticsearchCloseIndexRequest.masterNodeTimeout(timeValue);
-			//elasticsearchCloseIndexRequest.timeout(timeValue);
+			elasticsearchCloseIndexRequest.setMasterTimeout(timeValue);
+			elasticsearchCloseIndexRequest.setTimeout(timeValue);
 		}
 
 		return elasticsearchCloseIndexRequest;
