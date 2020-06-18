@@ -692,9 +692,9 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 	}
 
 	private void _closeIndex(String indexName) {
-		org.elasticsearch.action.admin.indices.close.CloseIndexRequest
+		org.elasticsearch.client.indices.CloseIndexRequest
 			elasticsearchCloseIndexRequest =
-				new org.elasticsearch.action.admin.indices.close.
+				new org.elasticsearch.client.indices.
 					CloseIndexRequest(indexName);
 
 		try {
