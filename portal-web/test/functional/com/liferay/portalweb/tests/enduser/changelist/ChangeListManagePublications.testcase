@@ -90,6 +90,8 @@ definition {
 	test SwitchPublication {
 		property test.name.skip.portal.instance = "ChangeListManagePublications#SwitchPublication";
 
+		ChangeList.createNewPublication(publicationName = "Publication Name");
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(

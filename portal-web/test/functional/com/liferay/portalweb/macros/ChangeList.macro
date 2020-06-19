@@ -146,7 +146,7 @@ definition {
 			locator1 = "ChangeList#PUBLISHED_PUBLICATIONS_NAME",
 			value1 = "${publicationName}");
 
-		key_publicationPublishedBy = "${publicationPublishedBy}"
+		key_publicationPublishedBy = "${publicationPublishedBy}";
 
 		AssertTextEquals(
 			locator1 = "ChangeList#PUBLICATIONS_PUBLISHED_BY",
