@@ -86,4 +86,55 @@ definition {
 			locator1 = "ChangeList#PUBLISHED_PUBLICATIONS_NAME");
 	}
 
+	@priority = "4"
+	test SwitchPublication {
+		property test.name.skip.portal.instance = "ChangeListManagePublications#SwitchPublication";
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		WebContentNavigator.gotoAddCP();
+
+		WebContent.addCP(
+			webContentContent = "WC WebContent Content 1",
+			webContentTitle = "Web Content Title 1");
+
+		PortletEntry.publish();
+
+		ChangeList.createNewPublication(publicationName = "Publication 2 Name");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		WebContentNavigator.gotoAddCP();
+
+		WebContent.addCP(
+			webContentContent = "WC WebContent Content 2",
+			webContentTitle = "Web Content Title 2");
+
+		PortletEntry.publish();
+
+		ChangeList.selectPublication(publicationName = "Publication Name");
+
+		WebContent.viewTitle(webContentTitle = "Web Content Title 1");
+
+		ChangeList.selectPublication(publicationName = "Publication 2 Name");
+
+		WebContent.viewTitle(webContentTitle = "Web Content Title 2");
+
+		ChangeList.workOnProduction();
+
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "No web content was found.");
+	}
+
 }
