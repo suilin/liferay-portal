@@ -537,7 +537,7 @@ public class Sidecar {
 		).distributablesDirectoryPath(
 			_elasticsearchInstancePaths.getWorkPath()
 		).distribution(
-			new Elasticsearch730Distribution()
+			new Elasticsearch770Distribution()
 		).installationDirectoryPath(
 			_sidecarHomePath
 		).build(
