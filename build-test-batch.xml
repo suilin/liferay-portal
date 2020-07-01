@@ -871,13 +871,26 @@ mariadb.executable=${mariadb.executable}]]></echo>
 		<sequential>
 			<propertycopy from="search.engine[@{suite.name}]" name="suite.search.engine" silent="true" />
 
-			<if>
-				<equals arg1="${suite.search.engine}" arg2="solr" />
-				<then>
-					<property name="com.liferay.portal.search.solr7.test.unit.started" value="true" />
+			<get-testcase-property property.name="remote.elasticsearch.enabled" />
 
-					<ant antfile="build-test-solr.xml" target="prepare-solr-suite" />
+			<if>
+				<and>
+					<equals arg1="${suite.search.engine}" arg2="remote-elasticsearch7" />
+					<not>
+						<isset property="remote.elasticsearch.enabled" />
+					</not>
+				</and>
+				<then>
+					<ant antfile="build-test-elasticsearch7.xml" target="prepare-remote-elasticsearch-suite" />
 				</then>
+				<elseif>
+					<equals arg1="${suite.search.engine}" arg2="solr" />
+					<then>
+						<property name="com.liferay.portal.search.solr7.test.unit.started" value="true" />
+
+						<ant antfile="build-test-solr.xml" target="prepare-solr-suite" />
+					</then>
+				</elseif>
 			</if>
 		</sequential>
 	</macrodef>
