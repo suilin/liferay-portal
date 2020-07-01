@@ -8134,7 +8134,16 @@ osb.lcs.portlet.oauth.consumer.secret=${osb.lcs.portlet.oauth.consumer.secret}</
 			</then>
 		</if>
 
-		<prepare-portal-elasticsearch-osgi-configuration />
+		<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="suite.search.engine" silent="true" />
+
+		<if>
+			<not>
+				<equals arg1="${suite.search.engine}" arg2="remote-elasticsearch7" />
+			</not>
+			<then>
+				<prepare-portal-elasticsearch-osgi-configuration />
+			</then>
+		</if>
 
 		<prepare-portal-search-osgi-configuration/>
 	</target>
