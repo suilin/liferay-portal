@@ -969,6 +969,8 @@ xpack.monitoring.collection.enabled: true</echo>
 			<isset property="test.batch.name" />
 		</condition>
 
+		<configure-portal-remote-elasticsearch-osgi-properties />
+
 		<antcall target="start-elasticsearch" />
 	</target>
 
