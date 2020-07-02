@@ -975,6 +975,21 @@ xpack.monitoring.collection.enabled: true</echo>
 		<delete dir="${elasticsearch.dir}" />
 	</target>
 
+	<target name="prepare-remote-elasticsearch-suite">
+		<condition else="${env.TEST_BATCH_NAME}" property="test.batch.name" value="${test.batch.name}">
+			<isset property="test.batch.name" />
+		</condition>
+
+		<if>
+			<not>
+				<contains string="${test.batch.name}" substring="functional" />
+			</not>
+			<then>
+				<antcall target="start-elasticsearch" />
+			</then>
+		</if>
+	</target>
+
 	<target name="print-elasticsearch-indices">
 		<get-testcase-property property.name="test.name.skip.portal.instance" />
 
