@@ -9,6 +9,11 @@
 </thead>
 <tbody>
 <tr>
+	<td>AUTOMATICALLY_RESOLVED_TABLE</td>
+	<td>//table[contains(@class,'change-lists-conflicts-table')]//td[contains(.,'Automatically Resolved')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>CHANGE_LIST_INDICATOR_BUTTON</td>
 	<td>//button[contains(@class,'dropdown-toggle change-tracking-indicator-button')]</td>
 	<td></td>

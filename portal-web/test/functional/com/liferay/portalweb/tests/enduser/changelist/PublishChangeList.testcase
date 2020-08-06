@@ -92,6 +92,12 @@ definition {
 			gotoManagePublications = "true",
 			publicationName = "Publication Name");
 
+		AssertElementPresent(locator1 = "ChangeList#AUTOMATICALLY_RESOLVED_TABLE");
+
+		AssertElementPresent(
+			key_warningMessage = "The conflict was automatically resolved.",
+			locator1 = "Message#WARNING_SPECIFIC");
+
 		// Workaround LPS-115599
 
 		/*AssertElementNotPresent(locator1 = "ChangeList#NEEDS_MANUAL_RESOLUTION_TABLE");
