@@ -339,7 +339,7 @@ definition {
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
-		 	portlet = "Web Content");
+			portlet = "Web Content");
 
 		WebContent.viewNotPresentCP(webContentTitle = "WC WebContent Title 2 Edit");
 
@@ -365,7 +365,7 @@ definition {
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
-		 	portlet = "Web Content");
+			portlet = "Web Content");
 
 		WebContent.viewNotPresentCP(webContentTitle = "WC WebContent Title 2 Edit");
 
