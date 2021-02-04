@@ -28,7 +28,7 @@ definition {
 			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE");
 
 		var key_publicationsName = "${publicationsName}";
-		var key_publicationStatus = "Published"
+		var key_publicationStatus = "Published";
 
 		AssertTextEquals(
 			locator1 = "Publications#PUBLICATION_STATUS",
