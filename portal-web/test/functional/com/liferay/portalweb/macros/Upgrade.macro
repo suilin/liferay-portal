@@ -2547,6 +2547,57 @@ definition {
 			portletName = "Web Content Display");
 	}
 
+	macro viewNotifications {
+		Navigator.gotoPage(pageName = "Welcome");
+
+		Notifications.gotoNotifications();
+
+		Notifications.viewNewContent(
+			assetType = "message boards message",
+			contentBody = "Message Boards Subject 1",
+			user = "Test Test");
+
+		Notifications.navigateToContent(contentBody = "Message Boards Subject 1");
+
+		MessageboardsThread.viewPG(
+			threadBody = "Message Boards Body",
+			threadSubject = "Message Boards Subject 1");
+
+		Notifications.viewBadgeCount(
+			activePanel = "Notifications",
+			notificationCount = "2");
+
+		Notifications.gotoNotifications();
+
+		Notifications.viewNewContent(
+			assetType = "message boards message",
+			contentBody = "Message Boards Subject 2",
+			user = "Test Test");
+
+		Notifications.navigateToContent(contentBody = "Message Boards Subject 2");
+
+		MessageboardsThread.viewPG(
+			threadBody = "Message Boards Body",
+			threadSubject = "Message Boards Subject 2");
+
+		Notifications.viewBadgeCount(
+			activePanel = "Notifications",
+			notificationCount = "1");
+
+		Notifications.gotoNotifications();
+
+		Notifications.viewNewContent(
+			assetType = "message boards message",
+			contentBody = "Message Boards Subject 3",
+			user = "Test Test");
+
+		Notifications.navigateToContent(contentBody = "Message Boards Subject 3");
+
+		MessageboardsThread.viewPG(
+			threadBody = "Message Boards Body",
+			threadSubject = "Message Boards Subject 3");
+	}
+
 	macro viewOutOfDatePublications {
 		AssertTextPresent(
 			key_publicationsName = "Production",
@@ -2610,57 +2661,6 @@ definition {
 		AssertVisible(
 			key_publicationsName = "Publication 1 Name",
 			locator1 = "Publications#REVERT_DISABLED");
-	}
-
-	macro viewNotifications {
-		Navigator.gotoPage(pageName = "Welcome");
-
-		Notifications.gotoNotifications();
-
-		Notifications.viewNewContent(
-			assetType = "message boards message",
-			contentBody = "Message Boards Subject 1",
-			user = "Test Test");
-
-		Notifications.navigateToContent(contentBody = "Message Boards Subject 1");
-
-		MessageboardsThread.viewPG(
-			threadBody = "Message Boards Body",
-			threadSubject = "Message Boards Subject 1");
-
-		Notifications.viewBadgeCount(
-			activePanel = "Notifications",
-			notificationCount = "2");
-
-		Notifications.gotoNotifications();
-
-		Notifications.viewNewContent(
-			assetType = "message boards message",
-			contentBody = "Message Boards Subject 2",
-			user = "Test Test");
-
-		Notifications.navigateToContent(contentBody = "Message Boards Subject 2");
-
-		MessageboardsThread.viewPG(
-			threadBody = "Message Boards Body",
-			threadSubject = "Message Boards Subject 2");
-
-		Notifications.viewBadgeCount(
-			activePanel = "Notifications",
-			notificationCount = "1");
-
-		Notifications.gotoNotifications();
-
-		Notifications.viewNewContent(
-			assetType = "message boards message",
-			contentBody = "Message Boards Subject 3",
-			user = "Test Test");
-
-		Notifications.navigateToContent(contentBody = "Message Boards Subject 3");
-
-		MessageboardsThread.viewPG(
-			threadBody = "Message Boards Body",
-			threadSubject = "Message Boards Subject 3");
 	}
 
 	macro viewPolls {
