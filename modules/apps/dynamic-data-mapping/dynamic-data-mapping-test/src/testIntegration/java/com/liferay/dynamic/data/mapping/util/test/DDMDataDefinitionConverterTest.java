@@ -20,7 +20,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.dynamic.data.mapping.util.DDMDataDefinitionConverter;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -193,11 +192,10 @@ public class DDMDataDefinitionConverterTest {
 
 		String dataDefinition =
 			_ddmDataDefinitionConverter.convertDDMFormLayoutDataDefinition(
-				TestPropsValues.getGroupId(), 0,
 				_read(
 					"ddm-form-layout-data-definition-json-converter-link-to-" +
 						"page.json"),
-				0, structureVersionDataDefinition);
+				structureVersionDataDefinition);
 
 		Assert.assertEquals(
 			_objectMapper.readTree(
@@ -220,11 +218,10 @@ public class DDMDataDefinitionConverterTest {
 
 		String dataDefinition =
 			_ddmDataDefinitionConverter.convertDDMFormLayoutDataDefinition(
-				TestPropsValues.getGroupId(), 0,
 				_read(
 					"ddm-form-layout-data-definition-json-converter-nested-" +
 						"fields.json"),
-				0, structureVersionDataDefinition);
+				structureVersionDataDefinition);
 
 		Assert.assertEquals(
 			_objectMapper.readTree(
