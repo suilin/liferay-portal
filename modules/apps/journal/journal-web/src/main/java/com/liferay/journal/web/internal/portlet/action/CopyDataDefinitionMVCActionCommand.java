@@ -92,11 +92,9 @@ public class CopyDataDefinitionMVCActionCommand
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "name");
 
-		DataDefinitionResource.Builder dataDefinitionResourcedBuilder =
-			_dataDefinitionResourceFactory.create();
-
 		DataDefinitionResource dataDefinitionResource =
-			dataDefinitionResourcedBuilder.user(
+			DataDefinitionResource.builder(
+			).user(
 				themeDisplay.getUser()
 			).build();
 
@@ -192,9 +190,6 @@ public class CopyDataDefinitionMVCActionCommand
 			}
 		}
 	}
-
-	@Reference
-	private DataDefinitionResource.Factory _dataDefinitionResourceFactory;
 
 	@Reference
 	private DDMStructureService _ddmStructureService;
