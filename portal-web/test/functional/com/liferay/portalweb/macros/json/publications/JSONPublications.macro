@@ -1,0 +1,27 @@
+definition {
+
+	macro enablePublications {
+		var companyId = JSONCompany.getCompanyId();
+
+		var portalURL = JSONCompany.getPortalURL();
+
+		if (!(isSet(userEmailAddress))) {
+			var userEmailAddress = "test@liferay.com";
+		}
+
+		if (!(isSet(userPassword))) {
+			var userPassword = "test";
+		}
+
+		var curl = '''
+			${portalURL}/api/jsonws/ct.ctpreferences/checkout-ct-collection \
+				-u ${userEmailAddress}:${userPassword} \
+				-d companyId=${companyId} \
+				-d ctCollectionId=0 \
+				-d userId=0
+		''';
+
+		com.liferay.poshi.runner.util.JSONCurlUtil.post("${curl}");
+	}
+
+}
