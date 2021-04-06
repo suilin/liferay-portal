@@ -1,5 +1,34 @@
 definition {
 
+	macro addPublication {
+		Variables.assertDefined(parameterList = "${publicationName}");
+
+		var companyId = JSONCompany.getCompanyId();
+
+		var portalURL = JSONCompany.getPortalURL();
+
+		if (!(isSet(userEmailAddress))) {
+			var userEmailAddress = "test@liferay.com";
+		}
+
+		if (!(isSet(userPassword))) {
+			var userPassword = "test";
+		}
+
+		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
+
+		var curl = '''
+			${portalURL}/api/jsonws/ct.ctcollection/add-ct-collection \
+				-u ${userEmailAddress}:${userPassword} \
+				-d companyId=${companyId} \
+				-d userId=${userId} \
+				-d name=${publicationName} \
+				-d description=''
+		''';
+
+		com.liferay.poshi.runner.util.JSONCurlUtil.post("${curl}");
+	}
+
 	macro enablePublications {
 		var companyId = JSONCompany.getCompanyId();
 
