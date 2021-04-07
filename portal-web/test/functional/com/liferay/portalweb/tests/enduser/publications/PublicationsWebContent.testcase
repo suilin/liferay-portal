@@ -15,7 +15,7 @@ definition {
 			panel = "Applications",
 			portlet = "Settings");
 
-		Publications.enablePublications();
+		JSONPublications.enablePublications();
 	}
 
 	tearDown {
@@ -36,7 +36,9 @@ definition {
 
 	@priority = "4"
 	test PublishExpiredWebContentViaWCD {
-		Publications.createNewPublication(publicationsName = "Publication Name");
+		JSONPublications.addPublication(publicationName = "Publication Name");
+
+		JSONPublications.selectPublication();
 
 		Navigator.openURL();
 
@@ -86,9 +88,9 @@ definition {
 			expiredContent = "true",
 			webContentTitle = "WC WebContent Title");
 
-		Publications.gotoPublish(publicationsName = "Publication Name");
+		JSONPublications.publishPublication();
 
-		Publications.publishPublication(publicationsName = "Publication Name");
+		Publications.viewPublicationPublished(publicationName = "Publication Name");
 
 		Navigator.gotoPage(pageName = "Test Page");
 
@@ -99,7 +101,9 @@ definition {
 
 	@priority = "4"
 	test PublishWebContentWithCategory {
-		Publications.createNewPublication(publicationsName = "Publication Name");
+		JSONPublications.addPublication(publicationName = "Publication Name");
+
+		JSONPublications.selectPublication();
 
 		Navigator.openURL();
 
@@ -135,11 +139,9 @@ definition {
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content");
 
-		Publications.gotoPublish(
-			gotoManagePublications = "true",
-			publicationsName = "Publication Name");
+		JSONPublications.publishPublication();
 
-		Publications.publishPublication(publicationsName = "Publication Name");
+		Publications.viewPublicationPublished(publicationName = "Publication Name");
 
 		Navigator.openURL();
 
@@ -154,7 +156,9 @@ definition {
 	test PublishWebContentWithDMAndImageFields {
 		property test.assert.warning.exceptions = "true";
 
-		Publications.createNewPublication(publicationsName = "Publication Name");
+		JSONPublications.addPublication(publicationName = "Publication Name");
+
+		JSONPublications.selectPublication();
 
 		Navigator.openURL();
 
@@ -251,9 +255,9 @@ definition {
 			publicationsType = "Added",
 			publicationsUser = "Test Test");
 
-		Publications.gotoPublish(publicationsName = "Publication Name");
+		JSONPublications.publishPublication();
 
-		Publications.publishPublication(publicationsName = "Publication Name");
+		Publications.viewPublicationPublished(publicationName = "Publication Name");
 
 		Navigator.openURL();
 
@@ -268,7 +272,9 @@ definition {
 
 	@priority = "4"
 	test PublishWebContentWithFriendlyURL {
-		Publications.createNewPublication(publicationsName = "Publication Name");
+		JSONPublications.addPublication(publicationName = "Publication Name");
+
+		JSONPublications.selectPublication();
 
 		Navigator.openURL();
 
