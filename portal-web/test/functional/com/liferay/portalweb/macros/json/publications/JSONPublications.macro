@@ -53,4 +53,34 @@ definition {
 		com.liferay.poshi.runner.util.JSONCurlUtil.post("${curl}");
 	}
 
+	macro selectPublication {
+		var companyId = JSONCompany.getCompanyId();
+
+		var portalURL = JSONCompany.getPortalURL();
+
+		if (!(isSet(userEmailAddress))) {
+			var userEmailAddress = "test@liferay.com";
+		}
+
+		if (!(isSet(userPassword))) {
+			var userPassword = "test";
+		}
+
+		if (!(isSet(ctCollectionId))) {
+			var ctCollectionId = "1";
+		}
+
+		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
+
+		var curl = '''
+			${portalURL}/api/jsonws/ct.ctpreferences/checkout-ct-collection \
+				-u ${userEmailAddress}:${userPassword} \
+				-d companyId=${companyId} \
+				-d ctCollectionId=${ctCollectionId} \
+				-d userId=${userId}
+		''';
+
+		com.liferay.poshi.runner.util.JSONCurlUtil.post("${curl}");
+	}
+
 }
