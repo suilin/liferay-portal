@@ -548,7 +548,7 @@ definition {
 
 		var key_navBarTitle = "History";
 
-		AssertTextEquals(
+		Click(
 			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE",
 			value1 = "History");
 
