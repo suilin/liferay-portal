@@ -10,11 +10,6 @@ definition {
 
 		User.firstLoginPG();
 
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Settings");
-
 		JSONPublications.enablePublications();
 	}
 
@@ -133,11 +128,13 @@ definition {
 
 		JSONPublications.publishPublication(ctCollectionId = "2");
 
-		Publications.viewPublicationPublished(publicationName = "Publication Name 2");
+		Publications.viewPublicationPublished(publicationsName = "Publication Name 2");
 
 		JSONPublications.selectPublication();
 
-		Publications.gotoPublish(publicationsName = "Publication Name");
+		Publications.gotoPublish(
+			gotoManagePublications = "true",
+			publicationsName = "Publication Name");
 
 		Publications.viewNeedsManualResolution(
 			entryTitle = "DM Document Title Edit",
