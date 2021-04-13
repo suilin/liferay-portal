@@ -77,7 +77,7 @@ definition {
 
 		PageEditor.clickPublish();
 
-		Publications.gotoReviewPublications();
+		Publications.gotoReviewChanges();
 
 		PublicationsChanges.viewChangesViaChangesStyle(
 			changeCategory = "Widget",
@@ -93,7 +93,7 @@ definition {
 
 		JSONPublications.selectPublication(publicationName = "Publication Name");
 
-		Publications.gotoReviewPublications(
+		Publications.gotoReviewChanges(
 			gotoManagePublications = "true",
 			publicationName = "Publication Name");
 
@@ -242,7 +242,7 @@ definition {
 
 		Page.viewNoPG(pageName = "Test Page");
 
-		Publications.gotoReviewPublications();
+		Publications.gotoReviewChanges();
 
 		PublicationsChanges.viewChangesViaChangesStyle(
 			changeCategory = "Page",
