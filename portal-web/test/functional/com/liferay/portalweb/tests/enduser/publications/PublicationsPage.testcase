@@ -186,7 +186,7 @@ definition {
 
 		JSONPublications.publishPublication(publicationName = "Publication Name 2");
 
-		Navigator.openURL();
+		SitePages.openPagesAdmin(siteURLKey = "site-name");
 
 		Publications.viewPublicationPublished(publicationName = "Publication Name 2");
 
@@ -214,15 +214,17 @@ definition {
 
 	@priority = "4"
 	test PublishDeletedPageWithTag {
+		JSONGroup.addGroup(groupName = "Site Name");
+
 		JSONLayout.addPublicLayout(
-			groupName = "Guest",
+			groupName = "Site Name",
 			layoutName = "Test Page");
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
 
 		JSONPublications.selectPublication(publicationName = "Publication Name");
 
-		SitePages.openPagesAdmin(siteURLKey = "guest");
+		SitePages.openPagesAdmin(siteURLKey = "site-name");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
@@ -238,7 +240,7 @@ definition {
 
 		SitePages.deletePage(pageName = "Test Page");
 
-		Navigator.openURL();
+		SitePages.openPagesAdmin(siteURLKey = "site-name");
 
 		Page.viewNoPG(pageName = "Test Page");
 
@@ -246,21 +248,21 @@ definition {
 
 		PublicationsChanges.viewChangesViaChangesStyle(
 			changeCategory = "Page",
-			changeSite = "Guest",
+			changeSite = "Site Name",
 			changeTitle = "Test Page",
 			changeType = "Deleted",
 			changeUser = "Test Test");
 
 		PublicationsChanges.viewChangesViaContextStyle(
 			changeCategory = "Page",
-			changeDescription = "Test Test deleted a Page in Guest",
+			changeDescription = "Test Test deleted a Page in Site Name",
 			changeTitle = "Test Page");
 
 		JSONPublications.publishPublication(publicationName = "Publication Name");
 
 		Publications.viewPublicationPublished(publicationName = "Publication Name");
 
-		Navigator.openURL();
+		SitePages.openPagesAdmin(siteURLKey = "site-name");
 
 		Page.viewNoPG(pageName = "Test Page");
 	}
@@ -271,11 +273,13 @@ definition {
 
 		JSONPublications.selectPublication(publicationName = "Publication Name");
 
+		JSONGroup.addGroup(groupName = "Site Name");
+
 		JSONFragment.addFragmentCollection(
-			groupName = "Guest",
+			groupName = "Site Name",
 			name = "Collection Name");
 
-		FragmentsAdminNavigator.openFragmentsAdmin(siteURLKey = "Guest");
+		FragmentsAdminNavigator.openFragmentsAdmin(siteURLKey = "site-name");
 
 		FragmentsAdminNavigator.gotoCollection(collectionName = "Collection Name");
 
@@ -293,14 +297,10 @@ definition {
 
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
-			groupName = "Guest",
+			groupName = "Site Name",
 			title = "WC WebContent Title");
 
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			portlet = "Pages");
+		SitePages.openPagesAdmin(siteURLKey = "site-name");
 
 		ContentPages.addPrivatePage(pageName = "Test Page");
 
@@ -310,7 +310,7 @@ definition {
 
 		PageEditor.clickPublish();
 
-		Navigator.openWithAppendToBaseURL(urlAppend = "group/guest/test-page");
+		Navigator.openWithAppendToBaseURL(urlAppend = "group/site-name/test-page");
 
 		WebContent.viewPGViaAP(
 			webContentContent = "WC WebContent Content",
@@ -322,7 +322,7 @@ definition {
 
 		Navigator.gotoPrivateSitePage(
 			pageName = "Test Page",
-			siteName = "Guest");
+			siteName = "Site Name");
 
 		WebContent.viewPGViaAP(
 			webContentContent = "WC WebContent Content",
@@ -331,15 +331,17 @@ definition {
 
 	@priority = "5"
 	test ViewPageFriendlyURLAfterRevertingPublication {
+		JSONGroup.addGroup(groupName = "Site Name");
+
 		JSONLayout.addPublicLayout(
-			groupName = "Guest",
+			groupName = "Site Name",
 			layoutName = "Test Page");
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
 
 		JSONPublications.selectPublication(publicationName = "Publication Name");
 
-		SitePages.openPagesAdmin(siteURLKey = "guest");
+		SitePages.openPagesAdmin(siteURLKey = "site-name");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
@@ -361,7 +363,7 @@ definition {
 
 		Publications.viewPublicationPublished(publicationName = "Publication Name");
 
-		SitePages.openPagesAdmin(siteURLKey = "guest");
+		SitePages.openPagesAdmin(siteURLKey = "site-name");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
@@ -380,7 +382,7 @@ definition {
 
 		Publications.revertPublication(publicationName = "Publication Name");
 
-		SitePages.openPagesAdmin(siteURLKey = "guest");
+		SitePages.openPagesAdmin(siteURLKey = "site-name");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
