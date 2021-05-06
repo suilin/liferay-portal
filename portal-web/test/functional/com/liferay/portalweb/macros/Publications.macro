@@ -252,7 +252,7 @@ definition {
 			value1 = "${changeTitle}");
 	}
 
-	macro gotoViewDiffInConflictingPublications {
+	macro gotoViewChangeDiffInConflictingPublications {
 		Click(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "Publications#CONFLICTING_CHANGES_CONTENT_LINK");
@@ -505,7 +505,7 @@ definition {
 		AssertVisible(locator1 = "Publications#DISABLED_PUBLISH_BUTTON");
 	}
 
-	macro viewPublicationDiff {
+	macro viewChangeDiff {
 		AssertTextEquals(
 			key_displayItem = "Unified",
 			locator1 = "Publications#CURRENT_DIFF_DISPLAY_ITEM",
