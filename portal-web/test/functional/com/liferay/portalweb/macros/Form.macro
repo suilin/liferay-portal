@@ -350,10 +350,22 @@ definition {
 
 		ScrollBy(value1 = "0, 320");
 
-		DragAndDrop.dragAndDropPortletToObject(
-			locator1 = "Form#ADD_FIELD_TYPE",
-			locator2 = "Form#ADD_FIELD_POSITION",
-			value1 = "${elementSetTitle}");
+		if (isSet(local)) {
+			DragAndDrop.javaScriptDragAndDropToObject(
+				key_fieldLocation = "${local}",
+				locator1 = "Form#ADD_FIELD_TYPE",
+				locator2 = "Form#ADD_FIELD_POSITION",
+				value1 = "${fieldType}");
+		}
+		else {
+			DragAndDrop.javaScriptDragAndDropToObject(
+				key_fieldLocation = "${local}",
+				locator1 = "Form#ADD_FIELD_TYPE",
+				locator2 = "Form#ADD_FIELD_TARGET",
+				value1 = "${fieldType}");
+		}
+
+		Pause(locator1 = "3000");
 	}
 
 	macro gotoAddField {
