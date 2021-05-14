@@ -350,16 +350,14 @@ definition {
 
 		ScrollBy(value1 = "0, 320");
 
-		if (isSet(local)) {
+		if (isSet(fieldPositionNumber)) {
 			DragAndDrop.javaScriptDragAndDropToObject(
-				key_fieldLocation = "${local}",
 				locator1 = "Form#ADD_FIELD_TYPE",
 				locator2 = "Form#ADD_FIELD_POSITION",
 				value1 = "${fieldType}");
 		}
 		else {
 			DragAndDrop.javaScriptDragAndDropToObject(
-				key_fieldLocation = "${local}",
 				locator1 = "Form#ADD_FIELD_TYPE",
 				locator2 = "Form#ADD_FIELD_TARGET",
 				value1 = "${fieldType}");
@@ -380,16 +378,16 @@ definition {
 			var key_fieldLocation = "${fieldPositionNumber}";
 		}
 
-		if (isSet(local)) {
+		if (isSet(fieldPositionNumber)) {
+			ScrollWebElementIntoView(locator1 = "Form#ADD_FIELD_POSITION");
+			
 			DragAndDrop.javaScriptDragAndDropToObject(
-				key_fieldLocation = "${local}",
 				locator1 = "Form#ADD_FIELD_NAME",
 				locator2 = "Form#ADD_FIELD_POSITION",
 				value1 = "${fieldType}");
 		}
 		else {
 			DragAndDrop.javaScriptDragAndDropToObject(
-				key_fieldLocation = "${local}",
 				locator1 = "Form#ADD_FIELD_NAME",
 				locator2 = "Form#ADD_FIELD_TARGET",
 				value1 = "${fieldType}");
