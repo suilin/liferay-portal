@@ -96,9 +96,17 @@ definition {
 			conflictingChanges = "true",
 			entryTitle = "Content Page Name");
 
+		// Workaround LPS-124618
+
+		/*Publications.discardChanges(
+			changeCategory = "com.liferay.portal.kernel.model.PortletPreferenceValue",
+			changeTitle = "com.liferay.portal.kernel.model.PortletPreferenceValue",
+			conflictingChanges = "true",
+			entryTitle = "com.liferay.portal.kernel.model.PortletPreferenceValue");
+
 		JSONPublications.publishPublication(publicationName = "Publication 2 Name");
 
-		Publications.viewPublicationPublished(publicationName = "Publication 2 Name");
+		Publications.viewPublicationPublished(publicationName = "Publication 2 Name");*/
 	}
 
 	@priority = "4"
