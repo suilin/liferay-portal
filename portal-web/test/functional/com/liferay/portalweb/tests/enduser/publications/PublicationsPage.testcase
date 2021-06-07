@@ -63,29 +63,22 @@ definition {
 
 		JSONPublications.selectPublication(publicationName = "Publication Name 2");
 
-		ContentPagesNavigator.openEditContentPage(
-			pageName = "Content Page Name",
-			siteName = "Site Name");
+		JSONLayout.deletePublicLayout(
+			groupName = "Site Name",
+			layoutName = "Content Page Name");
 
-		PageEditor.addWidget(portletName = "Asset Publisher");
+		Navigator.openURL();
 
-		AssetPublisherPortlet.configureManualAssetSelectionPG(
-			assetTitle = "WC WebContent Title",
-			assetType = "Basic Web Content");
-
-		Refresh();
-
-		PageEditor.clickPublish();
-
-		Publications.gotoReviewChanges();
+		Publications.gotoReviewChanges(
+			gotoManagePublications = "true",
+			publicationName = "Publication Name 2");
 
 		PublicationsChanges.viewChangesViaChangesStyle(
-			changeCategory = "Widget",
+			changeCategory = "Page",
 			changeSite = "Site Name",
-			changeTitle = "Asset Publisher",
-			changeType = "Added",
-			changeUser = "Test Test",
-			showAllItems = "true");
+			changeTitle = "Content Page Name",
+			changeType = "Deleted",
+			changeUser = "Test Test");
 
 		JSONPublications.publishPublication(publicationName = "Publication Name 2");
 
@@ -93,29 +86,19 @@ definition {
 
 		JSONPublications.selectPublication(publicationName = "Publication Name");
 
-		Publications.gotoReviewChanges(
-			gotoManagePublications = "true",
-			publicationName = "Publication Name");
+		Navigator.openURL();
 
-		Publications.workOnProduction();
+		Publications.gotoPublish(publicationName = "Publication Name");
 
-		ContentPagesNavigator.openViewContentPage(
-			pageName = "Content Page Name",
-			siteName = "Site Name");
+		Publications.discardChanges(
+			changeCategory = "Page",
+			changeTitle = "Content Page Name",
+			conflictingChanges = "true",
+			entryTitle = "Content Page Name");
 
-		AssertElementNotPresent(
-			key_portletName = "WC WebContent Content",
-			locator1 = "Portlet#BODY");
+		JSONPublications.publishPublication(publicationName = "Publication 2 Name");
 
-		AssertTextEquals(
-			key_assetTitle = "WC WebContent Title",
-			locator1 = "AP#ASSET_ABSTRACT_TITLE",
-			value1 = "WC WebContent Title");
-
-		AssertTextEquals.assertPartialText(
-			key_assetTitle = "WC WebContent Title",
-			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
-			value1 = "Web Content Content");
+		Publications.viewPublicationPublished(publicationName = "Publication 2 Name");
 	}
 
 	@priority = "4"
