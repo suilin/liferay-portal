@@ -17,6 +17,17 @@ definition {
 			category = "Site Builder",
 			portlet = "Pages");
 
+		ApplicationsMenu.gotoPortlet(
+			category = "Publications",
+			panel = "Applications",
+			portlet = "Settings");
+
+		Publications.enablePublications();
+
+		Publications.createNewPublication(publicationsName = "Publication Name");
+
+		Navigator.openURL();
+
 		SitePages.addPublicPage(pageName = "Dynamic Data Lists Display Page");
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
