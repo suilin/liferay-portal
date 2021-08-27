@@ -44,7 +44,7 @@ definition {
 	@description = "Feature ID: Legacy | Automation ID: LRAC-8913 | Test Summary: Assert Individual Activities Chart popover follows format"
 	@priority = "3"
 	test AssertIndividualActivitiesChartPopover {
-		task ("Add DM to AC Page")  {
+		task ("Add DM to AC Page") {
 			ACUtils.createDMAndAddToPage();
 		}
 		
@@ -119,7 +119,7 @@ definition {
 	@description = "Feature ID: Legacy | Automation ID: LRAC-8916 | Test Summary: Selected individual activity point can clear date selection"
 	@priority = "3"
 	test AssertIndividualActivitiesOverviewClearDate {
-		task ("Add DM to AC Page")  {
+		task ("Add DM to AC Page") {
 			ACUtils.createDMAndAddToPage();
 		}
 		
@@ -212,7 +212,7 @@ definition {
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
 		// AC Refactor ticket: LRAC-8970
 
-		task ("Add DM to AC Page")  {
+		task ("Add DM to AC Page") {
 			ACUtils.createDMAndAddToPage();
 		}
 		
