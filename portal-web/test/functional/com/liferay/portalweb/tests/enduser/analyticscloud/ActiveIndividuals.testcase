@@ -215,7 +215,7 @@ definition {
 		task ("Add DM to AC Page") {
 			ACUtils.createDMAndAddToPage();
 		}
-		
+
 		task ("Get site assigned property name") {
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
 		}
