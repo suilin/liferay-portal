@@ -47,7 +47,7 @@ definition {
 		task ("Add DM to AC Page") {
 			ACUtils.createDMAndAddToPage();
 		}
-		
+
 		task ("Get site assigned property name") {
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
 		}
@@ -95,7 +95,7 @@ definition {
 			var displayDateMonth = DateUtil.getCurrentMonthName();
 			var displayDateYear = DateUtil.getCurrentYear();
 			var previousDay = DateUtil.getFormattedDate("-1", "d");
-			
+
 			ACTimeFilter.setCustomRange(
 				endDay = "${displayDateDay}",
 				endMonth = "${displayDateMonth}",
@@ -113,7 +113,7 @@ definition {
 			ACUtils.assertDatePattern(
 				date = "${formattedDate}",
 				format = "yyyy MMM dd");
-		}		 
+		}
 	}
 
 	@description = "Feature ID: Legacy | Automation ID: LRAC-8916 | Test Summary: Selected individual activity point can clear date selection"
