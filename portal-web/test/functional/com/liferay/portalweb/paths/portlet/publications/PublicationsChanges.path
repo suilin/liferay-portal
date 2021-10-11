@@ -96,8 +96,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>PUBLICATIONS_ELLIPSIS</td>
+	<td>PUBLICATIONS_CHANGE_ELLIPSIS</td>
 	<td>//div[contains(@class,'autofit-col')]//button[*[contains(@class,'lexicon-icon-ellipsis-v')]]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SHOW_ALL_ITEMS_TOGGLE_SWITCH</td>
+	<td>//input[contains(@class,'toggle-switch-check')]</td>
 	<td></td>
 </tr>
 </tbody>

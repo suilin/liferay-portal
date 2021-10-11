@@ -19,7 +19,7 @@ definition {
 
 		Click(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_TITLE");
 
-		AssertElementNotPresent(locator1 = "PublicationsChanges#PUBLICATIONS_ELLIPSIS");
+		AssertElementNotPresent(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_ELLIPSIS");
 	}
 
 	macro assertEditorPermissions {
@@ -300,11 +300,13 @@ definition {
 	}
 
 	macro disablePublications {
-		Uncheck.uncheckToggleSwitch(locator1 = "PublicationsSettings#PUBLICATIONS_TOGGLE_SWITCH");
+		Click.waitForMenuToggleJSClick(locator1 = "Publications#PUBLICATIONS_ELLIPSIS");
+
+		MenuItem.click(menuItem = "Settings");
+
+		Uncheck.uncheckToggleSwitch(locator1 = "Publications#PUBLICATIONS_TOGGLE_SWITCH");
 
 		Click(locator1 = "Button#SAVE");
-
-		Alert.viewSuccessMessage();
 	}
 
 	macro discardChanges {
@@ -328,7 +330,7 @@ definition {
 
 			Click(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_TITLE");
 
-			Click(locator1 = "PublicationsChanges#PUBLICATIONS_ELLIPSIS");
+			Click(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_ELLIPSIS");
 
 			MenuItem.click(menuItem = "Discard");
 		}
@@ -354,16 +356,9 @@ definition {
 	macro enablePublications {
 		Pause(locator1 = "2000");
 
-		Check.checkToggleSwitch(locator1 = "PublicationsSettings#PUBLICATIONS_TOGGLE_SWITCH");
+		Check.checkToggleSwitch(locator1 = "Publications#PUBLICATIONS_TOGGLE_SWITCH");
 
-		if (isSet(gotoOverview)) {
-			Click(locator1 = "PublicationsSettings#SAVE_AND_GO_TO_OVERVIEW_BUTTON");
-		}
-		else {
-			Click(locator1 = "Button#SUBMIT");
-		}
-
-		Alert.viewSuccessMessage();
+		Click(locator1 = "Button#SAVE");
 	}
 
 	macro gotoPublish {
