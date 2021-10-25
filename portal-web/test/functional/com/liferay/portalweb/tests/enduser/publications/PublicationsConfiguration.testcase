@@ -46,11 +46,6 @@ definition {
 	test EnableDisablePublications {
 		property portal.acceptance = "true";
 
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
 		Publications.enablePublications();
 
 		ApplicationsMenu.gotoPortlet(
@@ -63,11 +58,6 @@ definition {
 
 	@priority = "5"
 	test EnablePublicationsAndGoToOverview {
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
 		Publications.enablePublications();
 
 		AssertTextEquals(
