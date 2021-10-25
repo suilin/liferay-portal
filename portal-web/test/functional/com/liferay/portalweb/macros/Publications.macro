@@ -286,6 +286,11 @@ definition {
 	}
 
 	macro disablePublications {
+		ApplicationsMenu.gotoPortlet(
+			category = "Publications",
+			panel = "Applications",
+			portlet = "Publications");
+
 		Click.waitForMenuToggleJSClick(locator1 = "Publications#PUBLICATIONS_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Settings");

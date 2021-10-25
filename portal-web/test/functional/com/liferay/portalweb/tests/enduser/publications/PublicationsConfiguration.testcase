@@ -48,11 +48,6 @@ definition {
 
 		Publications.enablePublications();
 
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
 		Publications.disablePublications();
 	}
 
