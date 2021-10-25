@@ -385,17 +385,6 @@ definition {
 		Pause(locator1 = "3000");
 	}
 
-	macro gotoScheduledPublications {
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
-		Click(
-			key_navBarTitle = "Scheduled",
-			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE");
-	}
-
 	macro gotoViewChangeDiff {
 		var key_changeCategory = "${changeCategory}";
 		var key_changeTitle = "${changeTitle}";
@@ -543,7 +532,7 @@ definition {
 			MenuItem.click(menuItem = "Schedule");
 		}
 		else if ("${reschedule}" == "true") {
-			Publications.gotoScheduledPublications();
+			PublicationsNavigator.openPublicationsScheduled();
 
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -659,7 +648,7 @@ definition {
 	}
 
 	macro unschedulePublication {
-		Publications.gotoScheduledPublications();
+		PublicationsNavigator.openPublicationsScheduled();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
