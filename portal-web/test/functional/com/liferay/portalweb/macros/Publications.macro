@@ -471,11 +471,7 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		var key_navBarTitle = "History";
-
-		AssertTextEquals(
-			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE",
-			value1 = "History");
+		PublicationsNavigator.openPublicationsHistory();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -754,16 +750,7 @@ definition {
 	}
 
 	macro viewPublicationOrderInHistory {
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
-		var key_navBarTitle = "History";
-
-		Click(
-			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE",
-			value1 = "History");
+		PublicationsNavigator.openPublicationsHistory();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -780,16 +767,7 @@ definition {
 	}
 
 	macro viewPublicationPublished {
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
-		var key_navBarTitle = "History";
-
-		Click(
-			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE",
-			value1 = "History");
+		PublicationsNavigator.openPublicationsHistory();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
