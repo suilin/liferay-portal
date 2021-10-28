@@ -12,8 +12,6 @@ definition {
 			key_publicationName = "${publicationName}",
 			locator1 = "Publications#PUBLISHED_PUBLICATION_NAME");
 
-		Pause(locator1 = "1000");
-
 		var key_changeCategory = "${changeCategory}";
 		var key_changeTitle = "${changeTitle}";
 
@@ -50,7 +48,7 @@ definition {
 			locator1 = "Publications#PUBLISHED_PUBLICATION_NAME");
 
 		Publications.gotoReviewChanges(
-			gotoManagePublications = "true",
+			gotoPublicationsAdmin = "true",
 			publicationName = "New ${publicationName}");
 
 		PublicationsChanges.openCommentsSidebar();
@@ -89,7 +87,7 @@ definition {
 			userInvite = "userea2@liferay.com");
 
 		Publications.gotoReviewChanges(
-			gotoManagePublications = "true",
+			gotoPublicationsAdmin = "true",
 			publicationName = "New ${publicationName}");
 
 		PublicationsChanges.openCommentsSidebar();
@@ -104,12 +102,52 @@ definition {
 		PublicationsChanges.deleteComment(commentValue = "It is not ready to Publish");
 
 		Publications.gotoPublish(
-			gotoManagePublications = "true",
+			gotoPublicationsAdmin = "true",
 			publicationName = "New ${publicationName}");
 
 		Publications.publishPublication(publicationName = "New ${publicationName}");
 
 		Publications.viewPublicationPublished(publicationName = "New ${publicationName}");
+	}
+
+	macro assertNoPermissionToCreatePublication {
+		Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
+
+		AssertElementNotPresent(
+			key_menuItem = "Create New Publication",
+			locator1 = "MenuItem#ANY_MENU_ITEM");
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Publications",
+			panel = "Applications",
+			portlet = "Publications");
+
+		AssertElementNotPresent(locator1 = "Button#PLUS");
+	}
+
+	macro assertNoPermissionToPublishPublication {
+		ApplicationsMenu.gotoPortlet(
+			category = "Publications",
+			panel = "Applications",
+			portlet = "Publications");
+
+		LexiconEntry.changeDisplayStyle(displayStyle = "list");
+
+		Click(
+			key_publicationName = "${publicationName}",
+			locator1 = "Publications#LIST_PUBLICATION_ELLIPSIS");
+
+		AssertElementNotPresent(
+			key_menuItem = "Publish",
+			locator1 = "MenuItem#ANY_MENU_ITEM");
+
+		Publications.selectPublication(publicationName = "${publicationName}");
+
+		Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
+
+		AssertElementNotPresent(
+			key_menuItem = "Publish",
+			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
 
 	macro assertPublisherPermissions {
@@ -148,7 +186,7 @@ definition {
 			locator1 = "Publications#PUBLISHED_PUBLICATION_NAME");
 
 		Publications.gotoReviewChanges(
-			gotoManagePublications = "true",
+			gotoPublicationsAdmin = "true",
 			publicationName = "${publicationName}");
 
 		PublicationsChanges.openCommentsSidebar();
@@ -163,7 +201,7 @@ definition {
 		PublicationsChanges.deleteComment(commentValue = "It is not ready to Publish");
 
 		Publications.gotoPublish(
-			gotoManagePublications = "true",
+			gotoPublicationsAdmin = "true",
 			publicationName = "New ${publicationName}");
 
 		Publications.publishPublication(publicationName = "New ${publicationName}");
@@ -203,7 +241,7 @@ definition {
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
 		Publications.gotoReviewChanges(
-			gotoManagePublications = "true",
+			gotoPublicationsAdmin = "true",
 			publicationName = "${publicationName}");
 
 		PublicationsChanges.openCommentsSidebar();
@@ -219,10 +257,7 @@ definition {
 	}
 
 	macro cancelPublicationCreation {
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
+		PublicationsNavigator.openPublicationsAdmin();
 
 		Click(locator1 = "Button#PLUS");
 
@@ -240,11 +275,8 @@ definition {
 	}
 
 	macro createNewPublication {
-		if ("${gotoManagePublications}" == "true") {
-			ApplicationsMenu.gotoPortlet(
-				category = "Publications",
-				panel = "Applications",
-				portlet = "Publications");
+		if ("${gotoPublicationsAdmin}" == "true") {
+			PublicationsNavigator.openPublicationsAdmin();
 
 			Click(locator1 = "Button#PLUS");
 		}
@@ -268,7 +300,7 @@ definition {
 
 		Button.click(button = "Create");
 
-		Pause(locator1 = "5000");
+		Alert.viewSuccessMessage();
 	}
 
 	macro deletePublication {
@@ -292,6 +324,11 @@ definition {
 	}
 
 	macro disablePublications {
+		ApplicationsMenu.gotoPortlet(
+			category = "Publications",
+			panel = "Applications",
+			portlet = "Publications");
+
 		Click.waitForMenuToggleJSClick(locator1 = "Publications#PUBLICATIONS_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Settings");
@@ -327,8 +364,6 @@ definition {
 			MenuItem.click(menuItem = "Discard");
 		}
 
-		Pause(locator1 = "3000");
-
 		AssertElementPresent(locator1 = "Publications#DISCARDED_CHANGES_TITLE");
 
 		var key_changeCategory = "${changeCategory}";
@@ -346,7 +381,10 @@ definition {
 	}
 
 	macro enablePublications {
-		Pause(locator1 = "2000");
+		ApplicationsMenu.gotoPortlet(
+			category = "Publications",
+			panel = "Applications",
+			portlet = "Publications");
 
 		Check.checkToggleSwitch(locator1 = "Publications#PUBLICATIONS_TOGGLE_SWITCH");
 
@@ -354,11 +392,8 @@ definition {
 	}
 
 	macro gotoPublish {
-		if ("${gotoManagePublications}" == "true") {
-			ApplicationsMenu.gotoPortlet(
-				category = "Publications",
-				panel = "Applications",
-				portlet = "Publications");
+		if ("${gotoPublicationsAdmin}" == "true") {
+			PublicationsNavigator.openPublicationsAdmin();
 
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -376,11 +411,8 @@ definition {
 	}
 
 	macro gotoReviewChanges {
-		if ("${gotoManagePublications}" == "true") {
-			ApplicationsMenu.gotoPortlet(
-				category = "Publications",
-				panel = "Applications",
-				portlet = "Publications");
+		if ("${gotoPublicationsAdmin}" == "true") {
+			PublicationsNavigator.openPublicationsAdmin();
 
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -393,19 +425,6 @@ definition {
 		}
 
 		MenuItem.click(menuItem = "Review Changes");
-
-		Pause(locator1 = "3000");
-	}
-
-	macro gotoScheduledPublications {
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
-		Click(
-			key_navBarTitle = "Scheduled",
-			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE");
 	}
 
 	macro gotoViewChangeDiff {
@@ -428,8 +447,6 @@ definition {
 		Click(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "Publications#CONFLICTING_CHANGES_CONTENT_LINK");
-
-		Pause(locator1 = "1000");
 
 		SelectFrameTop(value1 = "relative=top");
 
@@ -483,11 +500,7 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		var key_navBarTitle = "History";
-
-		AssertTextEquals(
-			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE",
-			value1 = "History");
+		PublicationsNavigator.openPublicationsHistory();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -547,11 +560,8 @@ definition {
 	}
 
 	macro schedulePublication {
-		if ("${gotoManagePublications}" == "true") {
-			ApplicationsMenu.gotoPortlet(
-				category = "Publications",
-				panel = "Applications",
-				portlet = "Publications");
+		if ("${gotoPublicationsAdmin}" == "true") {
+			PublicationsNavigator.openPublicationsAdmin();
 
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -562,7 +572,7 @@ definition {
 			MenuItem.click(menuItem = "Schedule");
 		}
 		else if ("${reschedule}" == "true") {
-			Publications.gotoScheduledPublications();
+			PublicationsNavigator.openPublicationsScheduled();
 
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -573,8 +583,6 @@ definition {
 			MenuItem.click(menuItem = "Reschedule");
 
 			// Workaround LPS-123416
-
-			Pause(locator1 = "1000");
 
 			Click.mouseOverClick(locator1 = "Publications#DELETE_THE_ENTERED_TIME_BUTTON");
 		}
@@ -647,11 +655,8 @@ definition {
 	}
 
 	macro selectPublication {
-		if ("${gotoManagePublications}" == "true") {
-			ApplicationsMenu.gotoPortlet(
-				category = "Publications",
-				panel = "Applications",
-				portlet = "Publications");
+		if ("${gotoPublicationsAdmin}" == "true") {
+			PublicationsNavigator.openPublicationsAdmin();
 
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -681,7 +686,7 @@ definition {
 	}
 
 	macro unschedulePublication {
-		Publications.gotoScheduledPublications();
+		PublicationsNavigator.openPublicationsScheduled();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -772,16 +777,7 @@ definition {
 	}
 
 	macro viewPublicationOrderInHistory {
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
-		var key_navBarTitle = "History";
-
-		Click(
-			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE",
-			value1 = "History");
+		PublicationsNavigator.openPublicationsHistory();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -798,16 +794,7 @@ definition {
 	}
 
 	macro viewPublicationPublished {
-		ApplicationsMenu.gotoPortlet(
-			category = "Publications",
-			panel = "Applications",
-			portlet = "Publications");
-
-		var key_navBarTitle = "History";
-
-		Click(
-			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE",
-			value1 = "History");
+		PublicationsNavigator.openPublicationsHistory();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
