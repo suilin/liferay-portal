@@ -524,7 +524,7 @@ definition {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
 		AssertElementPresent(
-			key_webContentTitle = "Web Content Title",
+			key_webContentTitle = "WC WebContent Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
 		PublicationsNavigator.openPublicationsHistory();
