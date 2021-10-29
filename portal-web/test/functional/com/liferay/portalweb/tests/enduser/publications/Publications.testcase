@@ -553,6 +553,8 @@ definition {
 			groupName = "Guest",
 			title = "WC WebContent 1 Title");
 
+		PublicationsNavigator.openPublicationsAdmin();
+
 		Publications.schedulePublication(publicationName = "Publication Name 1");
 
 		Publications.assertScheduledPublicationPublished(publicationName = "Publication Name 1");
@@ -581,7 +583,9 @@ definition {
 			groupName = "Guest",
 			title = "WC WebContent 3 Title");
 
-		Publications.schedulePublication(publicationName = "Publication Name 3");
+		Publications.schedulePublication(
+			gotoPublicationsAdmin = "true",
+			publicationName = "Publication Name 3");
 
 		Publications.assertScheduledPublicationPublished(publicationName = "Publication Name 3");
 	}
