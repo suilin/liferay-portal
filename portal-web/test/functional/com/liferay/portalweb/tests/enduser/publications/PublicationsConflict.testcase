@@ -229,7 +229,9 @@ definition {
 			webContentTitle = "WC WebContent Title",
 			webContentTitleEdit = "WC WebContent Title");
 
-		Publications.createNewPublication(publicationName = "Publication 2 Name");
+		JSONPublications.addPublication(publicationName = "Publication 2 Name");
+
+		JSONPublications.selectPublication(publicationName = "Publication 2 Name");
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
@@ -240,7 +242,7 @@ definition {
 			webContentTitle = "WC WebContent Title",
 			webContentTitleEdit = "WC WebContent Title");
 
-		PublicationsNavigator.openPublicationsHistory();
+		PublicationsNavigator.openPublicationsAdmin();
 
 		Publications.assertDiscardIsUnavailableForInactivePublication(
 			changeCategory = "Web Content Article",
