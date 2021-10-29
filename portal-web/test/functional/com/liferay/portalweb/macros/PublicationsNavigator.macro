@@ -15,8 +15,8 @@ definition {
 			PublicationsNavigator.openPublicationsAdmin();
 
 			PublicationsNavigator._gotoPublicationEllipsisItem(
-				publicationName = "${publicationName}",
-				menuItem = "Publish");
+				menuItem = "Publish",
+				publicationName = "${publicationName}");
 		}
 		else {
 			PublicationsNavigator.gotoReviewChanges();
@@ -30,8 +30,8 @@ definition {
 			PublicationsNavigator.openPublicationsAdmin();
 
 			PublicationsNavigator._gotoPublicationEllipsisItem(
-				publicationName = "${publicationName}",
-				menuItem = "Review Changes");
+				menuItem = "Review Changes",
+				publicationName = "${publicationName}");
 		}
 		else {
 			Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
