@@ -198,6 +198,8 @@ definition {
 	}
 
 	macro assertScheduledPublicationPublished {
+		Pause(locator1 = "240000");
+
 		Click(
 			key_navBarTitle = "History",
 			locator1 = "Publications#MANGE_PUBLICATIONS_NAVBAR_TITLE");
@@ -443,10 +445,6 @@ definition {
 			PublicationsNavigator._gotoPublicationEllipsisItem(
 				publicationName = "${publicationName}",
 				menuItem = "Reschedule");
-
-			// Workaround LPS-123416
-
-			Click.mouseOverClick(locator1 = "Publications#DELETE_THE_ENTERED_TIME_BUTTON");
 		}
 		else {
 			PublicationsNavigator.gotoReviewChanges();
