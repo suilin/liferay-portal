@@ -188,8 +188,10 @@ definition {
 
 		JSONCategory.addCategory(
 			groupName = "Guest",
-			title = "Vocabulary Name",
+			title = "Category Name",
 			vocabularyName = "Vocabulary Name");
+
+		PublicationsNavigator.openPublicationsAdmin();
 
 		PublicationsNavigator.gotoReviewChanges();
 
