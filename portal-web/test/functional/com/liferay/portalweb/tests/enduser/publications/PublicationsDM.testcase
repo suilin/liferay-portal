@@ -32,14 +32,16 @@ definition {
 
 		JSONPublications.selectPublication(publicationName = "Publication Name");
 
+		JSONGroup.addGroup(groupName = "Site Name");
+
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
-			dmDocumentTitle = "Document_1.jpg",
+			dmDocumentTitle = "DM Document Title",
 			groupName = "Site Name",
 			mimeType = "image/jpeg",
 			sourceFileName = "Document_1.jpg");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -51,7 +53,7 @@ definition {
 			dmDocumentTitle = "Check in as major version",
 			revision = "Major");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
 
 		AssertElementNotPresent(
 			key_dmDocumentTitle = "Check in as major version",
@@ -65,7 +67,7 @@ definition {
 
 		Publications.viewPublicationPublished(publicationName = "Publication Name");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
 
 		DMDocument.checkDocumentCheckboxCP(dmDocumentTitle = "DM Document Title");
 
