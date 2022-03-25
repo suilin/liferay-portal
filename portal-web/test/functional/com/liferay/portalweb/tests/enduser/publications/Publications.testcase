@@ -1,7 +1,6 @@
 @component-name = "portal-publications"
 definition {
 
-	property app.server.types = "jboss,tomcat,weblogic,websphere,wildfly";
 	property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver";
 	property portal.release = "true";
 	property portal.upstream = "true";
@@ -661,9 +660,13 @@ definition {
 			groupName = "Guest",
 			title = "WC WebContent Title");
 
-		PublicationsNavigator.gotoPublish(
+		// Workaround LPS-133249
+		
+		PublicationsNavigator.gotoReviewChanges(
 			gotoPublicationsAdmin = "true",
 			publicationName = "Publication Name");
+
+		PublicationsNavigator.gotoPublish(publicationName = "Publication Name");
 
 		Publications.publishPublication(publicationName = "Publication Name");
 
