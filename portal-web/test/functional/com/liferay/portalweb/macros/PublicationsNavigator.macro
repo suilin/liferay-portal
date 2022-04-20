@@ -10,6 +10,21 @@ definition {
 		MenuItem.clickNoError(menuItem = "${menuItem}");
 	}
 
+	macro gotoInviteUsers {
+		if ("${gotoReviewChanges}" == "true") {
+			PublicationsNavigator.gotoReviewChanges();
+
+			Click(locator1 = "Icon#PLUS");
+		}
+		else {
+			PublicationsNavigator.openPublicationsAdmin();
+
+			PublicationsNavigator._gotoPublicationEllipsisItem(
+				menuItem = "Invite Users",
+				publicationName = "${publicationName}");
+		}
+	}
+
 	macro gotoNavbar {
 		Click(
 			key_navBarTitle = "${navBarTitle}",
