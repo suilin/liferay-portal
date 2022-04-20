@@ -120,9 +120,7 @@ definition {
 	}
 
 	macro inviteUsers {
-		PublicationsNavigator._gotoPublicationEllipsisItem(
-			menuItem = "Invite Users",
-			publicationName = "${publicationName}");
+		PublicationsNavigator.gotoInviteUsers(publicationName = "${publicationName}");
 
 		if (isSet(publicationRole)) {
 			Click(

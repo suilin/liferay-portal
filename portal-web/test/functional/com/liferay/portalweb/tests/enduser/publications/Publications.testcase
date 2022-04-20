@@ -526,8 +526,6 @@ definition {
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
 
-		PublicationsNavigator.openPublicationsAdmin();
-
 		Publications.inviteUsers(
 			publicationName = "Publication Name",
 			publicationRole = "Editor",

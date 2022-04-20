@@ -56,8 +56,6 @@ definition {
 
 		JSONPublications.addPublication(publicationName = "Publication Name 1");
 
-		PublicationsNavigator.openPublicationsAdmin();
-
 		Publications.inviteUsers(
 			publicationName = "Publication Name 1",
 			userInvite = "userea@liferay.com");
@@ -126,11 +124,7 @@ definition {
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
 
-		PublicationsNavigator.gotoReviewChanges(
-			gotoPublicationsAdmin = "true",
-			publicationName = "Publication Name");
-
-		Click(locator1 = "Icon#PLUS");
+		PublicationsNavigator.gotoInviteUsers(gotoReviewChanges = "true");
 
 		Click(
 			key_text = "Viewer",
@@ -193,8 +187,6 @@ definition {
 		JSONPublications.enablePublications();
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
-
-		PublicationsNavigator.openPublicationsAdmin();
 
 		Publications.inviteUsers(
 			publicationName = "Publication Name",
@@ -260,8 +252,6 @@ definition {
 		JSONPublications.enablePublications();
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
-
-		PublicationsNavigator.openPublicationsAdmin();
 
 		Publications.inviteUsers(
 			publicationName = "Publication Name",
@@ -333,8 +323,6 @@ definition {
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
 
-		PublicationsNavigator.openPublicationsAdmin();
-
 		Publications.inviteUsers(
 			publicationName = "Publication Name",
 			publicationRole = "Publisher",
@@ -395,8 +383,6 @@ definition {
 		JSONPublications.enablePublications();
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
-
-		PublicationsNavigator.openPublicationsAdmin();
 
 		Publications.inviteUsers(
 			publicationName = "Publication Name",
