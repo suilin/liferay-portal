@@ -563,7 +563,7 @@ definition {
 	@description = "Assert the conflict changes disply when adding the same folder Name in two Publications and resolve by editing"
 	@priority = "5"
 	test ResolveDuplicateNameConflictPublicationsByEditing {
-		property portal.acceptance = "true";
+		property portal.acceptance = "Linda";
 
 		JSONPublications.addPublication(publicationName = "Publication Name 1");
 
