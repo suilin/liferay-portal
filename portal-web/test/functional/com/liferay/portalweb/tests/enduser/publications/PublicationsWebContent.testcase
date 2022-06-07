@@ -188,7 +188,7 @@ definition {
 
 		// Workaround LPS-148719
 
-		property database.types = "hypersonic,mariadb,mysql,postgresql";
+		property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver";
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
 
@@ -259,9 +259,11 @@ definition {
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content");
 
-		JSONPublications.publishPublication(publicationName = "Publication Name");
+		PublicationsNavigator.gotoPublish(
+			gotoPublicationsAdmin = "true",
+			publicationName = "Publication Name");
 
-		Publications.viewPublicationPublished(publicationName = "Publication Name");
+		Publications.publishPublication(publicationName = "Publication Name");
 
 		Navigator.gotoSitePage(
 			pageName = "Test Page",
