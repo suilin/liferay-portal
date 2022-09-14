@@ -51,9 +51,9 @@ definition {
 			workflowDefinition = "Single Approver",
 			workflowResourceValue = "Web Content Article");
 
-		JSONPublications.addPublication(publicationName = "Publication Name");
-
-		JSONPublications.selectPublication(publicationName = "Publication Name");
+		Publications.createNewPublication(
+			gotoPublicationsAdmin = "true",
+			publicationName = "Publication Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content & Data",
@@ -190,11 +190,13 @@ definition {
 
 		WorkflowAsset.viewNotification(contentBody = "Test Test sent you a Web Content Article for review in the workflow.");
 
-		JSONPublications.addPublication(publicationName = "Publication 1 Name");
+		Publications.createNewPublication(
+			gotoPublicationsAdmin = "true",
+			publicationName = "Publication 1 Name");
 
-		JSONPublications.addPublication(publicationName = "Publication 2 Name");
+		Publications.createNewPublication(publicationName = "Publication 2 Name");
 
-		JSONPublications.selectPublication(publicationName = "Publication 1 Name");
+		Publications.selectPublication(publicationName = "Publication 1 Name");
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
