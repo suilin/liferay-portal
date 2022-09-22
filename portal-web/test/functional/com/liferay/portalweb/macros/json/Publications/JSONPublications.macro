@@ -8,23 +8,28 @@ definition {
 
 		JSONPublicationsAPI._addPublication(
 			publicationDescription = "${publicationDescription}",
-			publicationName = "${publicationName}");
+			publicationName = "${publicationName}",
+			userEmailAddress = "${userEmailAddress}");
 	}
 
 	macro enablePublications {
-		JSONPublicationsAPI._enablePublications();
+		JSONPublicationsAPI._enablePublications(userEmailAddress = "${userEmailAddress}");
 	}
 
 	macro publishPublication {
 		var ctCollectionId = JSONPublicationsSetter.setCTCollectionId(publicationName = "${publicationName}");
 
-		JSONPublicationsAPI._publishPublication(ctCollectionId = "${ctCollectionId}");
+		JSONPublicationsAPI._publishPublication(
+			ctCollectionId = "${ctCollectionId}",
+			userEmailAddress = "${userEmailAddress}");
 	}
 
 	macro selectPublication {
 		var ctCollectionId = JSONPublicationsSetter.setCTCollectionId(publicationName = "${publicationName}");
 
-		JSONPublicationsAPI._selectPublication(ctCollectionId = "${ctCollectionId}");
+		JSONPublicationsAPI._selectPublication(
+			ctCollectionId = "${ctCollectionId}",
+			userEmailAddress = "${userEmailAddress}");
 	}
 
 }
