@@ -78,9 +78,9 @@ definition {
 			userLoginFullName = "userfn userln");
 
 		if (IsElementPresent(key_publicationName = "Production", locator1 = "Publications#PUBLICATIONS_INDICATOR_TITLE")) {
-			Publications.selectPublication(
-				gotoPublicationsAdmin = "true",
-				publicationName = "Publication Name");
+			JSONPublications.selectPublication(
+				publicationName = "Publication Name",
+				userEmailAddress = "userea@liferay.com");
 		}
 
 		Navigator.openURL();
@@ -107,9 +107,9 @@ definition {
 			userLoginFullName = "Test Test");
 
 		if (IsElementPresent(key_publicationName = "Production", locator1 = "Publications#PUBLICATIONS_INDICATOR_TITLE")) {
-			Publications.selectPublication(
-				gotoPublicationsAdmin = "true",
-				publicationName = "Publication Name");
+			JSONPublications.selectPublication(
+				publicationName = "Publication Name",
+				userEmailAddress = "userea@liferay.com");
 		}
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
@@ -190,7 +190,9 @@ definition {
 			userLoginFullName = "userfn userln");
 
 		if (IsElementPresent(key_publicationName = "Production", locator1 = "Publications#PUBLICATIONS_INDICATOR_TITLE")) {
-			Publications.selectPublication(publicationName = "Publication Name");
+			JSONPublications.selectPublication(
+				publicationName = "Publication Name",
+				userEmailAddress = "userea@liferay.com");
 		}
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
@@ -282,10 +284,6 @@ definition {
 
 		PortletEntry.submitForPublication();
 
-		JSONPublications.addPublication(publicationName = "Publication 1 Name");
-
-		JSONPublications.addPublication(publicationName = "Publication 2 Name");
-
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
@@ -294,9 +292,17 @@ definition {
 
 		WorkflowAsset.viewNotification(contentBody = "Test Test sent you a Web Content Article for review in the workflow.");
 
-		Publications.selectPublication(
-			gotoPublicationsAdmin = "true",
-			publicationName = "Publication 1 Name");
+		JSONPublications.addPublication(
+			publicationName = "Publication 1 Name",
+			userEmailAddress = "userea@liferay.com");
+
+		JSONPublications.addPublication(
+			publicationName = "Publication 2 Name",
+			userEmailAddress = "userea@liferay.com");
+
+		JSONPublications.selectPublication(
+			publicationName = "Publication 1 Name",
+			userEmailAddress = "userea@liferay.com");
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
@@ -322,9 +328,9 @@ definition {
 			userLoginFullName = "test test");
 
 		if (IsElementPresent(key_publicationName = "Production", locator1 = "Publications#PUBLICATIONS_INDICATOR_TITLE")) {
-			Publications.selectPublication(
-				gotoPublicationsAdmin = "true",
-				publicationName = "Publication 1 Name");
+			JSONPublications.selectPublication(
+				publicationName = "Publication 1 Name",
+				userEmailAddress = "userea@liferay.com");
 		}
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
