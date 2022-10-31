@@ -47,7 +47,7 @@ definition {
 	test CreateNewPublicationWithoutName {
 		Publications.createNewPublication(gotoPublicationsAdmin = "true");
 
-		Alert.viewRequiredField();
+		Alert.viewSpecificRequiredField(fieldFieldLabel = "Name");
 	}
 
 	@priority = "5"
