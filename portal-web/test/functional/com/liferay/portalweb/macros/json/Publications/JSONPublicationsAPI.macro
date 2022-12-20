@@ -5,11 +5,20 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyId();
-		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "test@liferay.com");
+
+		if (!(isSet(userEmailAddress))) {
+			var userEmailAddress = "test@liferay.com";
+		}
+
+		if (!(isSet(userPassword))) {
+			var userPassword = "test";
+		}
+
+		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
 
 		var curl = '''
 			${portalURL}/api/jsonws/ct.ctcollection/add-ct-collection \
-				-u test@liferay.com:test \
+				-u ${userEmailAddress}:${userPassword} \
 				-d companyId=${companyId} \
 				-d userId=${userId} \
 				-d name=${publicationName} \
@@ -64,11 +73,20 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyId();
-		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "test@liferay.com");
+
+		if (!(isSet(userEmailAddress))) {
+			var userEmailAddress = "test@liferay.com";
+		}
+
+		if (!(isSet(userPassword))) {
+			var userPassword = "test";
+		}
+
+		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
 
 		var curl = '''
 			${portalURL}/api/jsonws/ct.ctcollection/publish-ct-collection \
-				-u test@liferay.com:test \
+				-u ${userEmailAddress}:${userPassword} \
 				-d ctCollectionId=${ctCollectionId} \
 				-d userId=${userId}
 		''';
@@ -81,11 +99,20 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyId();
-		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "test@liferay.com");
+
+		if (!(isSet(userEmailAddress))) {
+			var userEmailAddress = "test@liferay.com";
+		}
+
+		if (!(isSet(userPassword))) {
+			var userPassword = "test";
+		}
+
+		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
 
 		var curl = '''
 			${portalURL}/api/jsonws/ct.ctpreferences/checkout-ct-collection \
-				-u test@liferay.com:test \
+				-u ${userEmailAddress}:${userPassword} \
 				-d companyId=${companyId} \
 				-d ctCollectionId=${ctCollectionId} \
 				-d userId=${userId}
