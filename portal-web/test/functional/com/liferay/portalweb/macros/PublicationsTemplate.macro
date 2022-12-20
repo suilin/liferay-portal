@@ -66,7 +66,10 @@ definition {
 		if (IsElementPresent(locator1 = "PublicationsTemplate#PUBLICATION_COLLABORATORS_COLLAPSED")) {
 			Click(locator1 = "PublicationsTemplate#PUBLICATION_COLLABORATORS_COLLAPSED");
 
-			AssertElementPresent(locator1 = "PublicationsTemplate#PUBLICATION_COLLABORATORS_EXPANDED");
+			// WorkRound LPS-171448
+
+			//AssertElementPresent(locator1 = "PublicationsTemplate#PUBLICATION_COLLABORATORS_EXPANDED");
+
 		}
 	}
 
@@ -74,7 +77,10 @@ definition {
 		if (IsElementPresent(locator1 = "PublicationsTemplate#PUBLICATION_INFORMATION_COLLAPSED")) {
 			Click(locator1 = "PublicationsTemplate#PUBLICATION_INFORMATION_COLLAPSED");
 
-			AssertElementPresent(locator1 = "PublicationsTemplate#PUBLICATION_INFORMATION_EXPANDED");
+			// WorkRound LPS-171448
+
+			//AssertElementPresent(locator1 = "PublicationsTemplate#PUBLICATION_INFORMATION_EXPANDED");
+
 		}
 	}
 
