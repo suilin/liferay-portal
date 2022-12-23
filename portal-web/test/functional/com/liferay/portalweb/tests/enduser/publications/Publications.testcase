@@ -1280,9 +1280,7 @@ definition {
 	@priority = "4"
 	test UserWithoutAccessCannotChangePublicationViaURL {
 
-		// Workaround LPS-160890 on Websphere
-
-		property app.server.types = "jboss,tomcat,weblogic,wildfly";
+		property app.server.types = "jboss,tomcat,weblogic,Websphere,wildfly";
 
 		JSONGroup.addGroup(groupName = "Site Name");
 
