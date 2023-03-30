@@ -21,11 +21,18 @@ definition {
 			var externalReferenceCode = "";
 		}
 
+		if (isSet(title)) {
+			var title = "${title}";
+		}
+		else {
+			var title = "";
+		}
+
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/${api} \
 				-u test@liferay.com:test \
 				-H Content-Type: multipart/form-data \
-				-F document={"externalReferenceCode": "${externalReferenceCode}"} \
+				-F document={"externalReferenceCode": "${externalReferenceCode}", "title": "${title}"} \
 				-F file=@${filePath}
 		''';
 
@@ -174,6 +181,17 @@ definition {
 		var curl = JSONCurlUtil.put(${curl});
 
 		return ${curl};
+	}
+
+	macro addDocumentByUploadFile {
+		Variables.assertDefined(parameterList = "${filePath},${siteId},${title}");
+
+		var response = DocumentAPI._addDocument(
+			filePath = ${filePath},
+			siteId = ${siteId},
+			title = ${title});
+
+		return ${response};
 	}
 
 	macro addDocumentInAssetLibraryByUploadFile {
