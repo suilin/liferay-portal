@@ -117,8 +117,6 @@ definition {
 
 	@priority = 4
 	test CheckoutAndCheckinDocumentInPublication {
-		property test.assert.warning.exceptions = "true";
-
 		JSONPublications.addPublication(publicationName = "Publication Name");
 
 		JSONPublications.selectPublication(publicationName = "Publication Name");
