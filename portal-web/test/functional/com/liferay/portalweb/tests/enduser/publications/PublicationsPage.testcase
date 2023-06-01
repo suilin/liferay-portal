@@ -260,6 +260,8 @@ definition {
 
 	@description = "Assert that it's possible to add and apply widget template within publications"
 	test CanAddWidgetTemplateAndApplyItWithinPublications {
+		property portal.acceptance = "Linda";
+
 		task ("Add new Publication and select it for use") {
 			JSONPublications.addPublication(publicationName = "Publication Name");
 
