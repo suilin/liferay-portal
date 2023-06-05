@@ -490,4 +490,31 @@ definition {
 		}
 	}
 
+	@description = "This is a use case for LPS-12345678 TC-2: If the default admin password property is set, user doesn't need to define screen name, admin email and password upon virtual instance creation."
+	@ignore = "true"
+	@priority = 5
+	test AdminLoginSuccess {
+		property custom.properties = "company.security.send.password.reset.link=true${line.separator}passwords.default.policy.change.required=false";
+		property test.name.skip.portal.instance = "OnDemandAdmin#VirtualInstancesNeedNoExtraInformationWithPasswordProperty";
+
+		task ("Given: User opens the portal with a set admin password and logs in") {
+			User.firstLoginUI();
+		}
+
+		task ("When: User start to create a virtuali instance") {
+			ApplicationsMenu.gotoPortlet(
+				category = "System",
+				panel = "Control Panel",
+				portlet = "Virtual Instances");
+
+			LexiconEntry.gotoAdd();
+		}
+
+		task ("Then: The screen name field will not be present and can create an instance with setting basic information") {
+			AssertElementNotPresent(locator1 = "TextInput#VIRTUAL_INSTANCE_SCREEN_NAME");
+
+			SAML.addVirtualInstances(virtualHosts = "www.able.com");
+		}
+	}
+
 }
