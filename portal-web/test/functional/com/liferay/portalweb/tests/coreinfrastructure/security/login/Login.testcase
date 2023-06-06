@@ -490,4 +490,22 @@ definition {
 		}
 	}
 
+	@description = "This is a use case for LPS-123: After the administrator logs in, create a new administrator user and log in for verification"
+	@priority = 5
+	test CreateNewAdministratorVerifyIdentidy{
+		User.firstLoginUI();
+
+		JSONUser.addUserWithRole(
+			userEmailAddress = "adminuser@liferay.com",
+			userFirstName = "adminuser",
+			userLastName = "adminuser",
+			userScreenName = "adminuser",
+			roleTitle = "Administrator");
+
+		User.logoutAndLoginPG(
+			userLoginEmailAddress = "adminuser@liferay.com",
+			userLoginFullName = "adminuser adminuser1");
+
+	}
+
 }
