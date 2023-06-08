@@ -490,37 +490,34 @@ definition {
 		}
 	}
 
-	@description = "Add a new admin user, the user creates a new page and web content, and adds a web content widget to the page"
-    @priority = 5
-	test AdminAddPageAndWebContent{
-		User.loginPG();
-
+	@description = "Add a new admin user,the user creates a new page and web content, and adds a web content widget to the page"
+	@priority = 5
+	test AdminAddPageAndWebContent {
 		JSONUser.addUserWithRole(
-		userEmailAddress = "test2@liferay.com",
-		userFirstName = "test2",
-		userLastName = "test2",
-		userScreenName = "test2",
-		roleTitle = "Administrator");
+			userEmailAddress = "test2@liferay.com",
+			userFirstName = "test2",
+			userLastName = "test2",
+			userScreenName = "test2",
+			roleTitle = "Administrator");
 
 		User.logoutAndLoginPG(
-		userLoginEmailAddress = "test2@liferay.com",
-		userLoginFullName = "test2 test2");
+			userLoginEmailAddress = "test2@liferay.com",
+			userLoginFullName = "test2 test2");
 
 		JSONLayout.addPublicLayout(
-		groupName = "Test Site Name",
-		layoutName = "Test Content Page Name",
-		type = "content");
+			groupName = "Test Site Name",
+			layoutName = "Test Content Page Name",
+			type = "content");
 
-		JSONWebcontent.addWebContent(
-		content = "WC WebContent Content",
-		groupName = "Test Site Name",
-		title = "WC WebContent Title");
+        JSONWebcontent.addWebContent(
+			content = "Web Content Content",
+			groupName = "Test Site Name",
+			title = "Web Content Title");
 
 		JSONLayout.addWidgetToPublicLayout(
-		groupName = "Test Site Name",
-		layoutName = "Test Content Page Name",
-		widgetName = "Web Content Display");
+			groupName = "Test Site Name",
+			layoutName = "Test Content Page Name",
+			widgetName = "Web Content Display");
 	}
-
 
 }
