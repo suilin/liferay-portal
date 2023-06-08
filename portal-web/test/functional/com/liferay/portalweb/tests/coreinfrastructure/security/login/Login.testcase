@@ -492,7 +492,7 @@ definition {
 
 	@description = "Add a new admin user, the user creates a new page and web content, and adds a web content widget to the page"
     @priority = 5
-		test AdminAddPageAndWebContent{
+	test AdminAddPageAndWebContent{
 		User.loginPG();
 
 		JSONUser.addUserWithRole(
@@ -507,9 +507,9 @@ definition {
 		userLoginFullName = "test2 test2");
 
 		JSONLayout.addPublicLayout(
-			groupName = "Test Site Name",
-			layoutName = "Test Content Page Name",
-			type = "content");
+		groupName = "Test Site Name",
+		layoutName = "Test Content Page Name",
+		type = "content");
 
 		JSONWebcontent.addWebContent(
 		content = "WC WebContent Content",
