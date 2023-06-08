@@ -168,6 +168,25 @@ definition {
 			changeUser = "Test Test");
 	}
 
+	@description = "This is a use case for LPS-184911 - Saving Publications settings when it is disabled causes PrincipalException."
+	@priority = 3
+	test CanSavePublicationsSettingsWhenItIsDisabled {
+		Publications.disablePublications();
+
+		ApplicationsMenuHelper.openApplicationsMenu();
+
+		ApplicationsMenu.gotoPanel(panel = "Applications");
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Publications",
+			panel = "Applications",
+			portlet = "Publications");
+
+		PortletEntry.save();
+
+		Alert.viewWarningSpecificNotPresent(warningMessage = "Portlet is temporarily unavailable.");
+	}
+
 	@priority = 3
 	test CreateNewPublicationWithLongName {
 		PublicationsNavigator.openPublicationsAdmin();
