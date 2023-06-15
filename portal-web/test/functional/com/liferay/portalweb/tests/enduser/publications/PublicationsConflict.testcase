@@ -497,11 +497,9 @@ definition {
 
 		JSONPublications.selectPublication(publicationName = "Publication 1 Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "Guest");
-
-		WebContent.moveToRecycleBinCP(
-			assetType = "Web Content Article",
-			webContentTitle = "WC WebContent Title");
+		JSONWebcontent.deleteWebContent(
+			groupName = "Guest",
+			title = "WC WebContent Title");
 
 		JSONPublications.addPublication(publicationName = "Publication 2 Name");
 
