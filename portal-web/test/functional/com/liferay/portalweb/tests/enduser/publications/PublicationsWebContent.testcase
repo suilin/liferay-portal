@@ -349,6 +349,7 @@ definition {
 
 		PublicationsChanges.discardChanges(
 			changeCategory = "WC Folder Name",
+			changeOrder = "2",
 			changeTitle = "WC Folder Name Edited",
 			conflictingChanges = "true",
 			entryTitle = "WC Folder Name Edited");
