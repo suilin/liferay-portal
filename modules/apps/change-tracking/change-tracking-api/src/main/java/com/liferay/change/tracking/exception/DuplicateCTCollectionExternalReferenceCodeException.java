@@ -11,6 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.change.tracking.exception;
 
 import com.liferay.portal.kernel.exception.DuplicateExternalReferenceCodeException;
@@ -18,7 +19,8 @@ import com.liferay.portal.kernel.exception.DuplicateExternalReferenceCodeExcepti
 /**
  * @author Brian Wing Shun Chan
  */
-public class DuplicateCTCollectionExternalReferenceCodeException extends DuplicateExternalReferenceCodeException {
+public class DuplicateCTCollectionExternalReferenceCodeException
+	extends DuplicateExternalReferenceCodeException {
 
 	public DuplicateCTCollectionExternalReferenceCodeException() {
 	}
@@ -27,11 +29,15 @@ public class DuplicateCTCollectionExternalReferenceCodeException extends Duplica
 		super(msg);
 	}
 
-	public DuplicateCTCollectionExternalReferenceCodeException(String msg, Throwable throwable) {
+	public DuplicateCTCollectionExternalReferenceCodeException(
+		String msg, Throwable throwable) {
+
 		super(msg, throwable);
 	}
 
-	public DuplicateCTCollectionExternalReferenceCodeException(Throwable throwable) {
+	public DuplicateCTCollectionExternalReferenceCodeException(
+		Throwable throwable) {
+
 		super(throwable);
 	}
 
