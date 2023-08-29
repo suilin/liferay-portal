@@ -16,6 +16,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>CLIENT_ID</td>
+	<td>//div[contains(.,'Client ID')]//following-sibling::input[contains(@id,'PublicationsPortlet_clientId')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CLIENT_SECRET</td>
+	<td>//div[contains(.,'Client Secret')]//following-sibling::input[contains(@id,'PublicationsPortlet_clientSecret')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>CONFLICTING_CHANGES_SUCCESS_CONTENT</td>
 	<td>//div[contains(.,'${key_entryTitle}')]//following-sibling::div[contains(.,'${key_successMessage}')]</td>
 	<td></td>
