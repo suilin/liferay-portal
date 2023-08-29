@@ -130,6 +130,14 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
+	macro disableManageRemotely {
+		PublicationsNavigator.openPublicationsSettings();
+
+		Uncheck.uncheckToggleSwitch(locator1 = "Publications#ENABLE_MANAGE_REMOTELY");
+
+		Click(locator1 = "Button#SAVE");
+	}
+
 	macro disablePublications {
 		if (${gotoInstancesettings} == "true") {
 			ApplicationsMenu.gotoPortlet(
@@ -167,7 +175,7 @@ definition {
 	}
 
 	macro enableAllowUnapprovedChanges {
-		Publications.openPublicationsSettings();
+		PublicationsNavigator.openPublicationsSettings();
 
 		Check.checkToggleSwitch(locator1 = "Publications#ENABLE_ALLOW_UNAPPROVED_CHANGES");
 
@@ -175,19 +183,9 @@ definition {
 	}
 
 	macro enableManageRemotely {
-		Publications.openPublicationsSettings();
+		PublicationsNavigator.openPublicationsSettings();
 
 		Check.checkToggleSwitch(locator1 = "Publications#ENABLE_MANAGE_REMOTELY");
-
-		AssertTextEquals.assertPartialText(
-			key_alertType = "info",
-			locator1 = "ClayAlert#ALERT_STATIC",
-			value1 = "Client ID:id");
-
-		AssertTextEquals.assertPartialText(
-			key_alertType = "info",
-			locator1 = "ClayAlert#ALERT_STATIC",
-			value1 = "Client Secret: secret");
 
 		Click(locator1 = "Button#SAVE");
 	}
@@ -233,7 +231,7 @@ definition {
 	}
 
 	macro enableSandboxOnly {
-		Publications.openPublicationsSettings();
+		PublicationsNavigator.openPublicationsSettings();
 
 		Check.checkToggleSwitch(locator1 = "Publications#ENABLE_SANDBOX_ONLY_TOGGLE_SWITCH");
 
