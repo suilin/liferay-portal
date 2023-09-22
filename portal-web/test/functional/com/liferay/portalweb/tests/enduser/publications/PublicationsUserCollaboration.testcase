@@ -153,7 +153,7 @@ definition {
 		}
 
 		task ("Enable Share Publication Link and copy URL") {
-			Publications.enablePublicationSharing(key_toggleSwitchLabel = "Allow anyone with the link to view this publication.");
+			Publications.enablePublicationSharing();
 
 			var shareLinkURL = Publications.getShareLinkURL();
 		}
@@ -207,7 +207,7 @@ definition {
 		}
 
 		task ("Enable Share Publication Link and copy URL") {
-			Publications.enablePublicationSharing(key_toggleSwitchLabel = "Allow anyone with the link to view this publication.");
+			Publications.enablePublicationSharing();
 
 			var shareLinkURL = Publications.getShareLinkURL();
 		}
@@ -316,7 +316,7 @@ definition {
 		}
 
 		task ("Enable Share Publication Link and copy URL") {
-			Publications.enablePublicationSharing(key_toggleSwitchLabel = "Allow anyone with the link to view this publication.");
+			Publications.enablePublicationSharing();
 
 			var shareLinkURL = Publications.getShareLinkURL();
 		}
@@ -369,7 +369,7 @@ definition {
 		}
 
 		task ("Enable Share Publication Link and copy URL") {
-			Publications.enablePublicationSharing(key_toggleSwitchLabel = "Allow anyone with the link to view this publication.");
+			Publications.enablePublicationSharing();
 
 			var shareLinkURL = Publications.getShareLinkURL();
 		}
