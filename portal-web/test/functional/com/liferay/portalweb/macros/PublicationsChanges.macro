@@ -45,35 +45,40 @@ definition {
 	}
 
 	macro discardChanges {
-		if (isSet(changeOrder)) {
-			var changeOrder = ${changeOrder};
+		if (${publications.dataset.display.enabled} == "true") {
+			PublicationsNavigator.openPublicationsSettings();
 		}
 		else {
-			var changeOrder = 1;
-		}
-
-		var key_changeCategory = ${changeCategory};
-		var key_changeTitle = ${changeTitle};
-
-		if (${conflictingChanges} == "true") {
-			if (IsElementPresent(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_DROPDOWN")) {
-				Click(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_DROPDOWN");
-
-				MenuItem.click(menuItem = "Discard Change");
-			}
-			else if (IsElementPresent(locator1 = "PublicationsChanges#DISCARD_CHANGE_BUTTON")) {
-				Click(locator1 = "PublicationsChanges#DISCARD_CHANGE_BUTTON");
+			if (isSet(changeOrder)) {
+				var changeOrder = ${changeOrder};
 			}
 			else {
-				Click(locator1 = "PublicationsChangeDetails#DISCARD_CHANGE_BUTTON");
+				var changeOrder = 1;
 			}
-		}
-		else {
-			Click(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_TITLE");
 
-			Click(locator1 = "PublicationsChanges#CONFLICTING_CHANGES_DISCARD_ELLIPSIS");
+			var key_changeCategory = ${changeCategory};
+			var key_changeTitle = ${changeTitle};
 
-			MenuItem.click(menuItem = "Discard");
+			if (${conflictingChanges} == "true") {
+				if (IsElementPresent(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_DROPDOWN")) {
+					Click(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_DROPDOWN");
+
+					MenuItem.click(menuItem = "Discard Change");
+				}
+				else if (IsElementPresent(locator1 = "PublicationsChanges#DISCARD_CHANGE_BUTTON")) {
+					Click(locator1 = "PublicationsChanges#DISCARD_CHANGE_BUTTON");
+				}
+				else {
+					Click(locator1 = "PublicationsChangeDetails#DISCARD_CHANGE_BUTTON");
+				}
+			}
+			else {
+				Click(locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_TITLE");
+
+				Click(locator1 = "PublicationsChanges#CONFLICTING_CHANGES_DISCARD_ELLIPSIS");
+
+				MenuItem.click(menuItem = "Discard");
+			}
 		}
 
 		AssertElementPresent(

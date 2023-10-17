@@ -1244,6 +1244,8 @@ definition {
 
 	@priority = 4
 	test DiscardSubsetsofChangesInPublication {
+		property portal.release = "Linda";
+
 		JSONPublications.addPublication(publicationName = "Publication Name");
 
 		JSONPublications.selectPublication(publicationName = "Publication Name");
