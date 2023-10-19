@@ -136,6 +136,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>ELLIPSIS_IN_PUBLICATION</td>
+	<td>//button[contains(@class, 'dropdown-toggle btn btn-monospaced btn-sm btn-unstyled')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>SORT_BUTTON</td>
 	<td>//button[contains(.,'${key_name}')]/span</td>
 	<td></td>
