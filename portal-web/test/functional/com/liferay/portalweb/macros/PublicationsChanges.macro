@@ -230,7 +230,9 @@ definition {
 		WaitForElementPresent(locator1 = "PublicationsChanges#CHANGE_HEADER");
 
 		if (${showAllItems} == "true") {
-			Check.checkToggleSwitch(locator1 = "PublicationsChanges#SHOW_ALL_ITEMS_TOGGLE_SWITCH");
+			Click(locator1 = "PublicationsChanges#ELLIPSIS_IN_PUBLICATION");
+
+			MenuItem.click(menuItem = "Show System Changes");
 		}
 
 		var key_changeCategory = ${changeCategory};
@@ -250,7 +252,7 @@ definition {
 			Click(locator1 = "//*[contains(@class, 'page-link')]//*[contains(@class,'right')]");
 		}
 
-		AssertElementPresent(
+		AssertTextEquals.assertPartialText(
 			locator1 = "PublicationsChanges#PUBLICATIONS_CHANGE_USER",
 			value1 = ${changeUser});
 
