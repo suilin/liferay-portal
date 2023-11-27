@@ -1780,7 +1780,7 @@ definition {
 
 	@priority = 5
 	test RescheduleAndCancelScheduledPublication {
-		property portal.acceptance = "true";
+		property portal.acceptance = "Linda";
 
 		Publications.createNewPublication(
 			gotoPublicationsAdmin = "true",
@@ -1960,6 +1960,8 @@ definition {
 
 	@priority = 5
 	test SchedulePublication {
+		property portal.acceptance = "Linda";
+
 		JSONPublications.addPublication(publicationName = "Publication Name 1");
 
 		JSONPublications.selectPublication(publicationName = "Publication Name 1");
