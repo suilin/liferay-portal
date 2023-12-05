@@ -2196,14 +2196,16 @@ definition {
 			columnName = "Name",
 			columnValueInProduction = "WC WebContent Title",
 			columnValueInPublication = "WC WebContent Title Edited",
-			diffAddedValue = "Edited",
+			diffAddedValue ="Edited",
 			publicationName = "Publication Name");
 
 		PublicationsNavigator.gotoNavbar(navBarTitle = "Parents");
 
-		PublicationsChangeDetails.viewChangeDetailsInParents(
-			changeParentsCategory = "Dynamic Data Mapping Template",
-			changeParentsTitle = "Basic Web Content");
+		// Workaround LPS-202811
+
+		//PublicationsChangeDetails.viewChangeDetailsInParents(
+		// changeParentsCategory = "Dynamic Data Mapping Template",
+		// changeParentsTitle = "Basic Web Content");
 
 		PublicationsNavigator.gotoNavbar(navBarTitle = "Children");
 
