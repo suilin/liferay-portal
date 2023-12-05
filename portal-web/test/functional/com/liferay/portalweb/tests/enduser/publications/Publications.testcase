@@ -1380,10 +1380,10 @@ definition {
 
 		// Workaround LPS-202333
 
-		//AssertTextEquals(
-		//key_publicationName = "Publication Name",
-		//locator1 = "Publications#PUBLISHED_STATUS",
-		//value1 = "Published");
+		/*AssertTextEquals(
+			key_publicationName = "Publication Name",
+			locator1 = "Publications#PUBLISHED_STATUS",
+			value1 = "Published");*/
 
 	}
 
@@ -2230,9 +2230,9 @@ definition {
 
 		// Workaround LPS-202811
 
-		//PublicationsChangeDetails.viewChangeDetailsInParents(
-		//changeParentsCategory = "Dynamic Data Mapping Template",
-		//changeParentsTitle = "Basic Web Content");
+		/*PublicationsChangeDetails.viewChangeDetailsInParents(
+			changeParentsCategory = "Dynamic Data Mapping Template",
+			changeParentsTitle = "Basic Web Content");*/
 
 		PublicationsNavigator.gotoNavbar(navBarTitle = "Children");
 
