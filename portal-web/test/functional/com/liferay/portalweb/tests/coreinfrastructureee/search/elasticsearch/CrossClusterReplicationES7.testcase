@@ -572,7 +572,6 @@ definition {
 			searchAssetType = "Document");
 	}
 
-	@ignore = "true"
 	@priority = 5
 	test Smoke {
 		property app.server.bundles.size = "1";
