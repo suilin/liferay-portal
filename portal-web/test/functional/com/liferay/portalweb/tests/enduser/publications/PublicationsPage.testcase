@@ -882,6 +882,98 @@ definition {
 		}
 	}
 
+	@description = "This is a use case for LPS-199203."
+	@priority = 3
+	test CanReviewChangeForContentPageWithLocalization {
+		task ("Add and select a new publication") {
+			JSONPublications.addPublication(publicationName = "Publication Name");
+
+			JSONPublications.selectPublication(publicationName = "Publication Name");
+		}
+
+		task ("Add a new site with a content page") {
+			HeadlessSite.addSite(siteName = "Site Name");
+
+			JSONLayout.addPublicLayout(
+				groupName = "Site Name",
+				layoutName = "Test Page",
+				type = "content");
+		}
+
+		task ("Add a heading fragment to the page and publish") {
+			ContentPagesNavigator.openEditContentPage(
+				pageName = "Test Page",
+				siteName = "Site Name");
+
+			PageEditor.addFragment(
+				collectionName = "Basic Components",
+				fragmentName = "Heading");
+
+			PageEditor.editFragmentText(
+				fragmentName = "Heading",
+				id = "element-text",
+				text = "This is a heading");
+
+			PageEditor.publish();
+		}
+
+		task ("Create a translation for the page and publish") {
+			PagesAdmin.openPagesAdmin(siteURLKey = "site-name");
+
+			ContentPagesNavigator.goToTranslation(pageName = "Test Page");
+
+			Translations.changeTargetLocale(
+				currentTargetLocale = "ar-SA",
+				newTargetLocale = "ja-JP");
+
+			Translations.translateFragmentField(
+				fieldName = "element-text",
+				fragmentText = "これはヘディングです");
+
+			PortletEntry.publish();
+		}
+
+		task ("Republish the page draft with the translation") {
+			ContentPagesNavigator.openEditContentPage(
+				pageName = "Test Page",
+				siteName = "Site Name");
+
+			PageEditor.publish();
+		}
+
+		task ("Go to review changes and assert that the localization is within the content page change details") {
+			PublicationsNavigator.gotoReviewChanges(
+				gotoPublicationsAdmin = "true",
+				publicationName = "Publication Name");
+
+			PublicationsNavigator.gotoViewChangeDetails(
+				changeCategory = "Page",
+				changeTitle = "Test Page");
+
+			SelectFrame(locator1 = "IFrame#IFRAME");
+
+			AssertTextEquals.assertPartialText(
+				locator1 = "Experience#FRAGMENT_HEADING",
+				value1 = "This is a heading");
+
+			SelectFrameTop();
+
+			Click(
+				key_currentLocale = StringUtil.lowerCase("en-US"),
+				locator1 = "Button#TRANSLATIONS_LOCALIZATION");
+
+			Click(
+				key_locale = "ja_JP",
+				locator1 = "Translation#DROPDOWN_MENU_ITEM");
+
+			SelectFrame(locator1 = "IFrame#IFRAME");
+
+			AssertTextEquals.assertPartialText(
+				locator1 = "Experience#FRAGMENT_HEADING",
+				value1 = "これはヘディングです");
+		}
+	}
+
 	@description = "This is a use case for LPS-164162 - Styling Content Pages is not properly applied when the user edits a page in a Publication"
 	@priority = 3
 	test CanStyleContentPages {
