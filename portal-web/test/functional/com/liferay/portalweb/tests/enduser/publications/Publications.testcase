@@ -1928,9 +1928,11 @@ definition {
 
 		PublicationsNavigator.gotoNavbar(navBarTitle = "Parents");
 
-		PublicationsChangeDetails.viewChangeDetailsInParents(
+		// Workaround LPS-202811
+
+		/*PublicationsChangeDetails.viewChangeDetailsInParents(
 			changeParentsCategory = "Dynamic Data Mapping Template",
-			changeParentsTitle = "Basic Web Content");
+			changeParentsTitle = "Basic Web Content");*/
 
 		PublicationsNavigator.gotoNavbar(navBarTitle = "Children");
 
